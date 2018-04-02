@@ -40,3 +40,6 @@
 [submodule "bundle/vim-dirvish"]
 	path = bundle/vim-dirvish
 	url = https://github.com/justinmk/vim-dirvish.git
+[submodule "bundle/vim-one"]
+	path = bundle/vim-one
+	url = https://github.com/rakr/vim-one.git

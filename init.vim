@@ -40,6 +40,7 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+" APPEARANCE
 let g:gruvbox_italic = 1
 let g:gruvbox_italicize_comments = 1
 let g:gruvbox_italicize_strings = 1
@@ -48,6 +49,8 @@ let g:gruvbox_contrast_dark='hard'
 " let g:gruvbox_invert_tabline = 1
 let g:gruvbox_improved_warnings = 1
 colorscheme gruvbox
+
+let g:one_allow_italics = 1
 
 " let g:netrw_liststyle=3
 " let g:netrw_alto = 1
