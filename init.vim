@@ -53,11 +53,6 @@ colorscheme gruvbox
 
 let g:one_allow_italics = 1
 
-" let g:netrw_liststyle=3
-" let g:netrw_alto = 1
-" let g:netrw_altv = 1
-" let g:netrw_altfile=0
-" let g:netrw_hide=1
 map <Leader>e :Explore<CR>
 map <Leader>v :Vexplore<CR>
 map <Leader>s :Sexplore<CR>
@@ -75,8 +70,8 @@ command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
 command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
 
 " TABS
-map <C-w><C-t> :tabnew<CR>
-imap <C-w><C-t> :tabnew<CR>
+map <C-t> :tabnew<CR>
+imap <C-t> :tabnew<CR>
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
@@ -90,7 +85,7 @@ map <leader>n :set invnumber<CR>
 
 " ALE
 let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_javascript_prettier_options = '--single-quote'
 map <Leader>f :ALEFix<CR>
 map <Leader>a :ALEToggle<CR>

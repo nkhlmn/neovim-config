@@ -52,3 +52,9 @@
 [submodule "bundle/vim-sensible"]
 	path = bundle/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
+[submodule "bundle/emmet-vim"]
+	path = bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "bundle/vim-sleuth"]
+	path = bundle/vim-sleuth
+	url = git://github.com/tpope/vim-sleuth.git
