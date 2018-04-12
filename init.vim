@@ -100,3 +100,4 @@ map <S-ScrollWheelDown> <C-D>
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 set undodir=~/.config/nvim/undo//
+
