@@ -98,18 +98,20 @@ nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 " Terminal
-map <silent> <leader>c :split <bar> :terminal<CR> :set nonumber<CR> i
-map <silent> <leader>C :vsplit <bar> :terminal<CR> :set nonumber<CR> i
+map <silent> <leader>c :split <bar> :res 15 <bar> :set nonumber <bar> :terminal<CR> i
+map <silent> <leader>C :vsplit <bar> :set nonumber <bar> :terminal<CR> i
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-w><C-j> <C-\><C-n><C-w>j
 tnoremap <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <C-w><C-l> <C-\><C-n><C-w>l
+autocmd BufWinEnter,WinEnter term://* startinsert
+
 tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
 tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
 
 " Clear highlighted search items
-nnoremap <leader>h :nohlsearch<cr>
+nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
 " Toggle line numbers
 map <leader>n :set invnumber<CR>
