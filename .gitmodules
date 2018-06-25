@@ -79,3 +79,15 @@
 [submodule "bundle/vim-obsession"]
 	path = bundle/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
+[submodule "bundle/deoplete.nvim"]
+	path = bundle/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim.git
+[submodule "bundle/vim-gruvbox8"]
+	path = bundle/vim-gruvbox8
+	url = https://github.com/lifepillar/vim-gruvbox8.git
+[submodule "bundle/deoplete-ternjs"]
+	path = bundle/deoplete-ternjs
+	url = https://github.com/carlitux/deoplete-ternjs.git
+[submodule "bundle/nvim-yarp"]
+	path = bundle/nvim-yarp
+	url = https://github.com/roxma/nvim-yarp.git

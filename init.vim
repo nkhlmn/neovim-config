@@ -1,5 +1,44 @@
-call pathogen#helptags()
-execute pathogen#infect()
+" MINPAC PLUGIN MANAGER "
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type':'opt'})
+
+call minpac#add('w0rp/ale')
+call minpac#add('jiangmiao/auto-pairs')
+call minpac#add('mattn/emmet-vim')
+call minpac#add('Yggdroot/indentLine')
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+call minpac#add('airblade/vim-gitgutter')
+call minpac#add('sheerun/vim-polyglot')
+call minpac#add('mkitt/tabline.vim')
+call minpac#add('justinmk/vim-dirvish')
+call minpac#add('ervandew/supertab')
+
+" Deoplete
+call minpac#add('Shougo/deoplete.nvim')
+call minpac#add('carlitux/deoplete-ternjs')
+call minpac#add('zchee/deoplete-jedi')
+
+" Tpope
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-sensible')
+call minpac#add('tpope/vim-sleuth')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-vinegar')
+
+" Colorschemes
+call minpac#add('nikhilkamineni/vim-gruvbox8', {'type': 'opt'})
+call minpac#add('nikhilkamineni/Spacegray.vim', {'type': 'opt'})
+" call minpac#add('ajh17/Spacegray.vim', {'type': 'opt'})
+
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
+
+
 syntax on
 set number
 " set autochdir
@@ -9,10 +48,10 @@ set softtabstop=2
 set mouse=a
 set autoread
 set updatetime=100
-set guifont=FiraCode-Retina:h14
+set guifont=Hack:h14
 set background=dark
 set laststatus=2
-set t_Co=256
+" set t_Co=256
 set termguicolors
 " set hidden
 set showmatch
@@ -48,29 +87,24 @@ autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 " APPEARANCE
-" set cursorline
 let g:gruvbox_italic = 1
 let g:gruvbox_italicize_comments = 1
 let g:gruvbox_italicize_strings = 1
-let g:gruvbox_contrast_dark='hard'
-" let g:gruvbox_invert_indent_guides = 1
-" let g:gruvbox_invert_tabline = 1
-" let g:gruvbox_improved_warnings = 1
-" let g:gruvbox_improved_strings = 1
-colorscheme gruvbox
+" let g:gruvbox_filetype_hi_groups = 1
 
-let g:one_allow_italics = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-let g:jellybeans_use_term_italics = 1
 let g:spacegray_use_italics = 1
+let g:spacegray_low_contrast = 1
 
-map <Leader>e :Explore<CR>
-map <Leader>v :Vexplore<CR>
-map <Leader>s :Sexplore<CR>
-map <Leader>t :Texplore<CR>
+let g:airline_theme='raven'
+colorscheme Spacegray
+" set cursorline
+
+" EXPLORER SHORTCUTS
+map <silent> <Leader>e :Explore<CR>
+map <silent> <Leader>v :Vexplore<CR>
+" map <silent> <Leader>v :vsplit <bar> Explore<CR>
+map <silent> <Leader>s :Sexplore<CR>
+map <silent> <Leader>t :Texplore<CR>
 set splitbelow
 set splitright
 
@@ -80,6 +114,10 @@ command! -nargs=? -complete=dir Explore Dirvish
 command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
 command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
 command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
+map <silent> <Leader>E :Dirvish %<CR>
+map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
+map <silent> <Leader>S :split <bar> Dirvish %<CR>
+map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
 
 " RANGER
 " let g:ranger_replace_netrw = 1
@@ -90,21 +128,21 @@ map <leader>r :Ranger<CR>
 " map <leader>s :split <bar> :Ranger<CR>
 
 " TABS
-map <C-t> :tabnew<CR>
-imap <C-t> :tabnew<CR>
-nnoremap <C-h> :tabprevious<CR>
-nnoremap <C-l> :tabnext<CR>
+map <silent> <C-t> :tabnew<CR>
+imap <silent> <C-t> :tabnew<CR>
+nnoremap <silent> <C-h> :tabprevious<CR>
+nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 " Terminal
-map <silent> <leader>c :split <bar> :res 15 <bar> :set nonumber <bar> :terminal<CR> i
-map <silent> <leader>C :vsplit <bar> :set nonumber <bar> :terminal<CR> i
-tnoremap <Esc> <C-\><C-n>
-tnoremap <C-w><C-j> <C-\><C-n><C-w>j
-tnoremap <C-w><C-k> <C-\><C-n><C-w>k
-tnoremap <C-w><C-h> <C-\><C-n><C-w>h
-tnoremap <C-w><C-l> <C-\><C-n><C-w>l
+map <silent> <leader>c :split <bar> :res 15 <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
+map <silent> <leader>C :vsplit <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
+tnoremap <silent> <Esc> <C-\><C-n>
+tnoremap <silent> <C-w><C-j> <C-\><C-n><C-w>j
+tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
+tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
+tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
 autocmd BufWinEnter,WinEnter term://* startinsert
 
 tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
@@ -118,13 +156,15 @@ map <leader>n :set invnumber<CR>
 
 " ALE
 let g:airline#extensions#ale#enabled = 1
-let g:ale_completion_enabled = 1
-let g:ale_completion_delay = 200
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'c': ['clang-format', 'trim_whitespace'],
 \  'markdown': ['prettier'],
 \  'python': ['autopep8', 'black', 'yapf', 'isort','add_blank_lines_for_python_control_statements']
+\}
+let g:ale_linters = {
+\   'python': ['autopep8'],
+\   'javascript': ['eslint']
 \}
 let g:ale_javascript_prettier_options = '--single-quote'
 map <Leader>f :ALEFix<CR>
@@ -141,3 +181,28 @@ autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
 " EMMETT
 let g:user_emmet_leader_key='<C-e>'
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+" Supertab
+let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+
+" au BufNewFile,BufRead *.py
+"   \ set tabstop=4
+"   \ set softtabstop=4
+"   \ set shiftwidth=4
+"   \ set textwidth=79
+"   \ set expandtab
+"   \ set autoindent
+"   \ set fileformat=unix
+
+" au BufNewFile,BufRead *.js, *.html, *.css
+"   \ set tabstop=2
+"   \ set softtabstop=2
+"   \ set shiftwidth=2
+"   \ set expandtab
+"   \ set autoindent
