@@ -33,7 +33,6 @@ call minpac#add('tpope/vim-vinegar')
 " Colorschemes
 call minpac#add('nikhilkamineni/vim-gruvbox8', {'type': 'opt'})
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type': 'opt'})
-" call minpac#add('ajh17/Spacegray.vim', {'type': 'opt'})
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
@@ -96,7 +95,7 @@ let g:spacegray_use_italics = 1
 let g:spacegray_low_contrast = 1
 
 let g:airline_theme='raven'
-colorscheme Spacegray
+colorscheme spacegray
 " set cursorline
 
 " EXPLORER SHORTCUTS
@@ -160,7 +159,8 @@ let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'c': ['clang-format', 'trim_whitespace'],
 \  'markdown': ['prettier'],
-\  'python': ['autopep8', 'black', 'yapf', 'isort','add_blank_lines_for_python_control_statements']
+\  'python': ['autopep8', 'black', 'yapf', 'isort','add_blank_lines_for_python_control_statements'],
+\  'json': ['prettier', 'fixjson', 'trim_whitespace']
 \}
 let g:ale_linters = {
 \   'python': ['autopep8'],
@@ -190,19 +190,3 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-
-" au BufNewFile,BufRead *.py
-"   \ set tabstop=4
-"   \ set softtabstop=4
-"   \ set shiftwidth=4
-"   \ set textwidth=79
-"   \ set expandtab
-"   \ set autoindent
-"   \ set fileformat=unix
-
-" au BufNewFile,BufRead *.js, *.html, *.css
-"   \ set tabstop=2
-"   \ set softtabstop=2
-"   \ set shiftwidth=2
-"   \ set expandtab
-"   \ set autoindent
