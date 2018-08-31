@@ -117,6 +117,8 @@ map <silent> <Leader>E :Dirvish %<CR>
 map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
 map <silent> <Leader>S :split <bar> Dirvish %<CR>
 map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
+" Map gh to toggle show hidden files
+nnoremap <buffer> gh :call ToggleDotfiles()<CR>
 
 " RANGER
 " let g:ranger_replace_netrw = 1
@@ -159,11 +161,11 @@ let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'c': ['clang-format', 'trim_whitespace'],
 \  'markdown': ['prettier'],
-\  'python': ['autopep8', 'black', 'yapf', 'isort','add_blank_lines_for_python_control_statements'],
+\  'python': ['autopep8', 'black', 'yapf', 'isort','add_blank_lines_for_python_control_statements', 'trim_whitespace'],
 \  'json': ['prettier', 'fixjson', 'trim_whitespace']
 \}
 let g:ale_linters = {
-\   'python': ['autopep8'],
+\   'python': ['autopep8', 'flake8'],
 \   'javascript': ['eslint']
 \}
 let g:ale_javascript_prettier_options = '--single-quote'
