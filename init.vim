@@ -14,6 +14,7 @@ call minpac#add('sheerun/vim-polyglot')
 call minpac#add('mkitt/tabline.vim')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('ervandew/supertab')
+call minpac#add('lifepillar/vim-cheat40')
 
 " Deoplete
 call minpac#add('Shougo/deoplete.nvim')
