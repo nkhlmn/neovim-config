@@ -15,11 +15,7 @@ call minpac#add('mkitt/tabline.vim')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('ervandew/supertab')
 call minpac#add('lifepillar/vim-cheat40')
-
-" Deoplete
-call minpac#add('Shougo/deoplete.nvim')
-call minpac#add('carlitux/deoplete-ternjs')
-call minpac#add('zchee/deoplete-jedi')
+call minpac#add('JamshedVesuna/vim-markdown-preview')
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
@@ -34,6 +30,13 @@ call minpac#add('tpope/vim-vinegar')
 " Colorschemes
 call minpac#add('nikhilkamineni/vim-gruvbox8', {'type': 'opt'})
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type': 'opt'})
+call minpac#add('srcery-colors/srcery-vim', {'type': 'opt'})
+call minpac#add('aradunovic/perun.vim', {'type': 'opt'})
+
+" Deoplete
+call minpac#add('Shougo/deoplete.nvim')
+call minpac#add('carlitux/deoplete-ternjs')
+call minpac#add('zchee/deoplete-jedi')
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
@@ -48,9 +51,8 @@ set softtabstop=2
 set mouse=a
 set autoread
 set updatetime=100
-set guifont=Hack:h14
-set background=dark
-set laststatus=2
+" set guifont=Hack:h14
+set laststatus=2 "Always show statusline
 " set t_Co=256
 set termguicolors
 " set hidden
@@ -58,13 +60,19 @@ set showmatch
 set noshowmode " Hides default status text for current mode
 set ttyfast " Faster redrawing
 set lazyredraw
-set laststatus=2 "Always show statusline
-set clipboard+=unnamedplus
+set clipboard=unnamed
+set showcmd " Show incomplete commands
 
 " CODE FOLDING
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
+
+" TABLINE
+set showtabline=2
+" hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
+" hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
+" hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
 " FINDING FILES
 set path+=**                " Search down into subfolders/Enables tabbing
@@ -76,28 +84,45 @@ set incsearch
 set diffopt+=vertical
 nnoremap * *N
 
-" TABLINE
-set showtabline=2
-
 " Trigger `autoread` when files changes on disk
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 
 " Notification after file change
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+"""""""""""""""""
+" THEME RELATED "
+"""""""""""""""""
+set background=dark
+" set cursorline
+colorscheme spacegray
 
-" APPEARANCE
+" Gruvbox
+" let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_italic = 1
 let g:gruvbox_italicize_comments = 1
 let g:gruvbox_italicize_strings = 1
 " let g:gruvbox_filetype_hi_groups = 1
+" let g:gruvbox_plugin_hi_groups = 1
+" let g:gruvbox_invert_indent_guides = 1
+" let g:gruvbox_invert_tabline = 1
+" let g:gruvbox_improved_strings = 1
+" let g:gruvbox_improved_warnings = 1
+if g:colors_name == "gruvbox8"
+  let g:airline_theme="hybrid"
+endif
 
+"Spacegray
 let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 1
+" let g:spacegray_low_contrast = 1
+" let g:spacegray_underline_search = 1
+if g:colors_name == "spacegray"
+  let g:airline_theme="raven"
+endif
 
-let g:airline_theme='raven'
-colorscheme spacegray
-" set cursorline
+" Srcery
+let g:srcery_italic = 1
+
 
 " EXPLORER SHORTCUTS
 map <silent> <Leader>e :Explore<CR>
@@ -193,3 +218,21 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+" Vim Markdown Preview
+let vim_markdown_preview_github=1
+
+
+"""""""""""""""""""""""""""
+" LESS Files auto-compile "
+"""""""""""""""""""""""""""
+function! CompileLessFile()
+  let current = expand('%') " Path to current .less file's name
+  let target = expand('%:r').".css" " Path to target .css file
+  let shell_command = "!lessc ".current." ".target
+  echo "Compiling less file..."
+  if (executable('lessc'))
+    execute shell_command
+  endif
+endfunction
+
+autocmd FileWritePost,BufWritePost *.less :call CompileLessFile()
