@@ -16,6 +16,7 @@ call minpac#add('justinmk/vim-dirvish')
 call minpac#add('ervandew/supertab')
 call minpac#add('lifepillar/vim-cheat40')
 call minpac#add('JamshedVesuna/vim-markdown-preview')
+call minpac#add('suy/vim-context-commentstring')
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
@@ -62,6 +63,7 @@ set ttyfast " Faster redrawing
 set lazyredraw
 set clipboard=unnamed
 set showcmd " Show incomplete commands
+filetype plugin on
 
 " CODE FOLDING
 set foldmethod=indent
@@ -185,6 +187,7 @@ map <leader>n :set invnumber<CR>
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
+\  'less': ['prettier', 'trim_whitespace'],
 \  'c': ['clang-format', 'trim_whitespace'],
 \  'markdown': ['prettier'],
 \  'python': ['autopep8', 'black', 'yapf', 'isort','add_blank_lines_for_python_control_statements', 'trim_whitespace'],
@@ -225,6 +228,7 @@ let vim_markdown_preview_github=1
 """""""""""""""""""""""""""
 " LESS Files auto-compile "
 """""""""""""""""""""""""""
+" Set up function to Compile less to a css file in the same folder
 function! CompileLessFile()
   let current = expand('%') " Path to current .less file's name
   let target = expand('%:r').".css" " Path to target .css file
@@ -235,4 +239,6 @@ function! CompileLessFile()
   endif
 endfunction
 
+" Call CompileLessFile() after writing a file or buffer with .less extension
 autocmd FileWritePost,BufWritePost *.less :call CompileLessFile()
+
