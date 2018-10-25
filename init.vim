@@ -32,7 +32,6 @@ call minpac#add('tpope/vim-vinegar')
 call minpac#add('nikhilkamineni/vim-gruvbox8', {'type': 'opt'})
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type': 'opt'})
 call minpac#add('srcery-colors/srcery-vim', {'type': 'opt'})
-call minpac#add('aradunovic/perun.vim', {'type': 'opt'})
 
 " Deoplete
 call minpac#add('Shougo/deoplete.nvim')
@@ -92,11 +91,14 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 " Notification after file change
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+
 """""""""""""""""
 " THEME RELATED "
 """""""""""""""""
 set background=dark
 " set cursorline
+let &t_ut=''
 colorscheme spacegray
 
 " Gruvbox
@@ -115,16 +117,29 @@ if g:colors_name == "gruvbox8"
 endif
 
 "Spacegray
+if g:colors_name == "spacegray"
+  let g:airline_theme="raven"
+endif
 let g:spacegray_use_italics = 1
 " let g:spacegray_low_contrast = 1
 " let g:spacegray_underline_search = 1
+
+" Srcery
+let g:srcery_italic = 1
+if g:colors_name == "srcery"
+  let g:airline_theme="raven"
+  highlight EndOfBuffer ctermbg=242 ctermfg=242 guibg=#1C1B19 guifg=#1C1B19 cterm=NONE gui=NONE
+endif
+
+
+" Set airline theme for specific colorschemes
 if g:colors_name == "spacegray"
   let g:airline_theme="raven"
 endif
 
-" Srcery
-let g:srcery_italic = 1
-
+if g:colors_name == "gruvbox8"
+  let g:airline_theme="hybrid"
+endif
 
 " EXPLORER SHORTCUTS
 map <silent> <Leader>e :Explore<CR>
@@ -148,14 +163,6 @@ map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
 " Map gh to toggle show hidden files
 nnoremap <buffer> gh :call ToggleDotfiles()<CR>
 
-" RANGER
-" let g:ranger_replace_netrw = 1
-let g:ranger_map_keys = 0
-map <leader>r :Ranger<CR>
-" map <leader>t :tabnew <bar> :Ranger<CR>
-" map <leader>v :vsplit <bar> :Ranger<CR>
-" map <leader>s :split <bar> :Ranger<CR>
-
 " TABS
 map <silent> <C-t> :tabnew<CR>
 imap <silent> <C-t> :tabnew<CR>
@@ -173,7 +180,6 @@ tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
 autocmd BufWinEnter,WinEnter term://* startinsert
-
 tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
 tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
 
@@ -183,14 +189,16 @@ nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 " Toggle line numbers
 map <leader>n :set invnumber<CR>
 
-" ALE
+"""""""
+" ALE "
+"""""""
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'less': ['prettier', 'trim_whitespace'],
 \  'c': ['clang-format', 'trim_whitespace'],
 \  'markdown': ['prettier'],
-\  'python': ['autopep8', 'black', 'yapf', 'isort','add_blank_lines_for_python_control_statements', 'trim_whitespace'],
+\  'python': ['autopep8', 'black', 'yapf', 'isort','remove_trailing_lines', 'trim_whitespace'],
 \  'json': ['prettier', 'fixjson', 'trim_whitespace']
 \}
 let g:ale_linters = {
@@ -201,6 +209,7 @@ let g:ale_javascript_prettier_options = '--single-quote'
 map <Leader>f :ALEFix<CR>
 map <Leader>a :ALEToggle<CR>
 map <Leader>A :ALEDetail<CR>
+
 
 " Avoid creating swap files in cwd
 set backupdir=~/.config/nvim/backup//
@@ -213,10 +222,6 @@ autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 " EMMETT
 let g:user_emmet_leader_key='<C-e>'
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/local/bin/python3'
-
 " Supertab
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -224,6 +229,9 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Vim Markdown Preview
 let vim_markdown_preview_github=1
 
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 """""""""""""""""""""""""""
 " LESS Files auto-compile "
