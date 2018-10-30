@@ -53,7 +53,7 @@ set autoread
 set updatetime=100
 " set guifont=Hack:h14
 set laststatus=2 "Always show statusline
-" set t_Co=256
+set t_Co=256
 set termguicolors
 " set hidden
 set showmatch
@@ -99,7 +99,8 @@ autocmd FileChangedShellPost *
 set background=dark
 " set cursorline
 let &t_ut=''
-colorscheme spacegray
+let g:srcery_italic = 1
+colorscheme srcery
 
 " Gruvbox
 " let g:gruvbox_contrast_dark = 'hard'
@@ -125,21 +126,11 @@ let g:spacegray_use_italics = 1
 " let g:spacegray_underline_search = 1
 
 " Srcery
-let g:srcery_italic = 1
 if g:colors_name == "srcery"
-  let g:airline_theme="raven"
+  let g:airline_theme="monochrome"
   highlight EndOfBuffer ctermbg=242 ctermfg=242 guibg=#1C1B19 guifg=#1C1B19 cterm=NONE gui=NONE
 endif
 
-
-" Set airline theme for specific colorschemes
-if g:colors_name == "spacegray"
-  let g:airline_theme="raven"
-endif
-
-if g:colors_name == "gruvbox8"
-  let g:airline_theme="hybrid"
-endif
 
 " EXPLORER SHORTCUTS
 map <silent> <Leader>e :Explore<CR>
