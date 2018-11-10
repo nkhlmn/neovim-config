@@ -31,12 +31,19 @@ call minpac#add('tpope/vim-vinegar')
 " Colorschemes
 call minpac#add('nikhilkamineni/vim-gruvbox8', {'type': 'opt'})
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type': 'opt'})
-call minpac#add('srcery-colors/srcery-vim', {'type': 'opt'})
+call minpac#add('srcery-colors/srcery-vim')
 
 " Deoplete
 call minpac#add('Shougo/deoplete.nvim')
 call minpac#add('carlitux/deoplete-ternjs')
 call minpac#add('zchee/deoplete-jedi')
+
+" fzf
+call minpac#add('junegunn/fzf.vim')
+set rtp+=/usr/local/opt/fzf
+noremap <silent> <C-P> :GFiles<CR>
+noremap <silent> <C-B> :Buffers<CR>
+noremap <silent> <C-M> :Marks<CR>
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
@@ -99,8 +106,11 @@ autocmd FileChangedShellPost *
 set background=dark
 " set cursorline
 let &t_ut=''
+
+" Srcery
+let g:srcery_inverse = 0
+let g:srcery_inverse_matches = 1
 let g:srcery_italic = 1
-colorscheme srcery
 
 " Gruvbox
 " let g:gruvbox_contrast_dark = 'hard'
@@ -113,21 +123,26 @@ let g:gruvbox_italicize_strings = 1
 " let g:gruvbox_invert_tabline = 1
 " let g:gruvbox_improved_strings = 1
 " let g:gruvbox_improved_warnings = 1
-if g:colors_name == "gruvbox8"
-  let g:airline_theme="hybrid"
-endif
 
 "Spacegray
-if g:colors_name == "spacegray"
-  let g:airline_theme="raven"
-endif
 let g:spacegray_use_italics = 1
 " let g:spacegray_low_contrast = 1
 " let g:spacegray_underline_search = 1
 
-" Srcery
+" Set default colorscheme here
+colorscheme srcery
+
+"Set options for each theme
+if g:colors_name == "gruvbox8"
+  let g:airline_theme="hybrid"
+endif
+
+if g:colors_name == "spacegray"
+  let g:airline_theme="hybrid"
+endif
+
 if g:colors_name == "srcery"
-  let g:airline_theme="monochrome"
+  " Hide '~' end of buffer characters
   highlight EndOfBuffer ctermbg=242 ctermfg=242 guibg=#1C1B19 guifg=#1C1B19 cterm=NONE gui=NONE
 endif
 
@@ -219,6 +234,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Vim Markdown Preview
 let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<C-m>'
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -240,4 +256,3 @@ endfunction
 
 " Call CompileLessFile() after writing a file or buffer with .less extension
 autocmd FileWritePost,BufWritePost *.less :call CompileLessFile()
-
