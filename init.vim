@@ -41,9 +41,10 @@ call minpac#add('zchee/deoplete-jedi')
 " fzf
 call minpac#add('junegunn/fzf.vim')
 set rtp+=/usr/local/opt/fzf
-noremap <silent> <C-P> :GFiles<CR>
-noremap <silent> <C-B> :Buffers<CR>
-noremap <silent> <C-M> :Marks<CR>
+noremap <silent> <C-p> :GFiles<CR>
+noremap <silent> <C-b> :Buffers<CR>
+noremap <silent> <C-m> :Marks<CR>
+noremap <silent> <C-f> :Lines<CR>
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
