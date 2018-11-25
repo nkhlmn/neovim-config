@@ -249,7 +249,12 @@ let vim_markdown_preview_hotkey='<C-m>'
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/bin/python3'
+if has('unix')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+if has('macunix')
+  let g:python3_host_prog = '/usr/local/bin/python3'
+endif
 
 """""""""""""""""""""""""""
 " LESS Files auto-compile "
