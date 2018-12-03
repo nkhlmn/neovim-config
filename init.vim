@@ -32,6 +32,8 @@ call minpac#add('tpope/vim-vinegar')
 call minpac#add('nikhilkamineni/vim-gruvbox8', {'type': 'opt'})
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type': 'opt'})
 call minpac#add('srcery-colors/srcery-vim')
+call minpac#add('ayu-theme/ayu-vim')
+call minpac#add('arcticicestudio/nord-vim')
 
 " Deoplete
 call minpac#add('Shougo/deoplete.nvim')
@@ -105,7 +107,7 @@ autocmd FileChangedShellPost *
 " THEME RELATED "
 """""""""""""""""
 set background=dark
-" set cursorline
+set cursorline
 let &t_ut=''
 
 " Srcery
@@ -130,8 +132,15 @@ let g:spacegray_use_italics = 1
 " let g:spacegray_low_contrast = 1
 " let g:spacegray_underline_search = 1
 
+"Nord
+let g:nord_italic = 1
+let g:nord_underline = 1
+let g:nord_italic_comments = 1
+let g:nord_comment_brightness = 10
+let g:nord_cursor_line_number_background = 1
+
 " Set default colorscheme here
-colorscheme srcery
+colorscheme nord
 
 "Set options for each theme
 if g:colors_name == "gruvbox8"
@@ -139,7 +148,7 @@ if g:colors_name == "gruvbox8"
 endif
 
 if g:colors_name == "spacegray"
-  let g:airline_theme="hybrid"
+  let g:airline_theme="raven"
 endif
 
 if g:colors_name == "srcery"
