@@ -42,12 +42,22 @@ call minpac#add('zchee/deoplete-jedi')
 
 " fzf
 call minpac#add('junegunn/fzf.vim')
-set rtp+=/usr/local/opt/fzf
+
+if has('unix')
+  set rtp+=~/.fzf
+endif
+
+if has('macunix')
+  set rtp+=/usr/local/opt/fzf
+endif
+
 noremap <silent> <C-p> :GFiles<CR>
 noremap <silent> <C-b> :Buffers<CR>
 noremap <silent> <C-m> :Marks<CR>
 noremap <silent> <C-f> :Lines<CR>
 
+
+" Minpac shortcuts
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
@@ -248,7 +258,12 @@ let vim_markdown_preview_hotkey='<C-m>'
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/local/bin/python3'
+if has('unix')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+if has('macunix')
+  let g:python3_host_prog = '/usr/local/bin/python3'
+endif
 
 """""""""""""""""""""""""""
 " LESS Files auto-compile "
