@@ -29,11 +29,13 @@ call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-vinegar')
 
 " Colorschemes
-call minpac#add('nikhilkamineni/vim-gruvbox8', {'type': 'opt'})
-call minpac#add('nikhilkamineni/Spacegray.vim', {'type': 'opt'})
+call minpac#add('nikhilkamineni/vim-gruvbox8')
+call minpac#add('nikhilkamineni/Spacegray.vim')
 call minpac#add('srcery-colors/srcery-vim')
-call minpac#add('ayu-theme/ayu-vim')
 call minpac#add('arcticicestudio/nord-vim')
+call minpac#add('nightsense/snow')
+call minpac#add('nightsense/stellarized')
+call minpac#add('kaicataldo/material.vim')
 
 " Deoplete
 call minpac#add('Shougo/deoplete.nvim')
@@ -139,7 +141,7 @@ let g:gruvbox_italicize_strings = 1
 
 "Spacegray
 let g:spacegray_use_italics = 1
-" let g:spacegray_low_contrast = 1
+let g:spacegray_low_contrast = 1
 " let g:spacegray_underline_search = 1
 
 "Nord
@@ -149,10 +151,22 @@ let g:nord_italic_comments = 1
 let g:nord_comment_brightness = 10
 let g:nord_cursor_line_number_background = 1
 
+"Material
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'dark'
+
 " Set default colorscheme here
-colorscheme nord
+colorscheme spacegray
 
 "Set options for each theme
+if g:colors_name == "snow_dark"
+  let g:airline_theme="snow_dark"
+endif
+
+if g:colors_name == "stellarized"
+  let g:airline_theme="stellarized_dark"
+endif
+
 if g:colors_name == "gruvbox8"
   let g:airline_theme="hybrid"
 endif
@@ -220,12 +234,14 @@ map <leader>n :set invnumber<CR>
 """""""
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
+\  'html': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': ['prettier', 'eslint'],
 \  'less': ['prettier', 'trim_whitespace'],
 \  'c': ['clang-format', 'trim_whitespace'],
 \  'markdown': ['prettier'],
 \  'python': ['autopep8', 'black', 'yapf', 'isort','remove_trailing_lines', 'trim_whitespace'],
-\  'json': ['prettier', 'fixjson', 'trim_whitespace']
+\  'json': ['prettier', 'fixjson', 'trim_whitespace'],
+\  'go': ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace']
 \}
 let g:ale_linters = {
 \   'python': ['autopep8', 'flake8'],
