@@ -186,7 +186,7 @@ map <silent> <Leader>e :Explore<CR>
 map <silent> <Leader>v :Vexplore<CR>
 " map <silent> <Leader>v :vsplit <bar> Explore<CR>
 map <silent> <Leader>s :Sexplore<CR>
-map <silent> <Leader>t :Texplore<CR>
+" map <silent> <Leader>t :Texplore<CR>
 set splitbelow
 set splitright
 
@@ -204,8 +204,12 @@ map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
 nnoremap <buffer> gh :call ToggleDotfiles()<CR>
 
 " TABS
-map <silent> <C-t> :tabnew<CR>
-imap <silent> <C-t> :tabnew<CR>
+map  <silent> <Leader>t :tabnew <bar> GFiles<CR>
+imap <silent> <Leader>t :tabnew <bar> GFiles<CR>
+map  <silent> <Leader>s :split <bar> GFiles<CR>
+imap <silent> <Leader>s :split <bar> GFiles<CR>
+map  <silent> <Leader>v :vsplit <bar> GFiles<CR>
+imap <silent> <Leader>v :vsplit <bar> GFiles<CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
