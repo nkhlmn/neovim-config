@@ -40,6 +40,7 @@ call minpac#add('kaicataldo/material.vim')
 call minpac#add('Shougo/deoplete.nvim')
 call minpac#add('carlitux/deoplete-ternjs')
 call minpac#add('zchee/deoplete-jedi')
+call minpac#add('zchee/deoplete-clang')
 
 " fzf
 call minpac#add('junegunn/fzf.vim')
@@ -283,6 +284,9 @@ if has('macunix')
   let g:python3_host_prog = '/usr/local/bin/python3'
 endif
 
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include'
+
 """""""""""""""""""""""""""
 " LESS Files auto-compile "
 """""""""""""""""""""""""""
@@ -299,3 +303,4 @@ endfunction
 
 " Call CompileLessFile() after writing a file or buffer with .less extension
 autocmd FileWritePost,BufWritePost *.less :call CompileLessFile()
+
