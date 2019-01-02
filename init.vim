@@ -20,7 +20,7 @@ call minpac#add('suy/vim-context-commentstring')
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-fugitive')
+" call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-sensible')
 call minpac#add('tpope/vim-sleuth')
@@ -54,9 +54,10 @@ if has('macunix')
 endif
 
 noremap <silent> <C-p> :GFiles<CR>
+noremap <silent> <C-f> :Files<CR>
 noremap <silent> <C-b> :Buffers<CR>
 noremap <silent> <C-m> :Marks<CR>
-noremap <silent> <C-f> :Lines<CR>
+noremap <silent> <C-s> :Lines<CR>
 
 
 " Minpac shortcuts
@@ -156,10 +157,10 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'dark'
 
 " Set default colorscheme here
-colorscheme spacegray
+colorscheme nord
 
 "Set options for each theme
-if g:colors_name == "snow_dark"
+if g:colors_name == "snow"
   let g:airline_theme="snow_dark"
 endif
 
