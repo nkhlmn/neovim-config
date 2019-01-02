@@ -20,7 +20,7 @@ call minpac#add('suy/vim-context-commentstring')
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
-" call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-sensible')
 call minpac#add('tpope/vim-sleuth')
