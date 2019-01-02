@@ -14,7 +14,6 @@ call minpac#add('sheerun/vim-polyglot')
 call minpac#add('mkitt/tabline.vim')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('ervandew/supertab')
-call minpac#add('lifepillar/vim-cheat40')
 call minpac#add('JamshedVesuna/vim-markdown-preview')
 call minpac#add('suy/vim-context-commentstring')
 
@@ -74,17 +73,15 @@ set softtabstop=2
 set mouse=a
 set autoread
 set updatetime=100
-" set guifont=Hack:h14
-set laststatus=2 "Always show statusline
-set t_Co=256
+set laststatus=2        "Always show statusline
 set termguicolors
 " set hidden
 set showmatch
-set noshowmode " Hides default status text for current mode
-set ttyfast " Faster redrawing
+set noshowmode          " Hides default status text for current mode
+set ttyfast             " Faster redrawing
 set lazyredraw
 set clipboard=unnamed
-set showcmd " Show incomplete commands
+set showcmd             " Show incomplete commands
 filetype plugin on
 
 " CODE FOLDING
@@ -99,12 +96,12 @@ set showtabline=2
 " hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
 " FINDING FILES
-set path+=**                " Search down into subfolders/Enables tabbing
-set wildmenu                " Command line completion
-set wildmode=list:longest   " Complete files like a shell
-set ignorecase              " Make search case insensitive
-set hlsearch                " make search highlight all matches
-set incsearch
+set path+=**                      " Search down into subfolders/Enables tabbing
+set wildmenu                      " Command line completion
+set wildmode=longest:list,full    " Complete files like a shell
+set ignorecase                    " Make search case insensitive
+set hlsearch                      " make search highlight all matches
+set incsearch                     " start search immediately after typing
 set diffopt+=vertical
 nnoremap * *N
 
