@@ -155,7 +155,7 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'dark'
 
 " Set default colorscheme here
-colorscheme nord
+colorscheme material
 
 "Set options for each theme
 if g:colors_name == "snow"
@@ -178,7 +178,6 @@ if g:colors_name == "srcery"
   " Hide '~' end of buffer characters
   highlight EndOfBuffer ctermbg=242 ctermfg=242 guibg=#1C1B19 guifg=#1C1B19 cterm=NONE gui=NONE
 endif
-
 
 " EXPLORER SHORTCUTS
 map <silent> <Leader>e :Explore<CR>
