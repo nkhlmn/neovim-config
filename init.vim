@@ -245,10 +245,12 @@ let g:ale_fixers = {
 \  'json': ['prettier', 'fixjson', 'trim_whitespace'],
 \  'go': ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace']
 \}
+
 let g:ale_linters = {
 \   'python': ['autopep8', 'flake8'],
 \   'javascript': ['eslint']
 \}
+
 let g:ale_javascript_prettier_options = '--single-quote'
 map <Leader>f :ALEFix<CR>
 map <Leader>a :ALEToggle<CR>
