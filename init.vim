@@ -178,7 +178,6 @@ if g:colors_name == "srcery"
   highlight EndOfBuffer ctermbg=242 ctermfg=242 guibg=#1C1B19 guifg=#1C1B19 cterm=NONE gui=NONE
 endif
 
-
 " EXPLORER SHORTCUTS
 map <silent> <Leader>e :Explore<CR>
 map <silent> <Leader>v :Vexplore<CR>
