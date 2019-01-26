@@ -236,14 +236,15 @@ map <leader>n :set invnumber<CR>
 """""""
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
+\  'c': ['clang-format', 'trim_whitespace'],
+\  'css': ['prettier'],
+\  'go': ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace'],
 \  'html': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': ['prettier', 'eslint'],
+\  'json': ['prettier', 'fixjson', 'trim_whitespace'],
 \  'less': ['prettier', 'trim_whitespace'],
-\  'c': ['clang-format', 'trim_whitespace'],
 \  'markdown': ['prettier'],
 \  'python': ['autopep8', 'black', 'yapf', 'isort','remove_trailing_lines', 'trim_whitespace'],
-\  'json': ['prettier', 'fixjson', 'trim_whitespace'],
-\  'go': ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace']
 \}
 
 let g:ale_linters = {
