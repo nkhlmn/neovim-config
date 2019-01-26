@@ -32,9 +32,8 @@ call minpac#add('nikhilkamineni/vim-gruvbox8')
 call minpac#add('nikhilkamineni/Spacegray.vim')
 call minpac#add('srcery-colors/srcery-vim')
 call minpac#add('arcticicestudio/nord-vim')
-call minpac#add('nightsense/snow')
-call minpac#add('nightsense/stellarized')
 call minpac#add('kaicataldo/material.vim')
+call minpac#add('chriskempson/base16-vim')
 
 " Deoplete
 call minpac#add('Shougo/deoplete.nvim')
@@ -155,7 +154,7 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'dark'
 
 " Set default colorscheme here
-colorscheme material
+colorscheme base16-default-dark
 
 "Set options for each theme
 if g:colors_name == "snow"
