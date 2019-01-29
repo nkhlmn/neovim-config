@@ -1,5 +1,5 @@
 " -----------------------------------------------------
-"                MINPAC PLUGIN MANAGER 
+"                MINPAC PLUGIN MANAGER
 " -----------------------------------------------------
 packadd minpac
 call minpac#init()
@@ -32,11 +32,11 @@ call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-vinegar')
 
 " Colorschemes
-call minpac#add('nikhilkamineni/vim-gruvbox8')
-call minpac#add('nikhilkamineni/Spacegray.vim')
-call minpac#add('arcticicestudio/nord-vim')
-call minpac#add('kaicataldo/material.vim')
-call minpac#add('chriskempson/base16-vim')
+call minpac#add('nikhilkamineni/vim-gruvbox8', {'type':'opt'} )
+call minpac#add('nikhilkamineni/Spacegray.vim', {'type':'opt'})
+call minpac#add('arcticicestudio/nord-vim', {'type':'opt'})
+call minpac#add('kaicataldo/material.vim', {'type':'opt'})
+call minpac#add('chriskempson/base16-vim', {'type':'opt'})
 
 " Deoplete
 call minpac#add('Shougo/deoplete.nvim')
@@ -44,12 +44,9 @@ call minpac#add('carlitux/deoplete-ternjs')
 call minpac#add('zchee/deoplete-jedi')
 call minpac#add('zchee/deoplete-clang')
 
-
-
 " Minpac shortcuts
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
-
 
 
 " ----------------------------------
@@ -100,27 +97,29 @@ if has('macunix')
   let g:python3_host_prog = '/usr/local/bin/python3'
 endif
 
+" Toggle line numbers
+map <leader>n :set invnumber<CR>
 
-" --------------------------------------------------------------------------------
-"                                CODE FOLDING
-" --------------------------------------------------------------------------------
+" ------------------------------------------------------------
+"                       CODE FOLDING
+" ------------------------------------------------------------
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
 
-" --------------------------------------------------------------------------------
-"                                  TABLINE
-" --------------------------------------------------------------------------------
+" -------------------------------------------------------------
+"                         TABLINE
+" -------------------------------------------------------------
 set showtabline=2
 " hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 " hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 " hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
 
-" --------------------------------------------------------------------------------
-"                             FINDING FILES
-" --------------------------------------------------------------------------------
+" --------------------------------------------------------------
+"                       FINDING FILES
+" --------------------------------------------------------------
 set path+=**                      " Search down into subfolders/Enables tabbing
 set wildmenu                      " Command line completion
 set wildmode=longest:list,full    " Complete files like a shell
@@ -139,12 +138,9 @@ autocmd FileChangedShellPost *
 " Clear highlighted search items by double pressing ESC
 nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
-" Toggle line numbers
-map <leader>n :set invnumber<CR>
-
 
 "----------------------------------
-"         THEME RELATED 
+"         THEME RELATED
 "----------------------------------
 set background=dark
 set cursorline
@@ -255,7 +251,7 @@ tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
 
 
 "------------------------------------------------------------------
-"                           ALE 
+"                           ALE
 "------------------------------------------------------------------
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
@@ -289,7 +285,6 @@ set directory=~/.config/nvim/swap//
 set undodir=~/.config/nvim/undo//
 
 
-
 "------------------------------------------------------------------
 "                       EMMETT
 "------------------------------------------------------------------
@@ -303,14 +298,16 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 
-" Vim Markdown Preview
+"------------------------------------------------------------------
+"                 VIM MARKDOWN PREVIEW
+"------------------------------------------------------------------
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
 
 
-" ----------------------------------------------------------------------------------------------
-"                                        DEOPLETE
-" ----------------------------------------------------------------------------------------------
+" ------------------------------------------------------------------
+"                       DEOPLETE
+" ------------------------------------------------------------------
 set runtimepath+=~/.config/nvim/pack/minpac/start/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
@@ -318,9 +315,8 @@ let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools
 call deoplete#custom#option('auto_complete_delay', 2000)
 
 
-
 "-------------------------------------------------------------------
-"             LESS Files auto-compile on save
+"             AUTO COMPILE LESS FILES ON SAVE
 "-------------------------------------------------------------------
 " Set up function to Compile less to a css file in the same folder
 function! CompileLessFile()
