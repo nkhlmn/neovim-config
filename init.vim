@@ -1,21 +1,25 @@
-" MINPAC PLUGIN MANAGER "
+" -----------------------------------------------------
+"                MINPAC PLUGIN MANAGER 
+" -----------------------------------------------------
 packadd minpac
 call minpac#init()
 call minpac#add('k-takata/minpac', {'type':'opt'})
 
-call minpac#add('w0rp/ale')
-call minpac#add('jiangmiao/auto-pairs')
-call minpac#add('mattn/emmet-vim')
-call minpac#add('Yggdroot/indentLine')
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
+" Misc
 call minpac#add('airblade/vim-gitgutter')
-call minpac#add('sheerun/vim-polyglot')
-call minpac#add('mkitt/tabline.vim')
-call minpac#add('justinmk/vim-dirvish')
 call minpac#add('ervandew/supertab')
 call minpac#add('JamshedVesuna/vim-markdown-preview')
+call minpac#add('jiangmiao/auto-pairs')
+call minpac#add('junegunn/fzf.vim')
+call minpac#add('justinmk/vim-dirvish')
+call minpac#add('mattn/emmet-vim')
+call minpac#add('mkitt/tabline.vim')
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+call minpac#add('sheerun/vim-polyglot')
 call minpac#add('suy/vim-context-commentstring')
+call minpac#add('w0rp/ale')
+call minpac#add('Yggdroot/indentLine')
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
@@ -30,7 +34,6 @@ call minpac#add('tpope/vim-vinegar')
 " Colorschemes
 call minpac#add('nikhilkamineni/vim-gruvbox8')
 call minpac#add('nikhilkamineni/Spacegray.vim')
-call minpac#add('srcery-colors/srcery-vim')
 call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('kaicataldo/material.vim')
 call minpac#add('chriskempson/base16-vim')
@@ -41,9 +44,17 @@ call minpac#add('carlitux/deoplete-ternjs')
 call minpac#add('zchee/deoplete-jedi')
 call minpac#add('zchee/deoplete-clang')
 
-" fzf
-call minpac#add('junegunn/fzf.vim')
 
+
+" Minpac shortcuts
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
+
+
+
+" ----------------------------------
+"             FZF CONFIG
+" ----------------------------------
 if has('unix')
   set rtp+=~/.fzf
 endif
@@ -59,11 +70,10 @@ noremap <silent> <C-m> :Marks<CR>
 noremap <silent> <C-s> :Lines<CR>
 
 
-" Minpac shortcuts
-command! PackUpdate call minpac#update()
-command! PackClean call minpac#clean()
 
-
+" ----------------------------------
+"              MISC
+" ----------------------------------
 syntax on
 set number
 " set autochdir
@@ -84,18 +94,30 @@ set clipboard=unnamed
 set showcmd             " Show incomplete commands
 filetype plugin on
 
-" CODE FOLDING
+
+" Fix for auto-pairs when typing '<'
+autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
+
+" --------------------------------------------------------------------------------
+"                                CODE FOLDING
+" --------------------------------------------------------------------------------
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
-" TABLINE
+
+" --------------------------------------------------------------------------------
+"                                  TABLINE
+" --------------------------------------------------------------------------------
 set showtabline=2
 " hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 " hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 " hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
-" FINDING FILES
+
+" --------------------------------------------------------------------------------
+"                             FINDING FILES
+" --------------------------------------------------------------------------------
 set path+=**                      " Search down into subfolders/Enables tabbing
 set wildmenu                      " Command line completion
 set wildmode=longest:list,full    " Complete files like a shell
@@ -107,15 +129,20 @@ nnoremap * *N
 
 " Trigger `autoread` when files changes on disk
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
-
 " Notification after file change
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+" Clear highlighted search items by double pressing ESC
+nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
-"""""""""""""""""
-" THEME RELATED "
-"""""""""""""""""
+" Toggle line numbers
+map <leader>n :set invnumber<CR>
+
+
+"----------------------------------
+"         THEME RELATED 
+"----------------------------------
 set background=dark
 set cursorline
 let &t_ut=''
@@ -157,14 +184,6 @@ let g:material_theme_style = 'dark'
 colorscheme base16-default-dark
 
 "Set options for each theme
-if g:colors_name == "snow"
-  let g:airline_theme="snow_dark"
-endif
-
-if g:colors_name == "stellarized"
-  let g:airline_theme="stellarized_dark"
-endif
-
 if g:colors_name == "gruvbox8"
   let g:airline_theme="hybrid"
 endif
@@ -173,12 +192,10 @@ if g:colors_name == "spacegray"
   let g:airline_theme="raven"
 endif
 
-if g:colors_name == "srcery"
-  " Hide '~' end of buffer characters
-  highlight EndOfBuffer ctermbg=242 ctermfg=242 guibg=#1C1B19 guifg=#1C1B19 cterm=NONE gui=NONE
-endif
 
-" EXPLORER SHORTCUTS
+" -------------------------------------------------
+"              EXPLORER SHORTCUTS
+" -------------------------------------------------
 map <silent> <Leader>e :Explore<CR>
 map <silent> <Leader>v :Vexplore<CR>
 " map <silent> <Leader>v :vsplit <bar> Explore<CR>
@@ -187,7 +204,10 @@ map <silent> <Leader>s :Sexplore<CR>
 set splitbelow
 set splitright
 
-" DIRVISH
+
+" -------------------------------------------------------------
+"                         DIRVISH
+" -------------------------------------------------------------
 let g:loaded_netrwPlugin = 1
 command! -nargs=? -complete=dir Explore Dirvish
 command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
@@ -200,7 +220,10 @@ map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
 " Map gh to toggle show hidden files
 nnoremap <buffer> gh :call ToggleDotfiles()<CR>
 
-" TABS
+
+" -------------------------------------------------------------
+"                          TABS
+" -------------------------------------------------------------
 map  <silent> <Leader>t :tabnew <bar> GFiles<CR>
 imap <silent> <Leader>t :tabnew <bar> GFiles<CR>
 map  <silent> <Leader>s :split <bar> GFiles<CR>
@@ -212,7 +235,10 @@ nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
-" Terminal
+
+" -------------------------------------------------------------
+"                    INTEGRATED TERMINAL
+" -------------------------------------------------------------
 map <silent> <leader>c :split <bar> :res 15 <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
 map <silent> <leader>C :vsplit <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
 tnoremap <silent> <Esc> <C-\><C-n>
@@ -220,19 +246,14 @@ tnoremap <silent> <C-w><C-j> <C-\><C-n><C-w>j
 tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
-autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufWinEnter,WinEnter term://* startinsert " Enter insert mode when switching to terminal buffer
 tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
 tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
 
-" Clear highlighted search items
-nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
-" Toggle line numbers
-map <leader>n :set invnumber<CR>
-
-"""""""
-" ALE "
-"""""""
+"------------------------------------------------------------------
+"                           ALE 
+"------------------------------------------------------------------
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
 \  'c': ['clang-format', 'trim_whitespace'],
@@ -257,26 +278,36 @@ map <Leader>a :ALEToggle<CR>
 map <Leader>A :ALEDetail<CR>
 
 
-" Avoid creating swap files in cwd
+"------------------------------------------------------------------
+"               Avoid creating swap files in cwd
+"------------------------------------------------------------------
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 set undodir=~/.config/nvim/undo//
 
-" Fix for auto-pairs when typing '<'
-autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
-" EMMETT
+
+"------------------------------------------------------------------
+"                       EMMETT
+"------------------------------------------------------------------
 let g:user_emmet_leader_key='<C-e>'
 
-" Supertab
+
+"------------------------------------------------------------------
+"                       SUPERTAB
+"------------------------------------------------------------------
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
 
 " Vim Markdown Preview
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
 
-" Deoplete
+
+" ----------------------------------------------------------------------------------------------
+"                                        DEOPLETE
+" ----------------------------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 if has('unix')
   let g:python3_host_prog = '/usr/bin/python3'
@@ -288,9 +319,15 @@ endif
 let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include'
 
-"""""""""""""""""""""""""""
-" LESS Files auto-compile "
-"""""""""""""""""""""""""""
+augroup deoplete-options
+  au!
+  au VimEnter * :call deoplete#custom#option({'auto_complete_delay': 2000})
+augroup END
+" call deoplete#custom#option('auto_complete_delay', 200)
+
+"-------------------------------------------------------------------
+"             LESS Files auto-compile on save
+"-------------------------------------------------------------------
 " Set up function to Compile less to a css file in the same folder
 function! CompileLessFile()
   let current = expand('%') " Path to current .less file's name
