@@ -70,7 +70,6 @@ noremap <silent> <C-m> :Marks<CR>
 noremap <silent> <C-s> :Lines<CR>
 
 
-
 " ----------------------------------
 "              MISC
 " ----------------------------------
@@ -94,9 +93,13 @@ set clipboard=unnamed
 set showcmd             " Show incomplete commands
 filetype plugin on
 
+if has('unix')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+if has('macunix')
+  let g:python3_host_prog = '/usr/local/bin/python3'
+endif
 
-" Fix for auto-pairs when typing '<'
-autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
 " --------------------------------------------------------------------------------
 "                                CODE FOLDING
@@ -308,22 +311,13 @@ let vim_markdown_preview_hotkey='<C-m>'
 " ----------------------------------------------------------------------------------------------
 "                                        DEOPLETE
 " ----------------------------------------------------------------------------------------------
+set runtimepath+=~/.config/nvim/pack/minpac/start/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
-if has('unix')
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
-if has('macunix')
-  let g:python3_host_prog = '/usr/local/bin/python3'
-endif
-
 let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include'
+call deoplete#custom#option('auto_complete_delay', 2000)
 
-augroup deoplete-options
-  au!
-  au VimEnter * :call deoplete#custom#option({'auto_complete_delay': 2000})
-augroup END
-" call deoplete#custom#option('auto_complete_delay', 200)
+
 
 "-------------------------------------------------------------------
 "             LESS Files auto-compile on save
