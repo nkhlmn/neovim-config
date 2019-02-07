@@ -165,7 +165,7 @@ let g:gruvbox_italicize_strings = 1
 
 "Spacegray
 let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 1
+" let g:spacegray_low_contrast = 1
 " let g:spacegray_underline_search = 1
 
 "Nord
@@ -180,7 +180,7 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'dark'
 
 " Set default colorscheme here
-colorscheme base16-default-dark
+colorscheme spacegray
 
 "Set options for each theme
 if g:colors_name == "gruvbox8"
@@ -212,6 +212,7 @@ command! -nargs=? -complete=dir Explore Dirvish
 command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
 command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
 command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
+
 map <silent> <Leader>E :Dirvish %<CR>
 map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
 map <silent> <Leader>S :split <bar> Dirvish %<CR>
@@ -225,12 +226,22 @@ nnoremap <buffer> gh :call ToggleDotfiles()<CR>
 " -------------------------------------------------------------
 map  <silent> <Leader>t :tabnew <bar> GFiles<CR>
 imap <silent> <Leader>t :tabnew <bar> GFiles<CR>
+map  <silent> <Leader>T :tabnew <bar> Explore<CR>
+imap <silent> <Leader>T :tabnew <bar> Explore<CR>
+
 map  <silent> <Leader>s :split <bar> GFiles<CR>
 imap <silent> <Leader>s :split <bar> GFiles<CR>
+map  <silent> <Leader>S :split <bar> Files<CR>
+imap <silent> <Leader>S :split <bar> Files<CR>
+
 map  <silent> <Leader>v :vsplit <bar> GFiles<CR>
 imap <silent> <Leader>v :vsplit <bar> GFiles<CR>
+map  <silent> <Leader>V :vsplit <bar> Files<CR>
+imap <silent> <Leader>V :vsplit <bar> Files<CR>
+
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
+
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
@@ -259,7 +270,7 @@ let g:ale_fixers = {
 \  'css': ['prettier'],
 \  'go': ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace'],
 \  'html': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': ['prettier', 'eslint'],
+\  'javascript': ['prettier', 'eslint', 'remove_trailing_lines', 'trim_whitespace'],
 \  'json': ['prettier', 'fixjson', 'trim_whitespace'],
 \  'less': ['prettier', 'trim_whitespace'],
 \  'markdown': ['prettier'],
@@ -271,7 +282,6 @@ let g:ale_linters = {
 \   'javascript': ['eslint']
 \}
 
-let g:ale_javascript_prettier_options = '--single-quote'
 map <Leader>f :ALEFix<CR>
 map <Leader>a :ALEToggle<CR>
 map <Leader>A :ALEDetail<CR>
