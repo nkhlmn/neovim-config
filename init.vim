@@ -1,6 +1,7 @@
-" -----------------------------------------------------
+"------------------------------------------------------
 "                MINPAC PLUGIN MANAGER
-" -----------------------------------------------------
+"------------------------------------------------------
+" Setup minpac
 packadd minpac
 call minpac#init()
 call minpac#add('k-takata/minpac', {'type':'opt'})
@@ -49,9 +50,9 @@ command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
 
-" ----------------------------------
+"-----------------------------------
 "             FZF CONFIG
-" ----------------------------------
+"-----------------------------------
 if has('unix')
   set rtp+=~/.fzf
 endif
@@ -67,12 +68,25 @@ noremap <silent> <C-m> :Marks<CR>
 noremap <silent> <C-s> :Lines<CR>
 
 
-" ----------------------------------
+"-----------------------------------
+"              PYTHON
+"-----------------------------------
+" Initial setup for creating a dedicated virtual env for neovim:
+"   - Create a virtualenv inside neovim's config folder:
+"         `$ PIPENV_VENV_IN_PROJECT=true pipenv --python 3.7.2`
+"   - Install packages listed in the Pipfile
+"         `$ pipenv install
+
+" Set the path of the python host to the local virtualenv 
+let g:python3_host_prog = expand('$HOME/.config/nvim/.venv/bin/python3')
+
+
+"-----------------------------------
 "              MISC
-" ----------------------------------
+"-----------------------------------
 syntax on
+filetype plugin on
 set number
-" set autochdir
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -81,45 +95,30 @@ set autoread
 set updatetime=100
 set laststatus=2        "Always show statusline
 set termguicolors
-" set hidden
 set showmatch
 set noshowmode          " Hides default status text for current mode
 set ttyfast             " Faster redrawing
-set lazyredraw
-set clipboard=unnamed
+" set lazyredraw
 set showcmd             " Show incomplete commands
-filetype plugin on
-
-if has('unix')
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
-if has('macunix')
-  let g:python3_host_prog = '/usr/local/bin/python3'
-endif
+set clipboard=unnamed   " Lets you copy text from outside vim and use the 'p' command to paste it
+" set autochdir
+" set hidden
 
 " Toggle line numbers
 map <leader>n :set invnumber<CR>
 
-" ------------------------------------------------------------
+
+"-------------------------------------------------------------
 "                       CODE FOLDING
-" ------------------------------------------------------------
+"-------------------------------------------------------------
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
 
-" -------------------------------------------------------------
-"                         TABLINE
-" -------------------------------------------------------------
-set showtabline=2
-" hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
-" hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
-" hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
-
-
-" --------------------------------------------------------------
+"---------------------------------------------------------------
 "                       FINDING FILES
-" --------------------------------------------------------------
+"---------------------------------------------------------------
 set path+=**                      " Search down into subfolders/Enables tabbing
 set wildmenu                      " Command line completion
 set wildmode=longest:list,full    " Complete files like a shell
@@ -139,9 +138,18 @@ autocmd FileChangedShellPost *
 nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
 
-"----------------------------------
-"         THEME RELATED
-"----------------------------------
+"--------------------------------------------------------------
+"                         TABLINE
+"--------------------------------------------------------------
+set showtabline=2
+" hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
+" hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
+" hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+
+
+"----------------------------------------------------
+"               THEME RELATED
+"----------------------------------------------------
 set background=dark
 set cursorline
 let &t_ut=''
@@ -192,9 +200,17 @@ if g:colors_name == "spacegray"
 endif
 
 
-" -------------------------------------------------
-"              EXPLORER SHORTCUTS
-" -------------------------------------------------
+"---------------------------------------------------------------
+"              SET SWAP/UNDO/BACKUP FILES LOCATION
+"---------------------------------------------------------------
+set backupdir=~/.config/nvim/backup//
+set directory=~/.config/nvim/swap//
+set undodir=~/.config/nvim/undo//
+
+
+"----------------------------------------------------------------
+"                     EXPLORER SHORTCUTS
+"----------------------------------------------------------------
 map <silent> <Leader>e :Explore<CR>
 map <silent> <Leader>v :Vexplore<CR>
 " map <silent> <Leader>v :vsplit <bar> Explore<CR>
@@ -204,26 +220,9 @@ set splitbelow
 set splitright
 
 
-" -------------------------------------------------------------
-"                         DIRVISH
-" -------------------------------------------------------------
-let g:loaded_netrwPlugin = 1
-command! -nargs=? -complete=dir Explore Dirvish
-command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
-command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
-command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
-
-map <silent> <Leader>E :Dirvish %<CR>
-map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
-map <silent> <Leader>S :split <bar> Dirvish %<CR>
-map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
-" Map gh to toggle show hidden files
-nnoremap <buffer> gh :call ToggleDotfiles()<CR>
-
-
-" -------------------------------------------------------------
-"                          TABS
-" -------------------------------------------------------------
+"------------------------------------------------------------------
+"                             TABS
+"------------------------------------------------------------------
 map  <silent> <Leader>t :tabnew <bar> GFiles<CR>
 imap <silent> <Leader>t :tabnew <bar> GFiles<CR>
 map  <silent> <Leader>T :tabnew <bar> Explore<CR>
@@ -246,19 +245,24 @@ nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 
-" -------------------------------------------------------------
+"------------------------------------------------------------------
 "                    INTEGRATED TERMINAL
-" -------------------------------------------------------------
+"------------------------------------------------------------------
+" Enter insert mode when switching to terminal buffer
+autocmd BufWinEnter,WinEnter term://* startinsert 
+
+" Shortcuts for opening a new terminal window and setting the size
 map <silent> <leader>c :split <bar> :res 15 <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
 map <silent> <leader>C :vsplit <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
+
+" Map some normal mode shortcuts so the they work the same in the intergrated terminal
+tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
+tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
 tnoremap <silent> <Esc> <C-\><C-n>
 tnoremap <silent> <C-w><C-j> <C-\><C-n><C-w>j
 tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
-autocmd BufWinEnter,WinEnter term://* startinsert " Enter insert mode when switching to terminal buffer
-tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
-tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
 
 
 "------------------------------------------------------------------
@@ -287,12 +291,32 @@ map <Leader>a :ALEToggle<CR>
 map <Leader>A :ALEDetail<CR>
 
 
-"------------------------------------------------------------------
-"               Avoid creating swap files in cwd
-"------------------------------------------------------------------
-set backupdir=~/.config/nvim/backup//
-set directory=~/.config/nvim/swap//
-set undodir=~/.config/nvim/undo//
+" ------------------------------------------------------------------
+"                       DEOPLETE
+" ------------------------------------------------------------------
+set runtimepath+=~/.config/nvim/pack/minpac/start/deoplete.nvim
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete=1
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include'
+call deoplete#custom#option('auto_complete_delay', 2000)
+
+
+"----------------------------------------------------------------
+"                           DIRVISH
+"----------------------------------------------------------------
+let g:loaded_netrwPlugin = 1
+command! -nargs=? -complete=dir Explore Dirvish
+command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
+command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
+command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
+
+map <silent> <Leader>E :Dirvish %<CR>
+map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
+map <silent> <Leader>S :split <bar> Dirvish %<CR>
+map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
+" Map gh to toggle show hidden files
+nnoremap <buffer> gh :call ToggleDotfiles()<CR>
 
 
 "------------------------------------------------------------------
@@ -313,16 +337,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "------------------------------------------------------------------
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
-
-
-" ------------------------------------------------------------------
-"                       DEOPLETE
-" ------------------------------------------------------------------
-set runtimepath+=~/.config/nvim/pack/minpac/start/deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include'
-call deoplete#custom#option('auto_complete_delay', 2000)
 
 
 "-------------------------------------------------------------------

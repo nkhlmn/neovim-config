@@ -2,3 +2,4 @@ backup/
 undo/
 swap/
 pack/
+.venv/
