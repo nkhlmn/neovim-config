@@ -10,7 +10,6 @@ call minpac#add('k-takata/minpac', {'type':'opt'})
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('ervandew/supertab')
 call minpac#add('JamshedVesuna/vim-markdown-preview')
-call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('mattn/emmet-vim')
@@ -21,6 +20,7 @@ call minpac#add('sheerun/vim-polyglot')
 call minpac#add('suy/vim-context-commentstring')
 call minpac#add('w0rp/ale')
 call minpac#add('Yggdroot/indentLine')
+call minpac#add('neoclide/coc.nvim')
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
@@ -38,12 +38,6 @@ call minpac#add('nikhilkamineni/Spacegray.vim', {'type':'opt'})
 call minpac#add('arcticicestudio/nord-vim', {'type':'opt'})
 call minpac#add('kaicataldo/material.vim', {'type':'opt'})
 call minpac#add('chriskempson/base16-vim', {'type':'opt'})
-
-" Deoplete
-call minpac#add('Shougo/deoplete.nvim')
-call minpac#add('carlitux/deoplete-ternjs')
-call minpac#add('zchee/deoplete-jedi')
-call minpac#add('zchee/deoplete-clang')
 
 " Minpac shortcuts
 command! PackUpdate call minpac#update()
@@ -77,7 +71,7 @@ noremap <silent> <C-s> :Lines<CR>
 "   - Install packages listed in the Pipfile
 "         `$ pipenv install
 
-" Set the path of the python host to the local virtualenv 
+" Set the path of the python host to the local virtualenv
 let g:python3_host_prog = expand('$HOME/.config/nvim/.venv/bin/python3')
 
 
@@ -87,6 +81,7 @@ let g:python3_host_prog = expand('$HOME/.config/nvim/.venv/bin/python3')
 syntax on
 filetype plugin on
 set number
+set conceallevel=0
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -107,6 +102,8 @@ set clipboard=unnamed   " Lets you copy text from outside vim and use the 'p' co
 " Toggle line numbers
 map <leader>n :set invnumber<CR>
 
+" Prevent concealing characters in certain filetypes
+let g:indentLine_fileTypeExclude = ['json', 'markdown']
 
 "-------------------------------------------------------------
 "                       CODE FOLDING
@@ -249,7 +246,7 @@ nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 "                    INTEGRATED TERMINAL
 "------------------------------------------------------------------
 " Enter insert mode when switching to terminal buffer
-autocmd BufWinEnter,WinEnter term://* startinsert 
+autocmd BufWinEnter,WinEnter term://* startinsert
 
 " Shortcuts for opening a new terminal window and setting the size
 map <silent> <leader>c :split <bar> :res 15 <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
@@ -289,17 +286,6 @@ let g:ale_linters = {
 map <Leader>f :ALEFix<CR>
 map <Leader>a :ALEToggle<CR>
 map <Leader>A :ALEDetail<CR>
-
-
-" ------------------------------------------------------------------
-"                       DEOPLETE
-" ------------------------------------------------------------------
-set runtimepath+=~/.config/nvim/pack/minpac/start/deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete=1
-let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include'
-call deoplete#custom#option('auto_complete_delay', 2000)
 
 
 "----------------------------------------------------------------
