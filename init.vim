@@ -9,9 +9,7 @@ call minpac#add('k-takata/minpac', {'type':'opt'})
 " Misc
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('ervandew/supertab')
-call minpac#add('JamshedVesuna/vim-markdown-preview')
 call minpac#add('junegunn/fzf.vim')
-call minpac#add('justinmk/vim-dirvish')
 call minpac#add('mattn/emmet-vim')
 call minpac#add('mkitt/tabline.vim')
 call minpac#add('vim-airline/vim-airline')
@@ -291,18 +289,18 @@ map <Leader>A :ALEDetail<CR>
 "----------------------------------------------------------------
 "                           DIRVISH
 "----------------------------------------------------------------
-let g:loaded_netrwPlugin = 1
-command! -nargs=? -complete=dir Explore Dirvish
-command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
-command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
-command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
+" let g:loaded_netrwPlugin = 1
+" command! -nargs=? -complete=dir Explore Dirvish
+" command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
+" command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
+" command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
 
-map <silent> <Leader>E :Dirvish %<CR>
-map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
-map <silent> <Leader>S :split <bar> Dirvish %<CR>
-map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
-" Map gh to toggle show hidden files
-nnoremap <buffer> gh :call ToggleDotfiles()<CR>
+" map <silent> <Leader>E :Dirvish %<CR>
+" map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
+" map <silent> <Leader>S :split <bar> Dirvish %<CR>
+" map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
+" " Map gh to toggle show hidden files
+" nnoremap <buffer> gh :call ToggleDotfiles()<CR>
 
 
 "------------------------------------------------------------------
