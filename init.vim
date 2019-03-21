@@ -103,6 +103,7 @@ map <leader>n :set invnumber<CR>
 " Prevent concealing characters in certain filetypes
 let g:indentLine_fileTypeExclude = ['json', 'markdown']
 
+
 "-------------------------------------------------------------
 "                       CODE FOLDING
 "-------------------------------------------------------------
@@ -137,9 +138,6 @@ nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 "                         TABLINE
 "--------------------------------------------------------------
 set showtabline=2
-" hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
-" hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
-" hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
 
 "----------------------------------------------------
@@ -264,6 +262,7 @@ tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
 "                           ALE
 "------------------------------------------------------------------
 let g:airline#extensions#ale#enabled = 1
+let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \  'c': ['clang-format', 'trim_whitespace'],
 \  'css': ['prettier'],
@@ -286,23 +285,6 @@ map <Leader>a :ALEToggle<CR>
 map <Leader>A :ALEDetail<CR>
 
 
-"----------------------------------------------------------------
-"                           DIRVISH
-"----------------------------------------------------------------
-" let g:loaded_netrwPlugin = 1
-" command! -nargs=? -complete=dir Explore Dirvish
-" command! -nargs=? -complete=dir Texplore tabnew | silent Dirvish <args>
-" command! -nargs=? -complete=dir Sexplore split | silent Dirvish <args>
-" command! -nargs=? -complete=dir Vexplore vsplit | silent Dirvish <args>
-
-" map <silent> <Leader>E :Dirvish %<CR>
-" map <silent> <Leader>T :tabnew <bar> Dirvish %<CR>
-" map <silent> <Leader>S :split <bar> Dirvish %<CR>
-" map <silent> <Leader>V :vsplit <bar> Dirvish %<CR>
-" " Map gh to toggle show hidden files
-" nnoremap <buffer> gh :call ToggleDotfiles()<CR>
-
-
 "------------------------------------------------------------------
 "                       EMMETT
 "------------------------------------------------------------------
@@ -314,13 +296,6 @@ let g:user_emmet_leader_key='<C-e>'
 "------------------------------------------------------------------
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
-
-
-"------------------------------------------------------------------
-"                 VIM MARKDOWN PREVIEW
-"------------------------------------------------------------------
-let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<C-m>'
 
 
 "-------------------------------------------------------------------
