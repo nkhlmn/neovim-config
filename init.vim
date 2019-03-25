@@ -272,11 +272,11 @@ let g:ale_fixers = {
 \  'json': ['prettier', 'fixjson', 'trim_whitespace'],
 \  'less': ['prettier', 'trim_whitespace'],
 \  'markdown': ['prettier'],
-\  'python': ['autopep8', 'black', 'yapf', 'isort','remove_trailing_lines', 'trim_whitespace'],
+\  'python': ['autopep8', 'isort','remove_trailing_lines', 'trim_whitespace'],
 \}
 
 let g:ale_linters = {
-\   'python': ['autopep8', 'flake8'],
+\   'python': ['flake8'],
 \   'javascript': ['eslint']
 \}
 
