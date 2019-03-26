@@ -14,8 +14,10 @@
 
 ### 4. Setup CoC (https://github.com/neoclide/coc.nvim)
 
-- a. Build CoC
+Make sure Yarn is installed.
+
+- Build CoC
   `:call coc#util#build()`
 
-- b. Install CoC extensions
+- Install CoC extensions
   `:CocInstall coc-json coc-tsserver coc-html coc-css coc-pyls coc-emmet coc-pairs`
