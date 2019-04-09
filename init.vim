@@ -35,7 +35,6 @@ call minpac#add('nikhilkamineni/vim-gruvbox8', {'type':'opt'} )
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type':'opt'})
 call minpac#add('arcticicestudio/nord-vim', {'type':'opt'})
 call minpac#add('kaicataldo/material.vim', {'type':'opt'})
-call minpac#add('chriskempson/base16-vim', {'type':'opt'})
 
 " Minpac shortcuts
 command! PackUpdate call minpac#update()
@@ -54,9 +53,9 @@ if has('macunix')
 endif
 
 noremap <silent> <C-p> :GFiles<CR>
-noremap <silent> <C-f> :Files<CR>
+noremap <silent> <C-P> :Files<CR>
+noremap <silent> <C-f> :Ag<CR>
 noremap <silent> <C-b> :Buffers<CR>
-noremap <silent> <C-m> :Marks<CR>
 noremap <silent> <C-s> :Lines<CR>
 
 
@@ -94,7 +93,7 @@ set ttyfast             " Faster redrawing
 " set lazyredraw
 set showcmd             " Show incomplete commands
 set clipboard=unnamed   " Lets you copy text from outside vim and use the 'p' command to paste it
-" set autochdir
+set autochdir
 " set hidden
 
 " Toggle line numbers
@@ -147,11 +146,6 @@ set background=dark
 set cursorline
 let &t_ut=''
 
-" Srcery
-let g:srcery_inverse = 0
-let g:srcery_inverse_matches = 1
-let g:srcery_italic = 1
-
 " Gruvbox
 " let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_italic = 1
@@ -167,7 +161,6 @@ let g:gruvbox_italicize_strings = 1
 "Spacegray
 let g:spacegray_use_italics = 1
 " let g:spacegray_low_contrast = 1
-" let g:spacegray_underline_search = 1
 
 "Nord
 let g:nord_italic = 1
@@ -189,7 +182,7 @@ if g:colors_name == "gruvbox8"
 endif
 
 if g:colors_name == "spacegray"
-  let g:airline_theme="raven"
+  let g:airline_theme="zenburn"
 endif
 
 
