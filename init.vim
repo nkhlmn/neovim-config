@@ -18,7 +18,7 @@ call minpac#add('sheerun/vim-polyglot')
 call minpac#add('suy/vim-context-commentstring')
 call minpac#add('w0rp/ale')
 call minpac#add('Yggdroot/indentLine')
-call minpac#add('neoclide/coc.nvim')
+call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
@@ -31,10 +31,11 @@ call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-vinegar')
 
 " Colorschemes
-call minpac#add('nikhilkamineni/vim-gruvbox8', {'type':'opt'} )
+call minpac#add('nikhilkamineni/vim-gruvbox8', {'type':'opt'})
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type':'opt'})
 call minpac#add('arcticicestudio/nord-vim', {'type':'opt'})
 call minpac#add('kaicataldo/material.vim', {'type':'opt'})
+call minpac#add('ntk148v/vim-horizon', {'type':'opt'})
 
 " Minpac shortcuts
 command! PackUpdate call minpac#update()
@@ -143,7 +144,7 @@ set showtabline=2
 "               THEME RELATED
 "----------------------------------------------------
 set background=dark
-set cursorline
+" set cursorline
 let &t_ut=''
 
 " Gruvbox
