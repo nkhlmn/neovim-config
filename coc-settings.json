@@ -1,0 +1,12 @@
+{
+  "tsserver.log": "verbose",
+  "tsserver.trace.server": "verbose",
+  "tslint.packageManager": "npm",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+  "tslint.configFile": "/users/nikhil/tslint.json",
+  "tsserver.npm": "/usr/local/bin/npm",
+  "list.source.grep.command": "ag",
+  "git.addedSign.hlGroup": "CocHintSign",
+  "git.changedSign.hlGroup": "CocCodeLens",
+  "git.removedSign.hlGroup": "CocErrorSign"
+}

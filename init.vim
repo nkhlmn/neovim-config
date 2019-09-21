@@ -7,18 +7,15 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type':'opt'})
 
 " Misc
-call minpac#add('airblade/vim-gitgutter')
 call minpac#add('ervandew/supertab')
-call minpac#add('junegunn/fzf.vim')
 call minpac#add('mattn/emmet-vim')
-call minpac#add('mkitt/tabline.vim')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('suy/vim-context-commentstring')
-call minpac#add('w0rp/ale')
 call minpac#add('Yggdroot/indentLine')
 call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+" call minpac#add('mkitt/tabline.vim')
 
 " Tpope
 call minpac#add('tpope/vim-commentary')
@@ -35,29 +32,11 @@ call minpac#add('nikhilkamineni/vim-gruvbox8', {'type':'opt'})
 call minpac#add('nikhilkamineni/Spacegray.vim', {'type':'opt'})
 call minpac#add('arcticicestudio/nord-vim', {'type':'opt'})
 call minpac#add('kaicataldo/material.vim', {'type':'opt'})
-call minpac#add('ntk148v/vim-horizon', {'type':'opt'})
+call minpac#add('nanotech/jellybeans.vim')
 
 " Minpac shortcuts
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
-
-
-"-----------------------------------
-"             FZF CONFIG
-"-----------------------------------
-if has('unix')
-  set rtp+=~/.fzf
-endif
-
-if has('macunix')
-  set rtp+=/usr/local/opt/fzf
-endif
-
-noremap <silent> <C-p> :GFiles<CR>
-noremap <silent> <C-P> :Files<CR>
-noremap <silent> <C-f> :Ag<CR>
-noremap <silent> <C-b> :Buffers<CR>
-noremap <silent> <C-s> :Lines<CR>
 
 
 "-----------------------------------
@@ -95,7 +74,7 @@ set ttyfast             " Faster redrawing
 set showcmd             " Show incomplete commands
 set clipboard=unnamed   " Lets you copy text from outside vim and use the 'p' command to paste it
 set autochdir
-" set hidden
+set hidden
 
 " Toggle line numbers
 map <leader>n :set invnumber<CR>
@@ -103,7 +82,65 @@ map <leader>n :set invnumber<CR>
 " Prevent concealing characters in certain filetypes
 let g:indentLine_fileTypeExclude = ['json', 'markdown']
 
+"-------------------------------------------------------------
+"                    CoC
+"-------------------------------------------------------------
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
 
+" Better display for messages
+set cmdheight=2
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)et cmdheight=2
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+function! OpenFileSearch()
+  if exists("b:git_dir")
+    execute "CocList gfiles"
+  else
+    execute "CocList files"
+  endif
+endfunction
+
+nmap <silent> <C-p> :call OpenFileSearch()<CR>
+vmap <silent> <C-p> :call OpenFileSearch()<CR>
+nmap <silent> <C-f> :CocList grep<CR>
+vmap <silent> <C-f> :CocList grep<CR>
+" noremap <silent> <C-b> :Buffers<CR>
+" noremap <silent> <C-s> :Lines<CR>
 "-------------------------------------------------------------
 "                       CODE FOLDING
 "-------------------------------------------------------------
@@ -152,6 +189,7 @@ let &t_ut=''
 let g:gruvbox_italic = 1
 let g:gruvbox_italicize_comments = 1
 let g:gruvbox_italicize_strings = 1
+let g:gruvbox_transp_bg = 1
 " let g:gruvbox_filetype_hi_groups = 1
 " let g:gruvbox_plugin_hi_groups = 1
 " let g:gruvbox_invert_indent_guides = 1
@@ -177,15 +215,18 @@ let g:material_theme_style = 'dark'
 " Set default colorscheme here
 colorscheme spacegray
 
-"Set options for each theme
-if g:colors_name == "gruvbox8"
-  let g:airline_theme="hybrid"
-endif
+" Set options for each theme
+ if g:colors_name == "gruvbox8_hard" || g:colors_name == "gruvbox8"
+   let g:airline_theme="hybrid"
+ endif
 
 if g:colors_name == "spacegray"
   let g:airline_theme="zenburn"
 endif
 
+if g:colors_name == "jellybeans"
+  hi SignColumn guifg=#777777 guibg=NONE ctermfg=14 ctermbg=242
+endif
 
 "---------------------------------------------------------------
 "              SET SWAP/UNDO/BACKUP FILES LOCATION
@@ -210,18 +251,18 @@ set splitright
 "------------------------------------------------------------------
 "                             TABS
 "------------------------------------------------------------------
-map  <silent> <Leader>t :tabnew <bar> GFiles<CR>
-imap <silent> <Leader>t :tabnew <bar> GFiles<CR>
+map  <silent> <Leader>t :tabnew <bar> CocList gfiles<CR>
+imap <silent> <Leader>t :tabnew <bar> CocList gfiles<CR>
 map  <silent> <Leader>T :tabnew <bar> Explore<CR>
 imap <silent> <Leader>T :tabnew <bar> Explore<CR>
 
-map  <silent> <Leader>s :split <bar> GFiles<CR>
-imap <silent> <Leader>s :split <bar> GFiles<CR>
+map  <silent> <Leader>s :split <bar> CocList gfiles<CR>
+imap <silent> <Leader>s :split <bar> CocList gfiles<CR>
 map  <silent> <Leader>S :split <bar> Files<CR>
 imap <silent> <Leader>S :split <bar> Files<CR>
 
-map  <silent> <Leader>v :vsplit <bar> GFiles<CR>
-imap <silent> <Leader>v :vsplit <bar> GFiles<CR>
+map  <silent> <Leader>v :vsplit <bar> CocList gfiles<CR>
+imap <silent> <Leader>v :vsplit <bar> CocList gfiles<CR>
 map  <silent> <Leader>V :vsplit <bar> Files<CR>
 imap <silent> <Leader>V :vsplit <bar> Files<CR>
 
@@ -250,33 +291,6 @@ tnoremap <silent> <C-w><C-j> <C-\><C-n><C-w>j
 tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
-
-
-"------------------------------------------------------------------
-"                           ALE
-"------------------------------------------------------------------
-let g:airline#extensions#ale#enabled = 1
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\  'c': ['clang-format', 'trim_whitespace'],
-\  'css': ['prettier'],
-\  'go': ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace'],
-\  'html': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': ['prettier', 'eslint', 'remove_trailing_lines', 'trim_whitespace'],
-\  'json': ['prettier', 'fixjson', 'trim_whitespace'],
-\  'less': ['prettier', 'trim_whitespace'],
-\  'markdown': ['prettier'],
-\  'python': ['autopep8', 'isort','remove_trailing_lines', 'trim_whitespace'],
-\}
-
-let g:ale_linters = {
-\   'python': ['flake8'],
-\   'javascript': ['eslint']
-\}
-
-map <Leader>f :ALEFix<CR>
-map <Leader>a :ALEToggle<CR>
-map <Leader>A :ALEDetail<CR>
 
 
 "------------------------------------------------------------------
