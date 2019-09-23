@@ -7,7 +7,6 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type':'opt'})
 
 " Misc
-call minpac#add('ervandew/supertab')
 call minpac#add('mattn/emmet-vim')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
@@ -70,7 +69,6 @@ set termguicolors
 set showmatch
 set noshowmode          " Hides default status text for current mode
 set ttyfast             " Faster redrawing
-" set lazyredraw
 set showcmd             " Show incomplete commands
 set clipboard=unnamed   " Lets you copy text from outside vim and use the 'p' command to paste it
 set autochdir
@@ -91,6 +89,28 @@ set nowritebackup
 
 " Better display for messages
 set cmdheight=2
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -127,6 +147,7 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+" Search/open files
 function! OpenFileSearch()
   if exists("b:git_dir")
     execute "CocList gfiles"
@@ -154,7 +175,8 @@ nnoremap <space> za
 "---------------------------------------------------------------
 set path+=**                      " Search down into subfolders/Enables tabbing
 set wildmenu                      " Command line completion
-set wildmode=longest:list,full    " Complete files like a shell
+" set wildmode=longest:list,full    " Complete files like a shell
+set wildoptions=pum
 set ignorecase                    " Make search case insensitive
 set hlsearch                      " make search highlight all matches
 set incsearch                     " start search immediately after typing
@@ -291,19 +313,6 @@ tnoremap <silent> <C-w><C-j> <C-\><C-n><C-w>j
 tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
-
-
-"------------------------------------------------------------------
-"                       EMMETT
-"------------------------------------------------------------------
-let g:user_emmet_leader_key='<C-e>'
-
-
-"------------------------------------------------------------------
-"                       SUPERTAB
-"------------------------------------------------------------------
-let g:SuperTabClosePreviewOnPopupClose = 1
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 
 "-------------------------------------------------------------------
