@@ -281,20 +281,20 @@ set splitright
 "------------------------------------------------------------------
 "                             TABS
 "------------------------------------------------------------------
-map  <silent> <Leader>t :tabnew <bar> CocList gfiles<CR>
-imap <silent> <Leader>t :tabnew <bar> CocList gfiles<CR>
+map  <silent> <Leader>t :tabnew <bar> call OpenFileSearch()<CR>
+imap <silent> <Leader>t :tabnew <bar> call OpenFileSearch()<CR>
 map  <silent> <Leader>T :tabnew <bar> Explore<CR>
 imap <silent> <Leader>T :tabnew <bar> Explore<CR>
 
-map  <silent> <Leader>s :split <bar> CocList gfiles<CR>
-imap <silent> <Leader>s :split <bar> CocList gfiles<CR>
-map  <silent> <Leader>S :split <bar> Files<CR>
-imap <silent> <Leader>S :split <bar> Files<CR>
+map  <silent> <Leader>s :split <bar> call OpenFileSearch()<CR>
+imap <silent> <Leader>s :split <bar> call OpenFileSearch()<CR>
+map  <silent> <Leader>S :split <bar> Explore<CR>
+imap <silent> <Leader>S :split <bar> Explore<CR>
 
-map  <silent> <Leader>v :vsplit <bar> CocList gfiles<CR>
-imap <silent> <Leader>v :vsplit <bar> CocList gfiles<CR>
-map  <silent> <Leader>V :vsplit <bar> Files<CR>
-imap <silent> <Leader>V :vsplit <bar> Files<CR>
+map  <silent> <Leader>v :vsplit <bar> call OpenExploreearch()<CR>
+imap <silent> <Leader>v :vsplit <bar> call OpenExploreearch()<CR>
+map  <silent> <Leader>V :vsplit <bar> Explore<CR>
+imap <silent> <Leader>V :vsplit <bar> Explore<CR>
 
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
