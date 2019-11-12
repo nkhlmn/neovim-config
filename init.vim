@@ -80,6 +80,9 @@ map <leader>n :set invnumber<CR>
 " Prevent concealing characters in certain filetypes
 let g:indentLine_fileTypeExclude = ['json', 'markdown']
 
+" Yank entire buffer
+nmap <leader>y :%y<CR>
+
 "-------------------------------------------------------------
 "                    CoC
 "-------------------------------------------------------------
