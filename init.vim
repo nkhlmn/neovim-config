@@ -37,7 +37,6 @@ call minpac#add('nanotech/jellybeans.vim')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
-
 "-----------------------------------
 "              PYTHON
 "-----------------------------------
@@ -49,7 +48,6 @@ command! PackClean call minpac#clean()
 
 " Set the path of the python host to the local virtualenv
 let g:python3_host_prog = expand('$HOME/.config/nvim/.venv/bin/python3')
-
 
 "-----------------------------------
 "              MISC
@@ -166,12 +164,10 @@ vmap <silent> <C-f> :CocList grep<CR>
 " noremap <silent> <C-b> :Buffers<CR>
 " noremap <silent> <C-s> :Lines<CR>
 
-
 "-------------------------------------------------------------
 "                          NETRW
 "-------------------------------------------------------------
 let g:netrw_liststyle = 3
-
 
 "-------------------------------------------------------------
 "                       CODE FOLDING
@@ -179,7 +175,6 @@ let g:netrw_liststyle = 3
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
-
 
 "---------------------------------------------------------------
 "                       FINDING FILES
@@ -203,12 +198,10 @@ autocmd FileChangedShellPost *
 " Clear highlighted search items by double pressing ESC
 nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
-
 "--------------------------------------------------------------
 "                         TABLINE
 "--------------------------------------------------------------
 set showtabline=2
-
 
 "----------------------------------------------------
 "               THEME RELATED
@@ -248,7 +241,7 @@ let g:material_theme_style = 'dark'
 " Set default colorscheme here
 colorscheme spacegray
 
-" Set options for each theme
+" Set specific options for themes
  if g:colors_name == "gruvbox8_hard" || g:colors_name == "gruvbox8"
    let g:airline_theme="hybrid"
  endif
@@ -268,7 +261,6 @@ set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 set undodir=~/.config/nvim/undo//
 
-
 "----------------------------------------------------------------
 "                     EXPLORER SHORTCUTS
 "----------------------------------------------------------------
@@ -279,7 +271,6 @@ map <silent> <Leader>s :Sexplore<CR>
 " map <silent> <Leader>t :Texplore<CR>
 set splitbelow
 set splitright
-
 
 "------------------------------------------------------------------
 "                             TABS
@@ -305,7 +296,6 @@ nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
-
 "------------------------------------------------------------------
 "                    INTEGRATED TERMINAL
 "------------------------------------------------------------------
@@ -325,9 +315,8 @@ tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
 
-
 "-------------------------------------------------------------------
-"             AUTO COMPILE LESS FILES ON SAVE
+"                 AUTO COMPILE LESS FILES ON SAVE
 "-------------------------------------------------------------------
 " Set up function to Compile less to a css file in the same folder
 function! CompileLessFile()
