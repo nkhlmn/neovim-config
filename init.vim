@@ -343,3 +343,16 @@ endfunction
 " Call CompileLessFile() after writing a file or buffer with .less extension
 autocmd FileWritePost,BufWritePost *.less :call CompileLessFile()
 
+"-------------------------------------------------------------------
+"                         TOGGLE DIFF
+"-------------------------------------------------------------------
+function! ToggleDiff()
+  if (&diff == 0)
+    execute "windo diffthis"
+  else
+    execute "windo diffoff"
+  endif
+endfunction
+
+nmap <silent> <leader>d :call ToggleDiff()<CR>
+nmap <leader>D :diffs
