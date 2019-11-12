@@ -1,6 +1,4 @@
 {
-  "tsserver.log": "verbose",
-  "tsserver.trace.server": "verbose",
   "tslint.packageManager": "npm",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
   "tsserver.npm": "/usr/local/bin/npm",
