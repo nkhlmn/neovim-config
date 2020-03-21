@@ -1,57 +1,43 @@
-"------------------------------------------------------
-"                MINPAC PLUGIN MANAGER
-"------------------------------------------------------
-" Setup minpac
-packadd minpac
-call minpac#init()
-call minpac#add('k-takata/minpac', {'type':'opt'})
+" VIMPLUG:                                                                   {{{
 
-" Misc
-call minpac#add('mattn/emmet-vim')
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
-call minpac#add('sheerun/vim-polyglot')
-call minpac#add('suy/vim-context-commentstring')
-call minpac#add('Yggdroot/indentLine')
-call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
-" call minpac#add('mkitt/tabline.vim')
+" Install vimplug if it isn't already
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" Tpope
-call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('tpope/vim-repeat')
-call minpac#add('tpope/vim-sensible')
-call minpac#add('tpope/vim-sleuth')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('tpope/vim-vinegar')
+call plug#begin('~/.local/share/nvim/plugged') " Start loading plugins
 
-" Colorschemes
-call minpac#add('nikhilkamineni/vim-gruvbox8', {'type':'opt'})
-call minpac#add('nikhilkamineni/Spacegray.vim', {'type':'opt'})
-call minpac#add('arcticicestudio/nord-vim', {'type':'opt'})
-call minpac#add('kaicataldo/material.vim', {'type':'opt'})
-call minpac#add('nanotech/jellybeans.vim')
+"---------- Misc ----------"
+Plug 'mattn/emmet-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sheerun/vim-polyglot'
+Plug 'suy/vim-context-commentstring'
+Plug 'Yggdroot/indentLine'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Minpac shortcuts
-command! PackUpdate call minpac#update()
-command! PackClean call minpac#clean()
+"---------- tpope ----------"
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 
-"-----------------------------------
-"              PYTHON
-"-----------------------------------
-" Initial setup for creating a dedicated virtual env for neovim:
-"   - Create a virtualenv inside neovim's config folder:
-"         `$ PIPENV_VENV_IN_PROJECT=true pipenv --python 3.7.2`
-"   - Install packages listed in the Pipfile
-"         `$ pipenv install
+"------ Colorschemes ------"
+Plug 'ajh17/Spacegray.vim'
+Plug 'srcery-colors/srcery-vim'
+Plug 'sainnhe/gruvbox-material'
 
-" Set the path of the python host to the local virtualenv
-let g:python3_host_prog = expand('$HOME/.config/nvim/.venv/bin/python3')
+call plug#end() " End loading plugins
 
-"-----------------------------------
-"              MISC
-"-----------------------------------
+"                                                                            }}}
+
+" MISC: {{{
 syntax on
 filetype plugin on
 set number
@@ -66,7 +52,6 @@ set laststatus=2        "Always show statusline
 set termguicolors
 set showmatch
 set noshowmode          " Hides default status text for current mode
-set ttyfast             " Faster redrawing
 set showcmd             " Show incomplete commands
 set clipboard=unnamed   " Lets you copy text from outside vim and use the 'p' command to paste it
 set autochdir
@@ -81,9 +66,9 @@ let g:indentLine_fileTypeExclude = ['json', 'markdown']
 " Yank entire buffer
 nmap <leader>y :%y<CR>
 
-"-------------------------------------------------------------
-"                    CoC
-"-------------------------------------------------------------
+"}}}
+
+" CoC: {{{
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -164,21 +149,36 @@ vmap <silent> <C-f> :CocList grep<CR>
 " noremap <silent> <C-b> :Buffers<CR>
 " noremap <silent> <C-s> :Lines<CR>
 
-"-------------------------------------------------------------
-"                          NETRW
-"-------------------------------------------------------------
+" }}}
+
+" NETRW: {{{
+
 let g:netrw_liststyle = 3
 
-"-------------------------------------------------------------
-"                       CODE FOLDING
-"-------------------------------------------------------------
+" EXPLORER SHORTCUTS
+map <silent> <Leader>e :Explore<CR>
+map <silent> <Leader>v :Vexplore<CR>
+" map <silent> <Leader>v :vsplit <bar> Explore<CR>
+map <silent> <Leader>s :Sexplore<CR>
+" map <silent> <Leader>t :Texplore<CR>
+set splitbelow
+set splitright
+
+" }}}
+
+" CODE FOLDING: {{{
+
 set foldmethod=indent
 set foldlevel=99
+
+autocmd Filetype vim setlocal foldmethod=marker
+
 nnoremap <space> za
 
-"---------------------------------------------------------------
-"                       FINDING FILES
-"---------------------------------------------------------------
+" }}}
+
+" FINDING FILES: {{{
+
 set path+=**                      " Search down into subfolders/Enables tabbing
 set wildmenu                      " Command line completion
 " set wildmode=longest:list,full    " Complete files like a shell
@@ -198,97 +198,61 @@ autocmd FileChangedShellPost *
 " Clear highlighted search items by double pressing ESC
 nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
-"--------------------------------------------------------------
-"                         TABLINE
-"--------------------------------------------------------------
-set showtabline=2
+" }}}
 
-"----------------------------------------------------
-"               THEME RELATED
-"----------------------------------------------------
-set background=dark
-" set cursorline
-let &t_ut=''
+" COLORSCHEME: {{{
 
-" Gruvbox
-" let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_italic = 1
-let g:gruvbox_italicize_comments = 1
-let g:gruvbox_italicize_strings = 1
-let g:gruvbox_transp_bg = 1
-" let g:gruvbox_filetype_hi_groups = 1
-" let g:gruvbox_plugin_hi_groups = 1
-" let g:gruvbox_invert_indent_guides = 1
-" let g:gruvbox_invert_tabline = 1
-" let g:gruvbox_improved_strings = 1
-" let g:gruvbox_improved_warnings = 1
-
-"Spacegray
+"spacegray
 let g:spacegray_use_italics = 1
-" let g:spacegray_low_contrast = 1
+let g:spacegray_low_contrast = 1
 
-"Nord
-let g:nord_italic = 1
-let g:nord_underline = 1
-let g:nord_italic_comments = 1
-let g:nord_comment_brightness = 10
-let g:nord_cursor_line_number_background = 1
+"srcery
+let g:srcery_italic = 1
+let g:srcery_inverse = 0
+let g:srcery_inverse_matches = 1
+let g:srcery_inverse_match_paren = 1
 
-"Material
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'dark'
+"gruvbox-material
+let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_disable_italic_comment = 1
 
-" Set default colorscheme here
-colorscheme spacegray
+" colorscheme here
+colorscheme gruvbox-material
 
-" Set specific options for themes
- if g:colors_name == "gruvbox8_hard" || g:colors_name == "gruvbox8"
-   let g:airline_theme="hybrid"
- endif
 
 if g:colors_name == "spacegray"
   let g:airline_theme="zenburn"
+  hi SignColumn guibg=NONE
+  hi LineNr guibg=NONE
 endif
 
-if g:colors_name == "jellybeans"
-  hi SignColumn guifg=#777777 guibg=NONE ctermfg=14 ctermbg=242
+if g:colors_name == "material-dark"
+  let g:airline_theme="gruvbox_material"
 endif
 
-"---------------------------------------------------------------
-"              SET SWAP/UNDO/BACKUP FILES LOCATION
-"---------------------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+" }}}
+
+" SWAP/UNDO/BACKUP: {{{
+
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 set undodir=~/.config/nvim/undo//
 
-"----------------------------------------------------------------
-"                     EXPLORER SHORTCUTS
-"----------------------------------------------------------------
-map <silent> <Leader>e :Explore<CR>
-map <silent> <Leader>v :Vexplore<CR>
-" map <silent> <Leader>v :vsplit <bar> Explore<CR>
-map <silent> <Leader>s :Sexplore<CR>
-" map <silent> <Leader>t :Texplore<CR>
-set splitbelow
-set splitright
+" }}}
 
-"------------------------------------------------------------------
-"                             TABS
-"------------------------------------------------------------------
+" TABS: {{{
+
 map  <silent> <Leader>t :tabnew <bar> call OpenFileSearch()<CR>
-imap <silent> <Leader>t :tabnew <bar> call OpenFileSearch()<CR>
 map  <silent> <Leader>T :tabnew <bar> Explore<CR>
-imap <silent> <Leader>T :tabnew <bar> Explore<CR>
 
 map  <silent> <Leader>s :split <bar> call OpenFileSearch()<CR>
-imap <silent> <Leader>s :split <bar> call OpenFileSearch()<CR>
 map  <silent> <Leader>S :split <bar> Explore<CR>
-imap <silent> <Leader>S :split <bar> Explore<CR>
 
 map  <silent> <Leader>v :vsplit <bar> call OpenExploreearch()<CR>
-imap <silent> <Leader>v :vsplit <bar> call OpenExploreearch()<CR>
 map  <silent> <Leader>V :vsplit <bar> Explore<CR>
-imap <silent> <Leader>V :vsplit <bar> Explore<CR>
 
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
@@ -296,9 +260,10 @@ nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
-"------------------------------------------------------------------
-"                    INTEGRATED TERMINAL
-"------------------------------------------------------------------
+" }}}
+
+" INTEGRATED TERMINAL: {{{
+
 " Enter insert mode when switching to terminal buffer
 autocmd BufWinEnter,WinEnter term://* startinsert
 
@@ -315,16 +280,18 @@ tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
 
-"-------------------------------------------------------------------
-"                 AUTO COMPILE LESS FILES ON SAVE
-"-------------------------------------------------------------------
-" Set up function to Compile less to a css file in the same folder
+" }}}
+
+" CUSTOM FUNCTIONS: {{{1
+
+" Compile .less files on save: {{{2
+
 function! CompileLessFile()
-  let current = expand('%') " Path to current .less file's name
-  let target = expand('%:r').".css" " Path to target .css file
+  let current = expand('%')                 " Path to current .less file's name
+  let target = expand('%:r').".css"         " Path to target .css file
   let shell_command = "!lessc ".current." ".target
   echo "Compiling less file..."
-  if (executable('lessc'))
+  if (executable('lessc'))                  " Check if less compiler is install
     execute shell_command
   endif
 endfunction
@@ -332,9 +299,10 @@ endfunction
 " Call CompileLessFile() after writing a file or buffer with .less extension
 autocmd FileWritePost,BufWritePost *.less :call CompileLessFile()
 
-"-------------------------------------------------------------------
-"                         TOGGLE DIFF
-"-------------------------------------------------------------------
+" }}}2
+
+" Toggle diff: {{{2
+
 function! ToggleDiff()
   if (&diff == 0)
     execute "windo diffthis"
@@ -345,3 +313,20 @@ endfunction
 
 nmap <silent> <leader>d :call ToggleDiff()<CR>
 nmap <leader>D :diffs
+
+" }}}2
+
+" Source config on save: {{{2
+
+augroup vimrc     " Source vim configuration upon save
+  autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+  autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+augroup END
+
+if !exists(':Nvrc')
+  command Nvrc tabnew $MYVIMRC
+endif
+
+" }}}2
+
+"                   }}}1
