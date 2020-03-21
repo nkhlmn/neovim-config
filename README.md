@@ -4,20 +4,27 @@
 
 `git clone https://github.com/nikhilkamineni/neovim-config.git ~/.config/nvim`
 
-### 2. Install minpac
+### 2. Instal `neovim` npm package
 
-`git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac`
+`npm i -g neovim`
 
 ### 3. Open neovim and install plugins
 
-`:PackUpdate`
+`:PlugUpdate`
 
 ### 4. Setup CoC (https://github.com/neoclide/coc.nvim)
 
-Make sure Yarn is installed.
+Install CoC extensions (`:CocInstall <extension-name>`)
 
-- Build CoC
-  `:call coc#util#build()`
-
-- Install CoC extensions
-  `:CocInstall coc-json coc-tsserver coc-html coc-css coc-pyls coc-emmet coc-pairs`
+- General
+  - coc-lists
+  - coc-pairs
+  - coc-highlight
+  - coc-git
+- Language specific:
+  - coc-json
+  - coc-tsserver
+  - coc-html
+  - coc-css
+  - coc-emmet
+  - coc-markdownlint
