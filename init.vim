@@ -11,12 +11,11 @@ call plug#begin('~/.local/share/nvim/plugged') " Start loading plugins
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'suy/vim-context-commentstring'
 Plug 'Yggdroot/indentLine'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'chrisbra/csv.vim' 
 
 "---------- tpope ----------"
 Plug 'tpope/vim-commentary'
@@ -30,7 +29,6 @@ Plug 'tpope/vim-vinegar'
 
 "------ Colorschemes ------"
 Plug 'ajh17/Spacegray.vim'
-Plug 'srcery-colors/srcery-vim'
 Plug 'sainnhe/gruvbox-material'
 
 call plug#end() " End loading plugins
@@ -62,9 +60,16 @@ map <leader>n :set invnumber<CR>
 
 " Prevent concealing characters in certain filetypes
 let g:indentLine_fileTypeExclude = ['json', 'markdown']
+" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_setColors = 0
+" let g:indentLine_color_term = 11
+" let g:indentLine_char = '|'
 
 " Yank entire buffer
 nmap <leader>y :%y<CR>
+
+" Set filetype correctly for .conf files
+autocmd BufNewFile,BufRead *.conf set filetype=conf
 
 "}}}
 
@@ -172,6 +177,7 @@ set foldmethod=indent
 set foldlevel=99
 
 autocmd Filetype vim setlocal foldmethod=marker
+autocmd Filetype conf setlocal foldmethod=marker
 
 nnoremap <space> za
 
@@ -206,32 +212,33 @@ nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 let g:spacegray_use_italics = 1
 let g:spacegray_low_contrast = 1
 
-"srcery
-let g:srcery_italic = 1
-let g:srcery_inverse = 0
-let g:srcery_inverse_matches = 1
-let g:srcery_inverse_match_paren = 1
-
 "gruvbox-material
-let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_background = 'hard'
 " let g:gruvbox_material_disable_italic_comment = 1
 
 " colorscheme here
 colorscheme gruvbox-material
 
+" }}}
 
-if g:colors_name == "spacegray"
-  let g:airline_theme="zenburn"
-  hi SignColumn guibg=NONE
-  hi LineNr guibg=NONE
-endif
+" LIGHTLINE: {{{
 
-if g:colors_name == "material-dark"
-  let g:airline_theme="gruvbox_material"
-endif
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox_material',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction',
+      \   'gitbranch': 'FugitiveStatusline'
+      \ },
+      \ }
 
-let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
 " }}}
 

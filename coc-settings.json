@@ -1,3 +1,4 @@
 {
-  "list.source.grep.command": "rg"
+  "list.source.grep.command": "rg",
+  "javascript.suggestionActions.enabled": false
 }
