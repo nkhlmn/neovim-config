@@ -1,6 +1,0 @@
-{
-  "list.source.grep.command": "rg",
-  "javascript.suggestionActions.enabled": false,
-  "suggest.enablePreview": true,
-  "suggest.triggerAfterInsertEnter": true
-}
