@@ -11,14 +11,11 @@ nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
 
 " TABS
-map  <silent> <Leader>t :tabnew <bar> call OpenFileSearch()<CR>
-map  <silent> <Leader>T :tabnew <bar> Explore<CR>
+map  <silent> <Leader>t :tabnew <bar> Explore<CR>
 
-map  <silent> <Leader>s :split <bar> call OpenFileSearch()<CR>
-map  <silent> <Leader>S :split <bar> Explore<CR>
+map  <silent> <Leader>s :split <bar> Explore<CR>
 
-map  <silent> <Leader>v :vsplit <bar> call OpenExploreearch()<CR>
-map  <silent> <Leader>V :vsplit <bar> Explore<CR>
+map  <silent> <Leader>v :vsplit <bar> Explore<CR>
 
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
@@ -52,3 +49,13 @@ map <silent> <Leader>v :Vexplore<CR>
 " map <silent> <Leader>v :vsplit <bar> Explore<CR>
 map <silent> <Leader>s :Sexplore<CR>
 " map <silent> <Leader>t :Texplore<CR>
+
+" FZF
+nnoremap <C-f> :Rg<CR>
+nnoremap <C-p> :GFiles<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
+
