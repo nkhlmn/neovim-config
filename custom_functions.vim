@@ -24,3 +24,9 @@ endfunction
 
 nmap <silent> <leader>d :call ToggleDiff()<CR>
 nmap <leader>D :diffs
+
+function! FormatJSON()
+  execute "%!python -m json.tool"
+endfunction
+
+command FormatJSON call FormatJSON()

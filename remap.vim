@@ -1,28 +1,24 @@
+"
+map <C-s> :w<CR>
+
 " Toggle line numbers
 map <leader>n :set number!<CR>
-
 
 " Yank entire buffer
 nmap <leader>y :%y<CR>
 
-
 " Clear highlighted search items by double pressing ESC
 nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 
-
 " TABS
-map  <silent> <Leader>t :tabnew <bar> Explore<CR>
-
-map  <silent> <Leader>s :split <bar> Explore<CR>
-
-map  <silent> <Leader>v :vsplit <bar> Explore<CR>
-
+map  <silent> <Leader>t :tabnew <CR>
+map  <silent> <Leader>s :snew <CR>
+map  <silent> <Leader>v :vnew <CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
-
 
 " Integrated Terminal
 " Shortcuts for opening a new terminal window and setting the size
