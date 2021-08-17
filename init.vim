@@ -6,4 +6,8 @@ source ~/.config/nvim/custom_functions.vim
 source ~/.config/nvim/autocmd.vim
 source ~/.config/nvim/remap.vim
 source ~/.config/nvim/lsp_config.vim
-
+source ~/.config/nvim/treesitter.vim
+source ~/.config/nvim/telescope.vim
+source ~/.config/nvim/nvim-compe.vim
+source ~/.config/nvim/lspsaga.vim
+source ~/.config/nvim/toggleterm.vim

@@ -1,6 +1,9 @@
 "
 map <C-s> :w<CR>
 
+" prevent ex mode
+map Q <Nop>
+
 " Toggle line numbers
 map <leader>n :set number!<CR>
 
@@ -14,8 +17,8 @@ nnoremap <silent> <ESC><ESC> :let @/ = ""<cr>
 map  <silent> <Leader>t :tabnew <CR>
 map  <silent> <Leader>s :snew <CR>
 map  <silent> <Leader>v :vnew <CR>
-nnoremap <silent> <C-h> :tabprevious<CR>
-nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> [t :tabprevious<CR>
+nnoremap <silent> ]t :tabnext<CR>
 
 nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
@@ -26,13 +29,13 @@ map <silent> <leader>c :split <bar> :res 15 <bar> :set nonumber <bar> :startinse
 map <silent> <leader>C :vsplit <bar> :set nonumber <bar> :startinsert <bar> :terminal<CR>
 
 " Map some normal mode shortcuts so the they work the same in the intergrated terminal
-tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
-tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
-tnoremap <silent> <Esc> <C-\><C-n>
-tnoremap <silent> <C-w><C-j> <C-\><C-n><C-w>j
-tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
-tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
-tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
+" tnoremap <C-h> <C-\><C-n> <bar> :tabnext<CR>
+" tnoremap <C-l> <C-\><C-n> <bar> :tabprevious<CR>
+" tnoremap <silent> <Esc> <C-\><C-n>
+" tnoremap <silent> <C-w><C-j> <C-\><C-n><C-w>j
+" tnoremap <silent> <C-w><C-k> <C-\><C-n><C-w>k
+" tnoremap <silent> <C-w><C-h> <C-\><C-n><C-w>h
+" tnoremap <silent> <C-w><C-l> <C-\><C-n><C-w>l
 
 " Code folding
 nnoremap <space> za
@@ -47,11 +50,5 @@ map <silent> <Leader>s :Sexplore<CR>
 " map <silent> <Leader>t :Texplore<CR>
 
 " FZF
-nnoremap <C-f> :Rg<CR>
-nnoremap <C-p> :GFiles<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
 
+let g:user_emmet_leader_key='<C-E>'

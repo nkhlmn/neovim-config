@@ -1,5 +1,6 @@
 syntax on
 filetype plugin on
+set completeopt=menuone,noselect
 set number
 set conceallevel=0
 set expandtab
@@ -24,10 +25,10 @@ set ignorecase                    " Make search case insensitive
 set hlsearch                      " make search highlight all matches
 set incsearch                     " start search immediately after typing
 set diffopt+=vertical
-" nnoremap * *N
+nnoremap * *N
 
-set foldmethod=indent             " Code folding
-set foldlevel=99
+" set foldmethod=indent             " Code folding
+set foldlevelstart=99
 
 
 " Backup files
@@ -45,7 +46,7 @@ set splitright
 
 " Indentline
 
-let g:indentLine_fileTypeExclude = ['json', 'markdown']   " Prevent concealing characters in certain filetypes
+let g:indentLine_fileTypeExclude = ['json', 'markdown']   " Prevent concealing characters in certain filetflingo.tvypes
 " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " let g:indentLine_setColors = 0
 " let g:indentLine_color_term = 11

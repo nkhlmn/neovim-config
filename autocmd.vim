@@ -16,8 +16,8 @@ autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 
-autocmd Filetype vim setlocal foldmethod=marker
-autocmd Filetype conf setlocal foldmethod=marker
+" autocmd Filetype vim setlocal foldmethod=marker
+" autocmd Filetype conf setlocal foldmethod=marker
 
 " Enter insert mode when switching to terminal buffer
 autocmd BufWinEnter,WinEnter term://* startinsert
