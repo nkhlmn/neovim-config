@@ -1,4 +1,3 @@
-lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
@@ -17,7 +16,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   }
 }
-EOF
 
+vim.cmd[[
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+]]
