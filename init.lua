@@ -3,6 +3,7 @@ require('config.colorscheme')
 require('config.treesitter')
 require('config.lspconfig')
 require('config.toggleterm')
+require('config.telescope')
 
 local vim = vim
 local api = vim.api
@@ -16,7 +17,6 @@ vim.cmd[[
 source ~/.config/nvim/lightline.vim
 source ~/.config/nvim/custom_functions.vim
 source ~/.config/nvim/autocmd.vim
-source ~/.config/nvim/telescope.vim
 source ~/.config/nvim/nvim-compe.vim
 source ~/.config/nvim/lspsaga.vim
 ]]
