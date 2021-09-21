@@ -5,6 +5,7 @@ require('config.lspconfig')
 require('config.toggleterm')
 require('config.telescope')
 require('config.lspsaga')
+require('config.nvim-compe')
 
 local vim = vim
 local api = vim.api
@@ -18,7 +19,6 @@ vim.cmd[[
 source ~/.config/nvim/lightline.vim
 source ~/.config/nvim/custom_functions.vim
 source ~/.config/nvim/autocmd.vim
-source ~/.config/nvim/nvim-compe.vim
 ]]
 
 o.completeopt = 'menuone,noselect'
