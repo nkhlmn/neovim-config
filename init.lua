@@ -54,6 +54,7 @@ o.splitright = true
 
 
 -- Mappings
+vim.g.mapleader = ' '
 api.nvim_set_keymap('', '<C-S>', ':w<CR>', {})
 api.nvim_set_keymap('', 'Q', '<Nop>', {})
 api.nvim_set_keymap('', '<leader>n', ':set number!<CR>', {})
