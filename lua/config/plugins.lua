@@ -40,10 +40,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'                " Netrw improvements
 
 "------ Colorschemes ------"
-Plug 'ajh17/Spacegray.vim'
 Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/everforest'
+Plug 'ajh17/Spacegray.vim'
 Plug 'ayu-theme/ayu-vim' 
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 call plug#end() " End loading plugins
 ]]

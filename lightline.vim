@@ -18,10 +18,10 @@ if colors_name == 'gruvbox-material'
   let g:lightline.colorscheme = 'gruvbox_material'
 endif
 
-if colors_name == 'spacegray'
-  let g:lightline.colorscheme = 'jellybeans'
+if colors_name == 'everforest'
+  let g:lightline.colorscheme = 'everforest'
 endif
 
-if colors_name == 'material'
-  let g:lightline.colorscheme = 'material_vim'
+if colors_name == 'spacegray'
+  let g:lightline.colorscheme = 'jellybeans'
 endif
