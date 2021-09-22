@@ -6,6 +6,7 @@ require('config.toggleterm')
 require('config.telescope')
 require('config.lspsaga')
 require('config.nvim-compe')
+require('config.nvim-autopairs')
 
 local vim = vim
 local api = vim.api

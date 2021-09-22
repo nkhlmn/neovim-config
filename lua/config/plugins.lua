@@ -18,6 +18,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/rust-tools.nvim'
+Plug 'windwp/nvim-autopairs'             " Auto insert brackets and quotes
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
@@ -26,7 +27,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'sheerun/vim-polyglot'             " Collection of language packs 
 Plug 'chrisbra/csv.vim' 
 Plug 'sbdchd/neoformat'                 " Run code formatting for various languages
-Plug 'jiangmiao/auto-pairs'             " Auto insert brackets and quotes
 Plug 'akinsho/nvim-toggleterm.lua'
 
 "---------- tpope ----------"
