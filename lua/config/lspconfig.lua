@@ -1,6 +1,4 @@
-local nvim_lsp = require('lspconfig')
-
-require'lspinstall'.setup()
+local vim = vim
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end  -- Mappings.
@@ -9,17 +7,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 end
 
-local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
-  require'lspconfig'[server].setup{
-    on_attach = on_attach
-  }
-end
-
 local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
+  local lspinstall = require('lspinstall')
+  lspinstall.setup()
+  local installed_servers = lspinstall .installed_servers()
+  for _, server in pairs(installed_servers) do
     require'lspconfig'[server].setup{
       on_attach = on_attach
     }
@@ -33,3 +25,6 @@ require'lspinstall'.post_install_hook = function ()
   setup_servers() -- reload installed servers
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
+
+-- Setup rust-tools
+require('rust-tools').setup({})
