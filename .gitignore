@@ -2,5 +2,6 @@ backup/
 undo/
 swap/
 pack/
+plugged/
 .venv/
 .netrwhist
