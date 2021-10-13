@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'windwp/nvim-autopairs'             " Auto insert brackets and quotes
+Plug 'lewis6991/gitsigns.nvim'
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
@@ -47,3 +48,6 @@ Plug 'ayu-theme/ayu-vim'
 
 call plug#end() " End loading plugins
 ]]
+
+
+require('gitsigns').setup()
