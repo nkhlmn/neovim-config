@@ -45,6 +45,8 @@ g.netrw_liststyle = 3
 o.splitbelow = true
 o.splitright = true
 
+-- Highlight on yank
+vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]]
 
 -- Mappings
 vim.g.mapleader = ' '
