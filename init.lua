@@ -74,10 +74,12 @@ api.nvim_set_keymap('', '<leader>`', ':tabnew $MYVIMRC<CR>', { noremap = true, s
 
 api.nvim_set_keymap('n', ' ', 'za', { noremap = true, silent = true })
 
-g.user_emmet_leader_key = '<C-E>'
-
--- Highlight on yank
-vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]]
+-- Map ctrl+backspace to delete previous word
+-- api.nvim_set_keymap('!', '<C-BS>', '<C-w>', { noremap = true })
+vim.cmd[[
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
+]]
 
 -- Yank till end of line with Y (instead of yanking entire line)
 api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true, silent = true })
@@ -111,6 +113,9 @@ function _G.toggle_diff()
 end
 
 api.nvim_set_keymap('n', '<leader>d', '<cmd>lua toggle_diff()<cr>', {})
+
+-- emmet leader key
+g.user_emmet_leader_key = '<C-E>'
 
 -- Show highlight group under cursor
 vim.cmd[[
