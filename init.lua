@@ -5,7 +5,7 @@ require('config.lspconfig')
 require('config.toggleterm')
 require('config.telescope')
 require('config.lspsaga')
-require('config.nvim-compe')
+require('config.nvim-cmp')
 require('config.nvim-autopairs')
 
 local vim = vim
@@ -15,7 +15,7 @@ local g = vim.g
 -- local wo = vim.wo
 -- local bo = vim.bo
 
-o.completeopt = 'menuone,noselect'
+o.completeopt = 'menu,menuone,noselect'
 o.number = true
 o.relativenumber = true
 o.conceallevel = 0
