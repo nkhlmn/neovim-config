@@ -1,15 +1,6 @@
 local vim = vim
 local cmp = require'cmp'
 
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -17,38 +8,96 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		-- ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
-		-- ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif vim.fn["vsnip#available"]() == 1 then
-				feedkey("<Plug>(vsnip-expand-or-jump)", "")
-			elseif has_words_before() then
-				cmp.complete()
-			else
-				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-			end
-		end, { "i", "s" }),
-
-		["<S-Tab>"] = cmp.mapping(function()
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-				feedkey("<Plug>(vsnip-jump-prev)", "")
-			end
-		end, { "i", "s" }),	['<CR>'] = cmp.mapping.confirm({ select = true }),
-	},
-	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'nvim_lua' },
-		{ name = 'vsnip' },
-		{ name = 'buffer' },
-		{ name = 'path' },
-		{ name = 'calc' },
-	}
+    ['<C-y>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    })
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'vsnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'calc' },
+    { name = 'example' },
+  }
 })
+
+local source = {}
+
+---Source constructor.
+source.new = function()
+  local self = setmetatable({}, { __index = source })
+  self.your_awesome_variable = 1
+  return self
+end
+
+---Return the source is available or not.
+---@return boolean
+function source:is_available()
+  return true
+end
+
+---Return the source name for some information.
+function source:get_debug_name()
+  return 'example'
+end
+
+-----Return keyword pattern which will be used...
+-----  1. Trigger keyword completion
+-----  2. Detect menu start offset
+-----  3. Reset completion state
+-----@param params cmp.SourceBaseApiParams
+-----@return string
+--function source:get_keyword_pattern(params)
+--  return '???'
+--end
+
+---Return trigger characters.
+---@param params cmp.SourceBaseApiParams
+---@return string[]
+function source:get_trigger_characters(params)
+  return { '???' }
+end
+
+---Invoke completion (required).
+---  If you want to abort completion, just call the callback without arguments.
+---@param params cmp.SourceCompletionApiParams
+---@param callback fun(response: lsp.CompletionResponse|nil)
+function source:complete(params, callback)
+  callback({
+    { label = 'January' },
+    { label = 'February' },
+    { label = 'March' },
+    { label = 'April' },
+    { label = 'May' },
+    { label = 'June' },
+    { label = 'July' },
+    { label = 'August' },
+    { label = 'September' },
+    { label = 'October' },
+    { label = 'November' },
+    { label = 'December' },
+  })
+end
+
+---Resolve completion item that will be called when the item selected or before the item confirmation.
+---@param completion_item lsp.CompletionItem
+---@param callback fun(completion_item: lsp.CompletionItem|nil)
+function source:resolve(completion_item, callback)
+  callback(completion_item)
+end
+
+---Execute command that will be called when after the item confirmation.
+---@param completion_item lsp.CompletionItem
+---@param callback fun(completion_item: lsp.CompletionItem|nil)
+function source:execute(completion_item, callback)
+  callback(completion_item)
+end
+
+require('cmp').register_source('example', source.new())
