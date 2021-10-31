@@ -32,7 +32,7 @@ Plug 'lewis6991/gitsigns.nvim'
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/csv.vim' 
 Plug 'sbdchd/neoformat'
@@ -59,3 +59,8 @@ call plug#end() " End loading plugins
 
 
 require('gitsigns').setup()
+
+require("indent_blankline").setup {
+    char = "¦",
+    buftype_exclude = {"terminal"}
+}
