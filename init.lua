@@ -38,7 +38,8 @@ o.hlsearch = true -- make search highlight all matches
 o.incsearch = true -- start search immediately after typing
 o.diffopt = 'internal,filler,closeoff,vertical'
 o.foldlevelstart = 99
-
+o.list = true
+o.listchars = "tab:>\\ ,trail:·"
 
 -- NETRW
 g.netrw_liststyle = 3
