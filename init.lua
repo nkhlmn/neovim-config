@@ -50,7 +50,6 @@ o.splitright = true
 vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]]
 
 -- Mappings
-vim.g.mapleader = ' '
 api.nvim_set_keymap('n', '*', '*N', {}) -- keep cursor on first match when searching for word under cursor
 api.nvim_set_keymap('', '<C-S>', ':w<CR>', {}) -- save buffer
 api.nvim_set_keymap('n', 'Q', '<Nop>', {}) -- prevent going into ex mode
