@@ -40,6 +40,7 @@ o.diffopt = 'internal,filler,closeoff,vertical'
 o.foldlevelstart = 99
 o.list = true
 o.listchars = "tab:>\\ ,trail:·"
+vim.cmd[[autocmd FileType gitcommit setlocal nolist]]
 
 -- NETRW
 g.netrw_liststyle = 3
