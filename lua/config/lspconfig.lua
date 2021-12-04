@@ -8,25 +8,41 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local function setup_servers()
-  local lspinstall = require('lspinstall')
-  lspinstall.setup()
-  local installed_servers = lspinstall.installed_servers()
-  for _, server in pairs(installed_servers) do
-    require'lspconfig'[server].setup{
-      on_attach = on_attach,
-      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    }
-  end
-end
+-- local function setup_servers()
+--   local lspinstall = require('lspinstall')
+--   lspinstall.setup()
+--   local installed_servers = lspinstall.installed_servers()
+--   for _, server in pairs(installed_servers) do
+--     require'lspconfig'[server].setup{
+--       on_attach = on_attach,
+--       capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+--     }
+--   end
+-- end
 
-setup_servers()
+-- setup_servers()
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+local lsp_installer = require("nvim-lsp-installer")
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+	vim.lsp.protocol.make_client_capabilities()
+)
+
+-- Register a handler that will be called for all installed servers.
+lsp_installer.on_server_ready(function(server)
+	local opts = { 
+		on_attach = on_attach,
+		capabilities = capabilities,
+	}
+
+	-- (optional) Customize the options passed to the server
+	-- if server.name == "tsserver" then
+	--     opts.root_dir = function() ... end
+	-- end
+
+	-- This setup() function is exactly the same as lspconfig's setup function.
+	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	server:setup(opts)
+end)
 
 -- Setup rust-tools
 require('rust-tools').setup({})
