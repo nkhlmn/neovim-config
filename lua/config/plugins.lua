@@ -24,10 +24,10 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'tami5/lspsaga.nvim'
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
