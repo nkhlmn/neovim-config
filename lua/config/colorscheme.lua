@@ -10,7 +10,7 @@ o.background = 'dark'
  -- Specify colorscheme name here
 -- local colorscheme_name = 'spacegray'
 -- local colorscheme_name = 'everforest'
-local colorscheme_name = 'everforest'
+local colorscheme_name = 'gruvbox-material'
 -- local colorscheme_name = 'sonokai'
 -- local colorscheme_name = 'edge'
 
