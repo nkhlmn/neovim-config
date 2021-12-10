@@ -28,6 +28,7 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'tami5/lspsaga.nvim'
+Plug 'rcarriga/nvim-notify'
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
