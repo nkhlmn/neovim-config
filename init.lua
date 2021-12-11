@@ -7,6 +7,7 @@ require('config.telescope')
 require('config.lspsaga')
 require('config.nvim-cmp')
 require('config.nvim-autopairs')
+require('config.utils')
 
 local vim = vim
 local api = vim.api
@@ -136,18 +137,6 @@ function! ToggleWhitespace()
 endfunction
 
 nnoremap <F2> :call ToggleWhitespace()<CR>
-]]
-
--- Parse URL
-vim.cmd[[
-function! ParseURL()
-  execute "%s/#/\r#\r/ge"
-  execute "%s/?/\r?\r/ge"
-  execute "%s/&/\r&\r/ge"
-  execute "%s/%5B/[/ge"
-  execute "%s/%5D/]/ge"
-  execute "%s!%2F!/!ge"
-endfunction
 ]]
 
 vim.cmd[[
