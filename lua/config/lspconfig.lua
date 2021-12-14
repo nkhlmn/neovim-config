@@ -8,20 +8,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
--- local function setup_servers()
---   local lspinstall = require('lspinstall')
---   lspinstall.setup()
---   local installed_servers = lspinstall.installed_servers()
---   for _, server in pairs(installed_servers) do
---     require'lspconfig'[server].setup{
---       on_attach = on_attach,
---       capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
---     }
---   end
--- end
-
--- setup_servers()
-
 local lsp_installer = require("nvim-lsp-installer")
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
 	vim.lsp.protocol.make_client_capabilities()
