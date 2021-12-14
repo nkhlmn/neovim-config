@@ -1,7 +1,7 @@
 local vim = vim
 local api = vim.api
 
-local function split_str_to_table(inputstr, sep)
+local function str_to_table(inputstr, sep)
   if sep == nil then
     sep = "%s"
   end
@@ -22,10 +22,10 @@ local function split_url_components(url)
   return url
 end
 
-function _G.parse_url_under_cursor()
+local function parse_url_under_cursor()
   local current_line = api.nvim_get_current_line()
   local formatted_line = split_url_components(current_line)
-  local output_table = split_str_to_table(formatted_line, "\n")
+  local output_table = str_to_table(formatted_line, "\n")
   local cursor_position = api.nvim_win_get_cursor(0)
   local current_row = cursor_position[1]
   local insert_row_start = current_row + 5
@@ -35,9 +35,9 @@ function _G.parse_url_under_cursor()
   require('notify')("URL parsed")
 end
 
-function _G.parse_url(url)
+local function parse_url(url)
   local formatted_line = split_url_components(url)
-  local output_table = split_str_to_table(formatted_line, "\n")
+  local output_table = str_to_table(formatted_line, "\n")
   local current_row = 0
   local insert_row_start = current_row + 3
   local insert_row_end = insert_row_start + #output_table + 2
@@ -49,4 +49,19 @@ function _G.parse_url(url)
 end
 
 
--- Nktest()
+local function get_attached_lsp_servers()
+  local attached_servers = vim.lsp.get_active_clients()
+  local server_names = {}
+
+  for _, value in pairs(attached_servers) do
+    table.insert(server_names, value.name)
+  end
+
+  return table.concat(server_names, " ")
+end
+
+return {
+  get_attached_lsp_servers = get_attached_lsp_servers,
+  parse_url = parse_url,
+  parse_url_under_cursor = parse_url_under_cursor
+}

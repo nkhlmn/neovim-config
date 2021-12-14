@@ -50,7 +50,7 @@ local lightline_theme_mapping = {
 vim.cmd[[
 function! GetActiveLspClients()
 	try
-		return luaeval('require("config.lsp").get_attached_lsp_servers()')
+		return luaeval('require("config.utils").get_attached_lsp_servers()')
 	catch
 		return ''
 	endtry
