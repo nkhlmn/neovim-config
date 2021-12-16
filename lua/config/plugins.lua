@@ -29,6 +29,8 @@ Plug 'windwp/nvim-autopairs'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'tami5/lspsaga.nvim'
 Plug 'rcarriga/nvim-notify'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
