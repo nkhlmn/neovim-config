@@ -11,8 +11,6 @@ o.background = 'dark'
 -- local colorscheme_name = 'spacegray'
 -- local colorscheme_name = 'everforest'
 local colorscheme_name = 'gruvbox-material'
--- local colorscheme_name = 'sonokai'
--- local colorscheme_name = 'edge'
 
 -- Theme specific config options
 if(colorscheme_name == 'gruvbox-material') then
@@ -21,6 +19,8 @@ if(colorscheme_name == 'gruvbox-material') then
 	g.gruvbox_material_diagnostic_text_highlight = true
 	g.gruvbox_material_diagnostic_line_highlight = true
 	g.gruvbox_material_diagnostic_virtual_text = 'colored'
+	g.gruvbox_material_enable_bold = true
+	g.gruvbox_material_better_performance = true
   -- g.gruvbox_material_disable_italic_comment = true
 elseif(colorscheme_name == 'everforest') then
 	g.everforest_background = 'hard'
@@ -29,8 +29,6 @@ elseif(colorscheme_name == 'everforest') then
 	g.everforest_diagnostic_line_highlight = true
 	g.everforest_diagnostic_virtual_text = 'colored'
 	-- g.everforest_disable_italic_comment = true
-elseif(colorscheme_name == 'edge') then
-	g.edge_disable_italic_comment = true
 end
 
 -- Set the colorscheme
@@ -38,13 +36,9 @@ vim.cmd('colorscheme ' .. colorscheme_name)
 
 -- LIGHTLINE
 local lightline_theme_mapping = {
-	['ayu'] = 'ayu',
 	['gruvbox-material'] = 'gruvbox_material',
-	['sonokai'] = 'sonokai',
 	['everforest'] = 'everforest',
 	['spacegray'] = 'darcula',
-	['onedark'] = 'onedark',
-	['edge'] = 'edge',
 }
 
 vim.cmd[[

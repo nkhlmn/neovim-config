@@ -55,7 +55,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/everforest'
 Plug 'ajh17/Spacegray.vim'
-Plug 'ayu-theme/ayu-vim'
 
 call plug#end() " End loading plugins
 ]]
