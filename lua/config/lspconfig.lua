@@ -26,6 +26,14 @@ lsp_installer.on_server_ready(function(server)
 			server = { cmd = server._default_options.cmd },
 		})
 		return
+	elseif server.name == "sumneko_lua" then
+		opts.settings = {
+			Lua = {
+				diagnostics = {
+					globals = { 'vim' }
+				}
+			}
+		}
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.
