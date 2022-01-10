@@ -31,10 +31,11 @@ Plug 'tami5/lspsaga.nvim'
 Plug 'rcarriga/nvim-notify'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/csv.vim' 
