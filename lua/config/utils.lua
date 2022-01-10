@@ -49,6 +49,9 @@ local function parse_url(url)
   require('notify')("URL parsed")
 end
 
+vim.cmd[[command! ParseUrlUnderCursor lua require("config.utils").parse_url_under_cursor()]]
+vim.cmd[[command! -nargs=* ParseUrl lua require("config.utils").parse_url(<f-args>)]]
+
 
 local function get_attached_lsp_servers()
   local attached_servers = vim.lsp.get_active_clients()
