@@ -1,13 +1,6 @@
 require('config.plugins')
 require('config.colorscheme')
-require('config.treesitter')
 require('config.lspconfig')
-require('config.toggleterm')
-require('config.telescope')
-require('config.lspsaga')
-require('config.nvim-cmp')
-require('config.nvim-autopairs')
-require('config.trouble')
 require('config.utils')
 
 local vim = vim
