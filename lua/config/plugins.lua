@@ -8,7 +8,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Start loading plugins
 
-"---------- LSP -----------"
+"---------- NVIM -----------"
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -60,10 +60,3 @@ Plug 'ajh17/Spacegray.vim'
 call plug#end() " End loading plugins
 ]]
 
-
-require('gitsigns').setup()
-
-require("indent_blankline").setup {
-    char = "¦",
-    buftype_exclude = {"terminal"}
-}
