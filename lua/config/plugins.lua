@@ -56,6 +56,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/everforest'
 Plug 'ajh17/Spacegray.vim'
+Plug 'rebelot/kanagawa.nvim'
 
 call plug#end() " End loading plugins
 ]]

@@ -11,6 +11,7 @@ o.background = 'dark'
 -- local colorscheme_name = 'spacegray'
 -- local colorscheme_name = 'everforest'
 local colorscheme_name = 'gruvbox-material'
+-- local colorscheme_name = 'kanagawa'
 
 -- Theme specific config options
 if(colorscheme_name == 'gruvbox-material') then
