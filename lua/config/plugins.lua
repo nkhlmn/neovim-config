@@ -37,7 +37,6 @@ Plug 'akinsho/bufferline.nvim'
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
-"Plug 'itchyny/lightline.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/csv.vim' 

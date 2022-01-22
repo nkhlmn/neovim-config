@@ -1,5 +1,5 @@
 local map = vim.api.nvim_set_keymap
-local saga = require"lspsaga"
+local saga = require('lspsaga')
 
 saga.init_lsp_saga {
   error_sign = '',

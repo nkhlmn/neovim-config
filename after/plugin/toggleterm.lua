@@ -1,4 +1,4 @@
-require"toggleterm".setup{
+require('toggleterm').setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)
   --[[
@@ -28,8 +28,8 @@ require"toggleterm".setup{
     width = vim.o.columns - 8,
     height = vim.o.lines - 6,
     highlights = {
-      border = "Identifier",
-      background = "Directory",
+      border = 'Identifier',
+      background = 'Directory',
     }
   }
 }
