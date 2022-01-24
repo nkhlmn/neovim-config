@@ -33,7 +33,6 @@ Plug 'rcarriga/nvim-notify'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim'
 
 "---------- Misc ----------"
 Plug 'mattn/emmet-vim'
