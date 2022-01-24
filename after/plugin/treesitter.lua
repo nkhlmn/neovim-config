@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  -- ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
   },
@@ -12,9 +12,9 @@ require'nvim-treesitter.configs'.setup {
       node_decremental = 'grm',
     },
   },
-  indent = {
-    enable = true
-  }
+  -- indent = { -- experimental; disabled for now
+  --   enable = true
+  -- }
 }
 
 vim.cmd[[
