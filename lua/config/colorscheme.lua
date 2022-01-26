@@ -34,6 +34,12 @@ elseif(colorscheme_name == 'everforest') then
 	g.everforest_diagnostic_line_highlight = true
 	g.everforest_diagnostic_virtual_text = 'colored'
 	-- g.everforest_disable_italic_comment = true
+elseif(colorscheme_name == 'sonokai') then
+	g.sonokai_style = 'shusia'
+	-- g.sonokai_diagnostic_text_highlight = true
+	g.sonokai_diagnostic_line_highlight = true
+	g.sonokai_diagnostic_virtual_text = 'colored'
+	-- g.sonokai_disable_italic_comment = true
 end
 
 -- Set the colorscheme

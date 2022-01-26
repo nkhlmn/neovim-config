@@ -55,6 +55,7 @@ Plug 'tpope/vim-unimpaired'
 "------ Colorschemes ------"
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/everforest'
+Plug 'sainnhe/sonokai'
 Plug 'ajh17/Spacegray.vim'
 Plug 'rebelot/kanagawa.nvim'
 
