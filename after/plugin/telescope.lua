@@ -4,9 +4,14 @@ local fb_actions = require('telescope').extensions.file_browser.actions
 
 -- This is your opts table
 telescope.setup {
+  defaults = {
+    layout_config = { prompt_position = "top" },
+    prompt_prefix = " ",
+    sorting_strategy = "ascending",
+    dynamic_preview_title = true,
+  },
   extensions = {
     file_browser = {
-      theme = 'ivy',
       mappings = {
         ["n"] = {
           ["R"] = fb_actions.rename,
@@ -41,6 +46,5 @@ map('n', '<C-f>', ':Telescope live_grep<cr>', { noremap = true })
 map('n', '<C-q>', ':Telescope quickfix<cr>', { noremap = true })
 map('n', '<C-l>', ':Telescope loclist<cr>', { noremap = true })
 map('n', '<C-h>', ':Telescope help_tags<cr>', { noremap = true })
--- map('n', '<leader>b', ':Telescope file_browser<cr>', { noremap = true })
 map('n', '-', ':Telescope file_browser<cr>', { noremap = true })
 
