@@ -11,7 +11,7 @@ local colorscheme_name
 -- Check if a local config file (not source controlled) exists
 local has_local_config = pcall(require, 'config.local')
 if has_local_config then
-	local local_config = require('config.local').get_local_config()
+	local local_config = require('config.local')
 	colorscheme_name = local_config.colorscheme
 else
 	colorscheme_name = 'gruvbox-material'
