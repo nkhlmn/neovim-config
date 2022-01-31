@@ -103,11 +103,6 @@ api.nvim_set_keymap('n', '<leader>d', '<cmd>lua toggle_diff()<cr>', {})
 -- emmet leader key
 g.user_emmet_leader_key = '<C-E>'
 
--- Show highlight group under cursor
-vim.cmd[[
-map <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
-]]
-
 -- Toggle whitespace
 vim.cmd[[
 " https://stackoverflow.com/questions/9104706/how-can-i-convert-spaces-to-tabs-in-vim-or-linux

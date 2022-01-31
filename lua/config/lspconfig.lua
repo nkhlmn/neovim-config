@@ -9,16 +9,14 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>gh', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>gs', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  -- buf_set_keymap('n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  buf_set_keymap('n', '<leader>f', '<Cmd>Neoformat<CR>', opts)
+  buf_set_keymap('n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>fn', '<Cmd>Neoformat<CR>', opts)
 end
 
-local lsp_installer = require("nvim-lsp-installer")
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-	vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-lsp_installer.on_server_ready(function(server)
+local function on_ready(server)
 	local opts = {
 		on_attach = on_attach,
 		capabilities = capabilities,
@@ -45,4 +43,6 @@ lsp_installer.on_server_ready(function(server)
 	end
 
 	server:setup(opts) -- This is the same as lspconfig's setup function.
-end)
+end
+
+require'nvim-lsp-installer'.on_server_ready(on_ready)
