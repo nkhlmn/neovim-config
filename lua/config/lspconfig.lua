@@ -11,8 +11,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
   -- buf_set_keymap('n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<Cmd>Neoformat<CR>', opts)
-
-  require('notify')("Attached to " .. client.name)
 end
 
 local lsp_installer = require("nvim-lsp-installer")

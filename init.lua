@@ -7,8 +7,6 @@ local vim = vim
 local api = vim.api
 local o = vim.o
 local g = vim.g
--- local wo = vim.wo
--- local bo = vim.bo
 
 o.completeopt = 'menu,menuone,noselect'
 o.number = true
@@ -25,7 +23,6 @@ o.showmode = true -- Hides default status text for current mode
 o.showcmd = true -- Show incomplete commands
 o.clipboard = 'unnamedplus' -- Copy text from outside vim
 o.hidden = true
--- o.path+=** -- Search down into subfolders/Enables tabbing
 o.wildmenu = true -- Command line completion
 o.wildoptions = 'pum'
 o.ignorecase = true -- Make search case insensitive
@@ -37,11 +34,6 @@ o.list = true
 o.listchars = "tab:>\\ ,trail:·"
 vim.cmd[[autocmd FileType gitcommit setlocal nolist]]
 
--- NETRW
-g.netrw_liststyle = 3
-o.splitbelow = true
-o.splitright = true
-
 -- Highlight on yank
 vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]]
 
@@ -49,7 +41,6 @@ vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]]
 api.nvim_set_keymap('n', '*', '*N', {}) -- keep cursor on first match when searching for word under cursor
 api.nvim_set_keymap('', '<C-S>', ':w<CR>', {}) -- save buffer
 api.nvim_set_keymap('n', 'Q', '<Nop>', {}) -- prevent going into ex mode
--- api.nvim_set_keymap('', '<leader>n', ':set number!<CR>', {})
 api.nvim_set_keymap('n', '<leader>y', ':%y<CR>', {}) -- yank entire buffer
 api.nvim_set_keymap('n', '<ESC><ESC>', ':let @/ = ""<cr>', { noremap = true, silent = true }) -- clear search by pressing esc twice
 
@@ -59,7 +50,6 @@ api.nvim_set_keymap('n', '<leader>s', ':new<CR>', { silent = true }) -- open hor
 api.nvim_set_keymap('n', '<leader>S', ':Sexplore<CR>', { silent = true }) -- open horizontal split with netrw
 api.nvim_set_keymap('n', '<leader>v', ':vnew<CR>', { silent = true }) -- open vertical split
 api.nvim_set_keymap('n', '<leader>V', ':vnew<bar>Explore<CR>', { silent = true }) -- open vertical split with netrw
-
 
 api.nvim_set_keymap('n', '[t', ':tabprevious<CR>', { silent = true, noremap = true }) -- prev tab
 api.nvim_set_keymap('n', ']t', ':tabnext<CR>', { silent = true, noremap = true }) -- next tab
