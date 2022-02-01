@@ -19,7 +19,7 @@ o.mouse = 'a'
 o.autoread = true
 o.updatetime = 100
 o.laststatus = 2 -- Always show statusline
-o.showmode = true -- Hides default status text for current mode
+o.showmode = false -- Hides default status text for current mode
 o.showcmd = true -- Show incomplete commands
 o.clipboard = 'unnamedplus' -- Copy text from outside vim
 o.hidden = true
@@ -32,6 +32,8 @@ o.diffopt = 'internal,filler,closeoff,vertical'
 o.foldlevelstart = 99
 o.list = true
 o.listchars = "tab:>\\ ,trail:·"
+o.splitbelow = true
+o.splitright = true
 vim.cmd[[autocmd FileType gitcommit setlocal nolist]]
 
 -- Highlight on yank
