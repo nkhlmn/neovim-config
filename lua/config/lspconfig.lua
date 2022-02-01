@@ -45,4 +45,10 @@ local function on_ready(server)
 	server:setup(opts) -- This is the same as lspconfig's setup function.
 end
 
+vim.cmd[[
+autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+]]
+
 require'nvim-lsp-installer'.on_server_ready(on_ready)
