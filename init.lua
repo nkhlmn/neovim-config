@@ -1,4 +1,4 @@
-require('config.packer')
+require('config.packer_config')
 require('config.colorscheme')
 require('config.lspconfig')
 require('config.utils')
