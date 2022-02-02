@@ -3,6 +3,7 @@ undo/
 swap/
 pack/
 plugged/
+plugin/
 .venv/
 .netrwhist
 lua/config/local.lua

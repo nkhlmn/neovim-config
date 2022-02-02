@@ -1,0 +1,64 @@
+local function on_startup(use)
+  use { 'wbthomason/packer.nvim' }
+
+  -- NVIM
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+    'tami5/lspsaga.nvim',
+    'simrat39/rust-tools.nvim',
+  }
+
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+  use {
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-calc',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip',
+    'hrsh7th/vim-vsnip-integ',
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
+    'nvim-telescope/telescope-file-browser.nvim',
+  }
+
+  use { 'windwp/nvim-autopairs' }
+
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use { 'lukas-reineke/indent-blankline.nvim' }
+  use { 'rcarriga/nvim-notify' }
+  use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'mattn/emmet-vim' }
+  use { 'sheerun/vim-polyglot' }
+  use { 'chrisbra/csv.vim' }
+  use { 'sbdchd/neoformat' }
+  use { 'akinsho/nvim-toggleterm.lua' }
+
+  -- tpope
+  use {
+    'tpope/vim-commentary',
+    'tpope/vim-fugitive',
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
+    'tpope/vim-unimpaired',
+  }
+
+  -- Colorschemes
+  use {
+    'sainnhe/gruvbox-material',
+    'sainnhe/everforest',
+    'sainnhe/sonokai',
+    'ajh17/Spacegray.vim',
+    'rebelot/kanagawa.nvim',
+  }
+end
+
+require('packer').startup(on_startup)
