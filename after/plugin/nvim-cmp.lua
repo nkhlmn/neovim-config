@@ -1,21 +1,21 @@
 local vim = vim
-local cmp = require'cmp'
+local cmp = require('cmp')
 
-cmp.setup({
-	snippet = {
-		expand = function(args)
-		vim.fn['vsnip#anonymous'](args.body)
-		end,
-	},
-	mapping = {
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      vim.fn['vsnip#anonymous'](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-y>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
+    ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
-    })
+    },
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -25,8 +25,8 @@ cmp.setup({
     { name = 'path' },
     { name = 'calc' },
     { name = 'example' },
-  }
-})
+  },
+}
 
 local source = {}
 
@@ -70,7 +70,7 @@ end
 ---@param params cmp.SourceCompletionApiParams
 ---@param callback fun(response: lsp.CompletionResponse|nil)
 function source:complete(params, callback)
-  callback({
+  callback {
     { label = 'January' },
     { label = 'February' },
     { label = 'March' },
@@ -83,7 +83,7 @@ function source:complete(params, callback)
     { label = 'October' },
     { label = 'November' },
     { label = 'December' },
-  })
+  }
 end
 
 ---Resolve completion item that will be called when the item selected or before the item confirmation.

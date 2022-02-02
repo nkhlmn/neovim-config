@@ -46,4 +46,9 @@ map('n', '<C-q>', ':Telescope quickfix<cr>', { noremap = true })
 map('n', '<C-l>', ':Telescope loclist<cr>', { noremap = true })
 map('n', '<C-h>', ':Telescope help_tags<cr>', { noremap = true })
 map('n', '-', ':Telescope file_browser<cr>', { noremap = true })
-map('n', '_', ':lua require("telescope").extensions.file_browser.file_browser({ respect_gitignore = false })<cr>', { noremap = true })
+map(
+  'n',
+  '_',
+  ':lua require("telescope").extensions.file_browser.file_browser({ respect_gitignore = false })<cr>',
+  { noremap = true }
+)

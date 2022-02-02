@@ -31,13 +31,13 @@ o.incsearch = true -- start search immediately after typing
 o.diffopt = 'internal,filler,closeoff,vertical'
 o.foldlevelstart = 99
 o.list = true
-o.listchars = "tab:>\\ ,trail:·"
+o.listchars = 'tab:>\\ ,trail:·'
 o.splitbelow = true
 o.splitright = true
-vim.cmd[[autocmd FileType gitcommit setlocal nolist]]
+vim.cmd([[autocmd FileType gitcommit setlocal nolist]])
 
 -- Highlight on yank
-vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]]
+vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])
 
 -- Mappings
 api.nvim_set_keymap('n', '*', '*N', {}) -- keep cursor on first match when searching for word under cursor
@@ -64,17 +64,17 @@ api.nvim_set_keymap('n', ' ', 'za', { noremap = true, silent = true })
 
 -- Map ctrl+backspace to delete previous word
 -- api.nvim_set_keymap('!', '<C-BS>', '<C-w>', { noremap = true })
-vim.cmd[[
+vim.cmd([[
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
-]]
+]])
 
 -- Yank till end of line with Y (instead of yanking entire line)
 api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true, silent = true })
 
 -- Leave cursor where it is after yanking
 api.nvim_set_keymap('n', 'y^', 'mzy^`z', { noremap = true, silent = true })
-api.nvim_set_keymap('n', 'ygg', "mzygg`z", { noremap = true, silent = true })
+api.nvim_set_keymap('n', 'ygg', 'mzygg`z', { noremap = true, silent = true })
 
 -- Keep things centered when jumping and joining lines ('zz' centers cursor, 'zv' opens folds)
 api.nvim_set_keymap('n', 'n', 'nzzzv', { noremap = true, silent = true })
@@ -106,7 +106,7 @@ api.nvim_set_keymap('n', '<leader>d', '<cmd>lua toggle_diff()<cr>', {})
 g.user_emmet_leader_key = '<C-E>'
 
 -- Toggle whitespace
-vim.cmd[[
+vim.cmd([[
 " https://stackoverflow.com/questions/9104706/how-can-i-convert-spaces-to-tabs-in-vim-or-linux
 function! ToggleWhitespace()
   setlocal lcs=tab:>-,trail:-,eol:$ list! list?
@@ -118,11 +118,11 @@ function! ToggleWhitespace()
 endfunction
 
 nnoremap <F2> :call ToggleWhitespace()<CR>
-]]
+]])
 
-vim.cmd[[
+vim.cmd([[
 " Trigger `autoread` when files changes on disk
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if !bufexists("[Command Line]") | checktime | endif
 " Notification after file change
 autocmd FileChangedShellPost * lua require("notify")("File changed on disk. Buffer reloaded.")
-]]
+]])
