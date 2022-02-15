@@ -50,7 +50,6 @@ local function on_startup(use)
   use { 'rcarriga/nvim-notify' }
   use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'mattn/emmet-vim' }
-  use { 'sheerun/vim-polyglot' }
   use { 'chrisbra/csv.vim' }
   use { 'sbdchd/neoformat' }
   use { 'akinsho/nvim-toggleterm.lua' }
