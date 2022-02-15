@@ -14,6 +14,7 @@ o.relativenumber = true
 o.conceallevel = 0
 o.expandtab = true
 o.shiftwidth = 2
+o.tabstop = 2
 o.softtabstop = 2
 o.mouse = 'a'
 o.autoread = true
@@ -31,7 +32,7 @@ o.incsearch = true -- start search immediately after typing
 o.diffopt = 'internal,filler,closeoff,vertical'
 o.foldlevelstart = 99
 o.list = true
-o.listchars = 'tab:>\\ ,trail:·'
+o.listchars = 'trail:·,tab:  '
 o.splitbelow = true
 o.splitright = true
 vim.cmd([[autocmd FileType gitcommit setlocal nolist]])
