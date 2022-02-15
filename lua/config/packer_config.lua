@@ -43,7 +43,7 @@ local function on_startup(use)
   }
 
   use { 'windwp/nvim-autopairs' }
-
+  use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'lukas-reineke/indent-blankline.nvim' }
@@ -57,7 +57,6 @@ local function on_startup(use)
 
   -- tpope
   use {
-    'tpope/vim-commentary',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',
     'tpope/vim-surround',
