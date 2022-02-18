@@ -47,6 +47,8 @@ api.nvim_set_keymap('n', 'Q', '<Nop>', {}) -- prevent going into ex mode
 api.nvim_set_keymap('n', '<leader>y', ':%y<CR>', {}) -- yank entire buffer
 api.nvim_set_keymap('n', '<ESC><ESC>', ':let @/ = ""<cr>', { noremap = true, silent = true }) -- clear search by pressing esc twice
 
+api.nvim_set_keymap('n', 'ZB', '<cmd>bd!<cr>', { noremap = true, silent = true })
+api.nvim_set_keymap('n', '<leader>b', ':enew<CR>', { silent = true }) -- open new buffer
 api.nvim_set_keymap('n', '<leader>t', ':tabnew<CR>', { silent = true }) -- open new tab
 api.nvim_set_keymap('n', '<leader>T', ':Texplore<CR>', { silent = true }) -- open new tab with netrw
 api.nvim_set_keymap('n', '<leader>s', ':new<CR>', { silent = true }) -- open horizontal split
