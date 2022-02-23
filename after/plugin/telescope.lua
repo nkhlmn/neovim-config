@@ -30,6 +30,7 @@ telescope.setup {
 -- load_extension, somewhere after setup function:
 telescope.load_extension('ui-select')
 telescope.load_extension('file_browser')
+telescope.load_extension('fzf')
 
 -- Mappings for launching pickers
 local map = vim.api.nvim_set_keymap
