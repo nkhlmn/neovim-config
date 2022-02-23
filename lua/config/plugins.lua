@@ -18,7 +18,6 @@ local function on_startup(use)
   use {
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
-    'tami5/lspsaga.nvim',
     'simrat39/rust-tools.nvim',
   }
 
