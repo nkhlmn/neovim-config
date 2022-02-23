@@ -4,6 +4,6 @@ require('lualine').setup {
     component_separators = { left = '', right = '' },
   },
   sections = {
-    lualine_c = { require('config.utils').get_attached_lsp_servers },
+    lualine_c = { 'filename', require('config.utils').get_attached_lsp_servers },
   },
 }

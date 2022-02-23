@@ -34,22 +34,18 @@ telescope.load_extension('fzf')
 
 -- Mappings for launching pickers
 local map = vim.api.nvim_set_keymap
-map('n', '<leader>h', ':Telescope highlights<cr>', { noremap = true })
-map('n', '<leader>k', ':Telescope keymaps<cr>', { noremap = true })
-map('n', '<leader>,', ':Telescope vim_options<cr>', { noremap = true })
-map('n', '<C-g>', ':Telescope git_status<cr>', { noremap = true })
-map('n', '<C-,>', ':Telescope vim_options<cr>', { noremap = true })
-map('n', '<C-b>', ':Telescope buffers<cr>', { noremap = true })
-map('n', '<C-p>', ':Telescope find_files<cr>', { noremap = true })
-map('n', '<leader>p', ':lua require("telescope.builtin").find_files({ no_ignore = true, hidden = true })<cr>', { noremap = true })
-map('n', '<C-f>', ':Telescope live_grep<cr>', { noremap = true })
-map('n', '<C-q>', ':Telescope quickfix<cr>', { noremap = true })
-map('n', '<C-l>', ':Telescope loclist<cr>', { noremap = true })
-map('n', '<C-h>', ':Telescope help_tags<cr>', { noremap = true })
-map('n', '-', ':Telescope file_browser<cr>', { noremap = true })
-map(
-  'n',
-  '_',
-  ':lua require("telescope").extensions.file_browser.file_browser({ respect_gitignore = false })<cr>',
-  { noremap = true }
-)
+local opts = { noremap = true, silent = true }
+map('n', '<leader>h', ':Telescope highlights<cr>', opts)
+map('n', '<leader>k', ':Telescope keymaps<cr>', opts)
+map('n', '<leader>,', ':Telescope vim_options<cr>', opts)
+map('n', '<C-g>', ':Telescope git_status<cr>', opts)
+map('n', '<C-,>', ':Telescope vim_options<cr>', opts)
+map('n', '<C-b>', ':Telescope buffers<cr>', opts)
+map('n', '<C-p>', ':Telescope find_files<cr>', opts)
+map('n', '<leader>p', ':lua require("telescope.builtin").find_files({no_ignore=true,hidden=true})<cr>', opts)
+map('n', '<C-f>', ':Telescope live_grep<cr>', opts)
+map('n', '<C-q>', ':Telescope quickfix<cr>', opts)
+map('n', '<C-l>', ':Telescope loclist<cr>', opts)
+map('n', '<C-h>', ':Telescope help_tags<cr>', opts)
+map('n', '-', ':Telescope file_browser<cr>', opts)
+map('n', '_', ':lua require("telescope").extensions.file_browser.file_browser({respect_gitignore=false})<cr>', opts)
