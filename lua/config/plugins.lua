@@ -19,6 +19,7 @@ local function on_startup(use)
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
     'simrat39/rust-tools.nvim',
+    'nanotee/sqls.nvim',
   }
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

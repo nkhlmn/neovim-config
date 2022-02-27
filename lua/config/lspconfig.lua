@@ -19,6 +19,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', keymap_opts)
   buf_set_keymap('n', '<leader>fn', '<Cmd>Neoformat<CR>', keymap_opts)
 
+  -- setup sqls.nvim plugin
+  if client.name == 'sqls' then
+    require('sqls').on_attach(client, bufnr)
+  end
+
   -- Enable documentHighlight for certain language servers
   local enable_highlight_servers = {
     'sumneko_lua',
