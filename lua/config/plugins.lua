@@ -14,7 +14,7 @@ end
 local function on_startup(use)
   use { 'wbthomason/packer.nvim' }
 
-  -- NVIM
+  -- LSP
   use {
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
@@ -22,8 +22,7 @@ local function on_startup(use)
     'nanotee/sqls.nvim',
   }
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
+  -- Completion
   use {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
@@ -36,6 +35,7 @@ local function on_startup(use)
     'hrsh7th/vim-vsnip-integ',
   }
 
+  -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
@@ -43,17 +43,14 @@ local function on_startup(use)
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
   }
 
-  use { 'windwp/nvim-autopairs' }
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
-  }
+  -- Misc
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'lukas-reineke/indent-blankline.nvim' }
+  use { 'windwp/nvim-autopairs' }
+  use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
   use { 'rcarriga/nvim-notify' }
   use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'mattn/emmet-vim' }
