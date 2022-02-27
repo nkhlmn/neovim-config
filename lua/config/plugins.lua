@@ -60,6 +60,7 @@ local function on_startup(use)
   use { 'chrisbra/csv.vim' }
   use { 'sbdchd/neoformat' }
   use { 'akinsho/nvim-toggleterm.lua' }
+  use { 'kristijanhusak/vim-dadbod-ui', requires = 'vim-dadbod' }
 
   -- tpope
   use {
