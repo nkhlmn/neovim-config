@@ -63,8 +63,20 @@ local function get_attached_lsp_servers()
   return table.concat(server_names, ' ')
 end
 
+local function toggle_whitespace()
+  vim.o.list = not vim.o.list
+end
+
+local function toggle_diff()
+  local action = (vim.o.diff == true and 'off' or 'this')
+  vim.cmd('windo diff' .. action)
+end
+
+
 return {
   get_attached_lsp_servers = get_attached_lsp_servers,
   parse_url = parse_url,
   parse_url_under_cursor = parse_url_under_cursor,
+  toggle_whitespace = toggle_whitespace,
+  toggle_diff = toggle_diff,
 }

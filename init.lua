@@ -103,30 +103,13 @@ api.nvim_set_keymap('n', ',p', '"0p', { silent = true })
 api.nvim_set_keymap('n', ',P', '"0P', { silent = true })
 
 -- Toggle diff
-function _G.toggle_diff()
-  local action = (vim.o.diff == true and 'off' or 'this')
-  vim.cmd('windo diff' .. action)
-end
+api.nvim_set_keymap('n', '<leader>d', '<cmd>lua require("config.utils").toggle_diff()<cr>', {})
 
-api.nvim_set_keymap('n', '<leader>d', '<cmd>lua toggle_diff()<cr>', {})
+-- Toggle whitespace
+api.nvim_set_keymap('n', '<F2>', '<cmd>lua require("config.utils").toggle_whitespace()<cr>', {})
 
 -- emmet leader key
 g.user_emmet_leader_key = '<C-E>'
-
--- Toggle whitespace
-vim.cmd([[
-" https://stackoverflow.com/questions/9104706/how-can-i-convert-spaces-to-tabs-in-vim-or-linux
-function! ToggleWhitespace()
-  setlocal lcs=tab:>-,trail:-,eol:$ list! list?
-  if &list
-    match ErrorMsg /\s\+$/
-  else
-    match none
-  endif
-endfunction
-
-nnoremap <F2> :call ToggleWhitespace()<CR>
-]])
 
 vim.cmd([[
 " Trigger `autoread` when files changes on disk
