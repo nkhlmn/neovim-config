@@ -9,7 +9,7 @@ local on_attach = function(client, bufnr)
   local keymap_opts = { noremap = true, silent = true }
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>ca', '<Cmd>Telescope lsp_code_actions()<CR>', keymap_opts)
+  buf_set_keymap('n', '<leader>ca', '<Cmd>Telescope lsp_code_actions<CR>', keymap_opts)
   buf_set_keymap('n', '<leader>gh', '<Cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
   buf_set_keymap('n', '<leader>gs', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
   buf_set_keymap('n', '<leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
