@@ -1,13 +1,16 @@
+local vim = vim
+local api = vim.api
+local o = vim.o
+local g = vim.g
+
+-- Check if a lua/config/local.lua file with overrides exists
+g.has_local_config = pcall(require, 'config.local')
+
 require('config.globals')
 require('config.plugins')
 require('config.colorscheme')
 require('config.lspconfig')
 require('config.utils')
-
-local vim = vim
-local api = vim.api
-local o = vim.o
-local g = vim.g
 
 o.completeopt = 'menu,menuone,noselect'
 o.number = true

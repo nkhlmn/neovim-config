@@ -6,15 +6,7 @@ local g = vim.g
 o.termguicolors = true
 o.background = 'dark'
 
-local default_colorscheme = 'gruvbox-material'
-local colorscheme = default_colorscheme
-
--- Check if a local config file (not source controlled) exists
-local has_local_config = pcall(require, 'config.local')
-if has_local_config then
-  local local_config = require('config.local')
-  colorscheme = local_config.colorscheme or default_colorscheme
-end
+local colorscheme = vim.g.local_colorscheme or 'gruvbox-material'
 
 -- Theme specific config options
 if colorscheme == 'gruvbox-material' then
