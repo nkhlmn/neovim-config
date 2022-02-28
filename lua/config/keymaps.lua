@@ -1,58 +1,79 @@
 local api = vim.api
-local g = vim.g
 
-api.nvim_set_keymap('n', '*', '*N', {}) -- keep cursor on first match when searching for word under cursor
-api.nvim_set_keymap('n', '<C-S>', ':w<CR>', {}) -- save buffer
-api.nvim_set_keymap('n', 'Q', '<Nop>', {}) -- prevent going into ex mode
-api.nvim_set_keymap('n', '<leader>y', ':%y<CR>', {}) -- yank entire buffer
-api.nvim_set_keymap('n', '<ESC><ESC>', ':let @/ = ""<cr>', { noremap = true, silent = true }) -- clear search by pressing esc twice
-api.nvim_set_keymap('n', 'ZB', '<cmd>bd!<cr>', { noremap = true, silent = true })
+local keymaps = {
+  -- misc --
+  { '', '<leader>`', ':tabnew $MYVIMRC<CR>' }, -- open init.lua
+  { 'n', '<leader>x', ':w|so%' }, -- source current file
+  { 'n', '<F5>', ':!open %<CR>' }, -- Open current file with default program
+  { 'n', 'Q', '<Nop>', {} }, -- prevent going into ex mode
 
-api.nvim_set_keymap('n', '<leader>b', ':enew<CR>', { silent = true }) -- open new buffer
-api.nvim_set_keymap('n', '<leader>t', ':tabnew<CR>', { silent = true }) -- open new tab
-api.nvim_set_keymap('n', '<leader>T', ':Texplore<CR>', { silent = true }) -- open new tab with netrw
-api.nvim_set_keymap('n', '<leader>s', ':new<CR>', { silent = true }) -- open horizontal split
-api.nvim_set_keymap('n', '<leader>S', ':Sexplore<CR>', { silent = true }) -- open horizontal split with netrw
-api.nvim_set_keymap('n', '<leader>v', ':vnew<CR>', { silent = true }) -- open vertical split
-api.nvim_set_keymap('n', '<leader>V', ':vnew<bar>Explore<CR>', { silent = true }) -- open vertical split with netrw
+  -- searching --
+  { 'n', '*', '*N', {} }, -- keep cursor on first match when searching for word under cursor
+  { 'n', '<ESC><ESC>', ':let @/ = ""<cr>' }, -- clear search by pressing esc twice
 
--- navigate tabs
-api.nvim_set_keymap('n', '[t', ':tabprevious<CR>', { silent = true, noremap = true })
-api.nvim_set_keymap('n', ']t', ':tabnext<CR>', { silent = true, noremap = true })
+  -- splits --
+  { 'n', '<leader>s', ':new<CR>' }, -- open horizontal split
+  { 'n', '<leader>v', ':vnew<CR>' }, -- open vertical split
 
--- navigate tabs
-api.nvim_set_keymap('n', '[T', ':execute "silent! tabmove " . (tabpagenr()-2)<CR>', { silent = true, noremap = true }) -- move tab left
-api.nvim_set_keymap('n', ']T', ':execute "silent! tabmove " . (tabpagenr()+1)<CR>', { silent = true, noremap = true }) -- move tab right
+  -- buffers --
+  { 'n', '<C-S>', ':w<CR>', {} }, -- write/save buffer
+  { 'n', 'ZB', '<cmd>bd!<cr>' }, -- close buffer
+  { 'n', '<leader>b', ':enew<CR>' }, -- open new buffer
 
+  -- tabs --
+  { 'n', '<leader>t', ':tabnew<CR>' }, -- open new tab
+  -- navigate tabs
+  { 'n', '[t', ':tabprevious<CR>' },
+  { 'n', ']t', ':tabnext<CR>' },
+  -- move tabs
+  { 'n', '[T', ':execute "silent! tabmove " . (tabpagenr()-2)<CR>' }, -- move tab left
+  { 'n', ']T', ':execute "silent! tabmove " . (tabpagenr()+1)<CR>' },-- move tab right
 
-api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true, silent = true }) -- Yank till end of line with Y (instead of yanking entire line)
+  -- yanking --
+  { 'n', '<leader>y', ':%y<CR>', {} }, -- yank entire buffer
+  { 'n', 'Y', 'y$' }, -- Yank till end of line with Y (instead of yanking entire line)
+  -- Leave cursor where it is after yanking
+  { 'n', 'y^', 'mzy^`z' },
+  { 'n', 'ygg', 'mzygg`z' },
+  -- Paste last thing yanked
+  { 'n', ',p', '"0p', { silent = true } },
+  { 'n', ',P', '"0P', { silent = true } },
 
--- Leave cursor where it is after yanking
-api.nvim_set_keymap('n', 'y^', 'mzy^`z', { noremap = true, silent = true })
-api.nvim_set_keymap('n', 'ygg', 'mzygg`z', { noremap = true, silent = true })
+  -- Keep things centered when jumping and joining lines ('zz' centers cursor, 'zv' opens folds)
+  { 'n', 'n', 'nzzzv' },
+  { 'n', 'N', 'Nzzzv' },
+  { 'n', 'J', 'mzJ`z' },
 
--- Keep things centered when jumping and joining lines ('zz' centers cursor, 'zv' opens folds)
-api.nvim_set_keymap('n', 'n', 'nzzzv', { noremap = true, silent = true })
-api.nvim_set_keymap('n', 'N', 'Nzzzv', { noremap = true, silent = true })
-api.nvim_set_keymap('n', 'J', 'mzJ`z', { noremap = true, silent = true })
+  -- Create undo break points when hitting certain characters in insert mode (allows for more granular undos)
+  { 'i', ',', ',<c-g>u' },
+  { 'i', '.', '.<c-g>u' },
+  { 'i', '!', '!<c-g>u' },
+  { 'i', '?', '?<c-g>u' },
 
--- Create undo break points when hitting certain characters in insert mode (allows for more granular undos)
-api.nvim_set_keymap('i', ',', ',<c-g>u', { noremap = true, silent = true })
-api.nvim_set_keymap('i', '.', '.<c-g>u', { noremap = true, silent = true })
-api.nvim_set_keymap('i', '!', '!<c-g>u', { noremap = true, silent = true })
-api.nvim_set_keymap('i', '?', '?<c-g>u', { noremap = true, silent = true })
+  -- custom functions
+  { 'n', '<leader>d', '<cmd>lua require("config.utils").toggle_diff()<cr>' }, -- Toggle diff
+  { 'n', '<F2>', '<cmd>lua require("config.utils").toggle_whitespace()<cr>' }, -- Toggle whitespace
+}
 
--- Open current file with default program
-api.nvim_set_keymap('n', '<F5>', ':!open %<CR>', { silent = true })
+local default_options = { noremap = true, silent = true }
+for _, val in pairs(keymaps) do
+  api.nvim_set_keymap(val[1], val[2], val[3], val[4] or default_options)
+end
 
--- Paste last thing yanked
-api.nvim_set_keymap('n', ',p', '"0p', { silent = true })
-api.nvim_set_keymap('n', ',P', '"0P', { silent = true })
+local lsp_keymaps = {
+  { 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>' },
+  { 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>' },
+  { 'n', '<leader>ca', '<Cmd>Telescope lsp_code_actions<CR>' },
+  { 'n', '<leader>gh', '<Cmd>lua vim.lsp.buf.hover()<CR>' },
+  { 'n', '<leader>gs', '<Cmd>lua vim.lsp.buf.signature_help()<CR>' },
+  { 'n', '<leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>' },
+  { 'n', '[e', '<Cmd>lua vim.diagnostic.get_next()<CR>' },
+  { 'n', ']e', '<Cmd>lua vim.diagnostic.get_prev()<CR>' },
+  { 'n', '<leader>d', '<Cmd>lua vim.diagnostic.open_float()<CR>' },
+  { 'n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>' },
+  { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
+}
 
--- Toggle diff
-api.nvim_set_keymap('n', '<leader>d', '<cmd>lua require("config.utils").toggle_diff()<cr>', {})
-
--- Toggle whitespace
-api.nvim_set_keymap('n', '<F2>', '<cmd>lua require("config.utils").toggle_whitespace()<cr>', {})
-
-api.nvim_set_keymap('', '<leader>`', ':tabnew $MYVIMRC<CR>', { noremap = true, silent = true }) -- open init.lua
+return {
+  lsp_keymaps = lsp_keymaps
+}

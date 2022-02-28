@@ -1,30 +1,19 @@
 local vim = vim
 
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-
   -- setup keymappings
-  local keymap_opts = { noremap = true, silent = true }
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>ca', '<Cmd>Telescope lsp_code_actions<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>gh', '<Cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>gs', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
-  buf_set_keymap('n', '[e', '<Cmd>lua vim.diagnostic.get_next()<CR>', keymap_opts)
-  buf_set_keymap('n', ']e', '<Cmd>lua vim.diagnostic.get_prev()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>d', '<Cmd>lua vim.diagnostic.open_float()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>fn', '<Cmd>Neoformat<CR>', keymap_opts)
+  local default_keymap_opts = { noremap = true, silent = true }
+  local lsp_keymaps = require('config.keymaps').lsp_keymaps
+  for _, val in pairs(lsp_keymaps) do
+    vim.api.nvim_buf_set_keymap(bufnr, val[1], val[2], val[3], val[4] or default_keymap_opts)
+  end
 
   -- setup sqls.nvim plugin
   if client.name == 'sqls' then
     require('sqls').on_attach(client, bufnr)
   end
 
-  -- Enable documentHighlight for certain language servers
+  -- Enable documentHighlight specified certain language servers
   local enable_highlight_servers = {
     'sumneko_lua',
     'rust_analyzer',
@@ -40,6 +29,7 @@ local on_attach = function(client, bufnr)
       ]])
     end
   end
+
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
