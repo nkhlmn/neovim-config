@@ -36,7 +36,7 @@ o.incsearch = true -- start search immediately after typing
 o.diffopt = 'internal,filler,closeoff,vertical'
 o.foldlevelstart = 99
 o.list = true
-o.listchars = 'trail:·,tab:  '
+o.listchars = 'trail:·'
 o.splitbelow = true
 o.splitright = true
 vim.cmd([[autocmd FileType gitcommit setlocal nolist]])
