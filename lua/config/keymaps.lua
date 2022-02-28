@@ -3,7 +3,7 @@ local api = vim.api
 local keymaps = {
   -- misc --
   { '', '<leader>`', ':tabnew $MYVIMRC<CR>' }, -- open init.lua
-  { 'n', '<leader>x', ':w|so%' }, -- source current file
+  { 'n', '<leader>xx', ':w|so%<CR>' }, -- source current file
   { 'n', '<F5>', ':!open %<CR>' }, -- Open current file with default program
   { 'n', 'Q', '<Nop>', {} }, -- prevent going into ex mode
 
