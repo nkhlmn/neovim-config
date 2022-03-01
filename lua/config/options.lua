@@ -28,7 +28,7 @@ local editor_options = {
   diffopt = 'internal,filler,closeoff,vertical',
   foldlevelstart = 99,
   list = true,
-  listchars = 'trail:·',
+  listchars = 'trail:·,tab:  ',
   splitbelow = true,
   splitright = true,
 }
