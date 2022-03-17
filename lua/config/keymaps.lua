@@ -1,5 +1,6 @@
 local api = vim.api
 
+-- Define global keymaps
 local keymaps = {
   -- misc --
   { '', '<leader>`', ':tabnew $MYVIMRC<CR>' }, -- open init.lua
@@ -60,11 +61,13 @@ local keymaps = {
   { 't', '<C-n>', '<DOWN>' },
 }
 
+-- Set global keymaps
 local default_options = { noremap = true, silent = true }
 for _, val in pairs(keymaps) do
   api.nvim_set_keymap(val[1], val[2], val[3], val[4] or default_options)
 end
 
+-- Define mappings that will get set by lsp on_attach function
 local lsp_keymaps = {
   { 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>' },
   { 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>' },
