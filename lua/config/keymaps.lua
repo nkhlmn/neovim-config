@@ -53,6 +53,11 @@ local keymaps = {
   -- custom functions
   { 'n', '<leader>d', '<cmd>lua require("config.utils").toggle_diff()<cr>' }, -- Toggle diff
   { 'n', '<F2>', '<cmd>lua require("config.utils").toggle_whitespace()<cr>' }, -- Toggle whitespace
+
+  -- Terminal
+  { 't', '<ESC><ESC>', [[<C-\><C-n>]] },
+  { 't', '<C-p>', '<UP>' },
+  { 't', '<C-n>', '<DOWN>' },
 }
 
 local default_options = { noremap = true, silent = true }
