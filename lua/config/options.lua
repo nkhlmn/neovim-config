@@ -15,7 +15,6 @@ local editor_options = {
   mouse = 'a',
   autoread = true,
   updatetime = 100,
-  laststatus = 2, -- Always show statusline,
   showmode = false, -- Hides default status text for current mode,
   showcmd = true, -- Show incomplete commands,
   clipboard = 'unnamedplus', -- Copy text from outside vim,
