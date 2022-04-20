@@ -2,10 +2,10 @@ local vim = vim
 
 local on_attach = function(client, bufnr)
   -- setup keymappings
-  local default_keymap_opts = { noremap = true, silent = true }
+  local default_keymap_opts = { noremap = true, silent = true, buffer = true }
   local lsp_keymaps = require('config.keymaps').lsp_keymaps
   for _, val in pairs(lsp_keymaps) do
-    vim.api.nvim_buf_set_keymap(bufnr, val[1], val[2], val[3], val[4] or default_keymap_opts)
+    vim.keymap.set(val[1], val[2], val[3], val[4] or default_keymap_opts)
   end
 
   -- setup sqls.nvim plugin

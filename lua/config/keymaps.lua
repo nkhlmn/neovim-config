@@ -1,4 +1,4 @@
-local api = vim.api
+local utils = require('config.utils')
 
 -- Define global keymaps
 local keymaps = {
@@ -52,8 +52,8 @@ local keymaps = {
   { 'i', '?', '?<c-g>u' },
 
   -- custom functions
-  { 'n', '<leader>d', '<cmd>lua require("config.utils").toggle_diff()<cr>' }, -- Toggle diff
-  { 'n', '<F2>', '<cmd>lua require("config.utils").toggle_whitespace()<cr>' }, -- Toggle whitespace
+  { 'n', '<leader>d', utils.toggle_diff }, -- Toggle diff
+  { 'n', '<F2>', utils.toggle_whitespace }, -- Toggle whitespace
 
   -- Terminal
   { 't', '<ESC><ESC>', [[<C-\><C-n>]] },
@@ -64,21 +64,21 @@ local keymaps = {
 -- Set global keymaps
 local default_options = { noremap = true, silent = true }
 for _, val in pairs(keymaps) do
-  api.nvim_set_keymap(val[1], val[2], val[3], val[4] or default_options)
+  vim.keymap.set(val[1], val[2], val[3], val[4] or default_options)
 end
 
 -- Define mappings that will get set by lsp on_attach function
 local lsp_keymaps = {
-  { 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>' },
-  { 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>' },
-  { 'n', '<leader>ca', '<Cmd>Telescope lsp_code_actions<CR>' },
-  { 'n', '<leader>gh', '<Cmd>lua vim.lsp.buf.hover()<CR>' },
-  { 'n', '<leader>gs', '<Cmd>lua vim.lsp.buf.signature_help()<CR>' },
-  { 'n', '<leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>' },
-  { 'n', '[e', '<Cmd>lua vim.diagnostic.get_next()<CR>' },
-  { 'n', ']e', '<Cmd>lua vim.diagnostic.get_prev()<CR>' },
-  { 'n', '<leader>d', '<Cmd>lua vim.diagnostic.open_float()<CR>' },
-  { 'n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>' },
+  { 'n', 'gD', vim.lsp.buf.declaration },
+  { 'n', 'gd', vim.lsp.buf.definition },
+  { 'n', '<leader>gh', vim.lsp.buf.hover },
+  { 'n', '<leader>gs', vim.lsp.buf.signature_help },
+  { 'n', '<leader>rn', vim.lsp.buf.rename },
+  { 'n', '[e', vim.diagnostic.get_next },
+  { 'n', ']e', vim.diagnostic.get_prev },
+  { 'n', '<leader>d', vim.diagnostic.open_float },
+  { 'n', '<leader>f', vim.lsp.buf.formatting },
+  { 'n', '<leader>ca', require('telescope.builtin').lsp_code_actions },
   { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
 }
 
