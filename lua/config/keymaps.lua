@@ -78,7 +78,7 @@ local lsp_keymaps = {
   { 'n', ']e', vim.diagnostic.get_prev },
   { 'n', '<leader>d', vim.diagnostic.open_float },
   { 'n', '<leader>f', vim.lsp.buf.formatting },
-  { 'n', '<leader>ca', require('telescope.builtin').lsp_code_actions },
+  { 'n', '<leader>ca', vim.lsp.buf.code_action },
   { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
 }
 
