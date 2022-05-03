@@ -14,8 +14,11 @@ end
 
 local function split_url_components(url)
   url = string.gsub(url, '%%5B', '[')
+  url = string.gsub(url, '%%5b', '[')
   url = string.gsub(url, '%%5D', ']')
+  url = string.gsub(url, '%%5d', ']')
   url = string.gsub(url, '%%2F', '/')
+  url = string.gsub(url, '%%2f', '/')
   url = string.gsub(url, '?', '\n\n?\n')
   url = string.gsub(url, '#', '\n\n#\n')
   url = string.gsub(url, '&', '\n\n&\n')
