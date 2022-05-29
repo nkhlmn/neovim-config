@@ -32,27 +32,20 @@ local on_attach = function(client, bufnr)
 
 end
 
+require("nvim-lsp-installer").setup()
+local installed_servers = require('nvim-lsp-installer').get_installed_servers()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local function on_ready(server)
-  local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+local default_opts = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
-  if server.name == 'rust_analyzer' then
-    require('rust-tools').setup {
-      tools = {
-        inlay_hints = { highlight = 'DiagnosticSignHint' },
-      },
-      server = {
-        on_attach = on_attach,
-      },
-    }
-    return
-  elseif server.name == 'sumneko_lua' then
-    opts.settings = {
+for _, server in pairs(installed_servers) do
+
+  if server.name == 'sumneko_lua' then
+    default_opts.settings = {
       Lua = {
         diagnostics = {
           globals = { 'vim' },
@@ -61,7 +54,9 @@ local function on_ready(server)
     }
   end
 
-  server:setup(opts) -- This is the same as lspconfig's setup function.
+  -- default setup for all servers
+  require('lspconfig')[server.name].setup(default_opts)
+
 end
 
-require('nvim-lsp-installer').on_server_ready(on_ready)
+require('rust-tools').setup({ server = default_opts })
