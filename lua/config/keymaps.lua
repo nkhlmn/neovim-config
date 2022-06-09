@@ -52,7 +52,7 @@ local keymaps = {
   { 'i', '?', '?<c-g>u' },
 
   -- custom functions
-  { 'n', '<leader>d', utils.toggle_diff }, -- Toggle diff
+  { 'n', '\\d', utils.toggle_diff }, -- Toggle diff
   { 'n', '<F2>', utils.toggle_whitespace }, -- Toggle whitespace
 
   -- Terminal
