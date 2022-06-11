@@ -13,8 +13,8 @@ local keymaps = {
   { 'n', '<ESC><ESC>', ':let @/ = ""<cr>' }, -- clear search by pressing esc twice
 
   -- splits --
-  { 'n', '<leader>s', ':new<CR>' }, -- open horizontal split
-  { 'n', '<leader>v', ':vnew<CR>' }, -- open vertical split
+  { 'n', '<leader>s', ':new<CR>' }, -- horizontal split
+  { 'n', '<leader>v', ':vnew<CR>' }, -- vertical split
 
   -- buffers --
   { 'n', '<C-S>', ':w<CR>', {} }, -- write/save buffer
@@ -23,22 +23,18 @@ local keymaps = {
 
   -- tabs --
   { 'n', '<leader>t', ':tabnew<CR>' }, -- open new tab
-  -- navigate tabs
-  { 'n', '[t', ':tabprevious<CR>' },
-  { 'n', ']t', ':tabnext<CR>' },
-  -- move tabs
+  { 'n', '[t', ':tabprevious<CR>' }, -- previous tab
+  { 'n', ']t', ':tabnext<CR>' }, -- next tab
   { 'n', '[T', ':execute "silent! tabmove " . (tabpagenr()-2)<CR>' }, -- move tab left
   { 'n', ']T', ':execute "silent! tabmove " . (tabpagenr()+1)<CR>' },-- move tab right
 
   -- yanking --
   { 'n', '<leader>y', ':%y<CR>', {} }, -- yank entire buffer
   { 'n', 'Y', 'y$' }, -- Yank till end of line with Y (instead of yanking entire line)
-  -- Leave cursor where it is after yanking
-  { 'n', 'y^', 'mzy^`z' },
-  { 'n', 'ygg', 'mzygg`z' },
-  -- Paste last thing yanked
-  { 'n', ',p', '"0p', { silent = true } },
-  { 'n', ',P', '"0P', { silent = true } },
+  { 'n', 'y^', 'mzy^`z' }, -- Leave cursor where it is after yanking
+  { 'n', 'ygg', 'mzygg`z' }, -- Leave cursor where it is after yanking
+  { 'n', ',p', '"0p', { silent = true } }, -- Paste (after cursor) last thing yanked
+  { 'n', ',P', '"0P', { silent = true } }, -- Paste (before cursor) last thing yanked
 
   -- Keep things centered when jumping and joining lines ('zz' centers cursor, 'zv' opens folds)
   { 'n', 'n', 'nzzzv' },
@@ -51,14 +47,17 @@ local keymaps = {
   { 'i', '!', '!<c-g>u' },
   { 'i', '?', '?<c-g>u' },
 
-  -- custom functions
-  { 'n', '\\d', utils.toggle_diff }, -- Toggle diff
-  { 'n', '<F2>', utils.toggle_whitespace }, -- Toggle whitespace
-
   -- Terminal
   { 't', '<ESC><ESC>', [[<C-\><C-n>]] },
-  { 't', '<C-p>', '<UP>' },
-  { 't', '<C-n>', '<DOWN>' },
+  { 't', '<C-p>', '<UP>' }, -- previous command
+  { 't', '<C-n>', '<DOWN>' }, -- next command
+
+  -- Custom functions
+  { 'n', '\\d', utils.toggle_diff }, -- Toggle diff
+  { 'n', '\\w', utils.toggle_whitespace }, -- Toggle whitespace
+
+  -- Plugins
+  { 'n', '\\t', '<cmd>TroubleToggle<cr>' }, -- Toggle diff
 }
 
 -- Set global keymaps
