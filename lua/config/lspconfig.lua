@@ -2,10 +2,19 @@ local vim = vim
 
 local on_attach = function(client, bufnr)
   -- setup keymappings
+  local keymaps = require('config.keymaps').lsp_keymaps
   local default_keymap_opts = { noremap = true, silent = true, buffer = true }
-  local lsp_keymaps = require('config.keymaps').lsp_keymaps
-  for _, val in pairs(lsp_keymaps) do
+  local default_keymaps = keymaps.defaults
+  for _, val in pairs(default_keymaps) do
     vim.keymap.set(val[1], val[2], val[3], val[4] or default_keymap_opts)
+  end
+
+  local lsp_keymaps = keymaps[client.name]
+
+  if lsp_keymaps ~= nil then
+    for _, val in pairs(lsp_keymaps) do
+      vim.keymap.set(val[1], val[2], val[3], val[4] or default_keymap_opts)
+    end
   end
 
   -- setup sqls.nvim plugin
@@ -23,9 +32,9 @@ local on_attach = function(client, bufnr)
   for _, server_name in pairs(enable_highlight_servers) do
     if server_name == client.name then
       vim.cmd([[
-        autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       ]])
     end
   end

@@ -68,17 +68,23 @@ end
 
 -- Define mappings that will get set by lsp on_attach function
 local lsp_keymaps = {
-  { 'n', 'gD', vim.lsp.buf.declaration },
-  { 'n', 'gd', vim.lsp.buf.definition },
-  { 'n', '<leader>gh', vim.lsp.buf.hover },
-  { 'n', '<leader>gs', vim.lsp.buf.signature_help },
-  { 'n', '<leader>rn', vim.lsp.buf.rename },
-  { 'n', '[e', vim.diagnostic.get_next },
-  { 'n', ']e', vim.diagnostic.get_prev },
-  { 'n', '<leader>d', vim.diagnostic.open_float },
-  { 'n', '<leader>f', vim.lsp.buf.formatting },
-  { 'n', '<leader>ca', vim.lsp.buf.code_action },
-  { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
+  defaults = {
+    { 'n', 'gD', vim.lsp.buf.declaration },
+    { 'n', 'gd', vim.lsp.buf.definition },
+    { 'n', '<leader>gh', vim.lsp.buf.hover },
+    { 'n', '<leader>gs', vim.lsp.buf.signature_help },
+    { 'n', '<leader>rn', vim.lsp.buf.rename },
+    { 'n', '[e', vim.diagnostic.get_next },
+    { 'n', ']e', vim.diagnostic.get_prev },
+    { 'n', '<leader>d', vim.diagnostic.open_float },
+    { 'n', '<leader>f', vim.lsp.buf.formatting },
+    { 'n', '<leader>ca', vim.lsp.buf.code_action },
+    { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
+  },
+  rust_analyzer = {
+    { 'n', '[e', '<Cmd>RustMoveItemUp<CR>' },
+    { 'n', ']e', '<Cmd>RustMoveItemDown<CR>' },
+  },
 }
 
 return {
