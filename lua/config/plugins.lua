@@ -52,7 +52,6 @@ local function on_startup(use)
     { 'mattn/emmet-vim' },
     { 'chrisbra/csv.vim' },
     { 'sbdchd/neoformat' },
-    { 'akinsho/nvim-toggleterm.lua' },
 
     -- tpope
     { 'tpope/vim-fugitive' },
