@@ -52,11 +52,12 @@ local function on_startup(use)
     { 'mattn/emmet-vim' },
     { 'chrisbra/csv.vim' },
     { 'sbdchd/neoformat' },
+    { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup() end, },
 
     -- tpope
     { 'tpope/vim-fugitive' },
     { 'tpope/vim-repeat' },
-    { 'tpope/vim-surround' },
+    -- { 'tpope/vim-surround' },
     { 'tpope/vim-unimpaired' },
     { 'tpope/vim-abolish' },
     { 'kristijanhusak/vim-dadbod-ui', requires = 'tpope/vim-dadbod' },
