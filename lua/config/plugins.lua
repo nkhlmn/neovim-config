@@ -34,7 +34,7 @@ local function on_startup(use)
     { 'hrsh7th/vim-vsnip-integ' },
 
     -- Telescope
-    { 'nvim-telescope/telescope.nvim' },
+    { 'nvim-telescope/telescope.nvim', tag = '0.1.0' },
     { 'nvim-telescope/telescope-ui-select.nvim' },
     { 'nvim-telescope/telescope-file-browser.nvim' },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
