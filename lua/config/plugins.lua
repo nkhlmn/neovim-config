@@ -18,7 +18,8 @@ local function on_startup(use)
 
     -- LSP
     { 'neovim/nvim-lspconfig' },
-    { 'williamboman/nvim-lsp-installer' },
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
     { 'simrat39/rust-tools.nvim' },
     { 'nanotee/sqls.nvim' },
 

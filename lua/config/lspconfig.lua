@@ -41,8 +41,10 @@ local on_attach = function(client, bufnr)
 
 end
 
-require("nvim-lsp-installer").setup()
-local installed_servers = require('nvim-lsp-installer').get_installed_servers()
+require('mason').setup()
+require('mason-lspconfig').setup()
+local installed_servers = require('mason-lspconfig').get_installed_servers()
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
@@ -52,8 +54,8 @@ local default_opts = {
 }
 
 for _, server in pairs(installed_servers) do
-
-  if server.name == 'sumneko_lua' then
+  -- add server-specific config
+  if server == 'sumneko_lua' then
     default_opts.settings = {
       Lua = {
         diagnostics = {
@@ -64,8 +66,7 @@ for _, server in pairs(installed_servers) do
   end
 
   -- default setup for all servers
-  require('lspconfig')[server.name].setup(default_opts)
-
+  require('lspconfig')[server].setup(default_opts)
 end
 
 require('rust-tools').setup({ server = default_opts })
