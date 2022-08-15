@@ -48,7 +48,7 @@ local keymaps = {
   { 'i', '?', '?<c-g>u' },
 
   -- Terminal
-  { 't', '<ESC><ESC>', [[<C-\><C-n>]] },
+  { 't', '<ESC><ESC>', [[<C-\><C-n>]] }, -- exit insert mode
   { 't', '<C-p>', '<UP>' }, -- previous command
   { 't', '<C-n>', '<DOWN>' }, -- next command
 
@@ -57,7 +57,12 @@ local keymaps = {
   { 'n', '\\w', utils.toggle_whitespace }, -- Toggle whitespace
 
   -- Plugins
-  { 'n', '\\t', '<cmd>TroubleToggle<cr>' }, -- Toggle diff
+  { 'n', '\\t', '<cmd>TroubleToggle<cr>' },
+
+  { 'n', '[g', ':Gitsigns prev_hunk<CR>' },
+  { 'n', ']g', ':Gitsigns next_hunk<CR>' },
+-- vim.api.nvim_set_keymap('n', '[g', ':Gitsigns prev_hunk<CR>', { silent = true })
+-- vim.api.nvim_set_keymap('n', ']g', ':Gitsigns next_hunk<CR>', { silent = true })
 }
 
 -- Set global keymaps
@@ -71,14 +76,25 @@ local lsp_keymaps = {
   defaults = {
     { 'n', 'gD', vim.lsp.buf.declaration },
     { 'n', 'gd', vim.lsp.buf.definition },
-    { 'n', '<leader>gh', vim.lsp.buf.hover },
-    { 'n', '<leader>gs', vim.lsp.buf.signature_help },
-    { 'n', '<leader>rn', vim.lsp.buf.rename },
-    { 'n', '[e', vim.diagnostic.get_next },
-    { 'n', ']e', vim.diagnostic.get_prev },
-    { 'n', '<leader>d', vim.diagnostic.open_float },
+    { 'n', '<leader>gf', function() require'lspsaga.finder':lsp_finder() end },
+    -- { 'n', '<leader>h', vim.lsp.buf.hover },
+    { 'n', '<leader>h', require'lspsaga.hover'.render_hover_doc },
+    -- { 'n', '<leader>gs', vim.lsp.buf.signature_help },
+    { 'n', '<leader>gs', require'lspsaga.signaturehelp'.signature_help },
+    -- { 'n', '<leader>rn', vim.lsp.buf.rename },
+    { 'n', '<leader>rn', require'lspsaga.rename'.lsp_rename },
+    -- { 'n', ']e', vim.diagnostic.get_next },
+    { 'n', ']e', require'lspsaga.diagnostic'.goto_next },
+    -- { 'n', '[e', vim.diagnostic.get_prev },
+    { 'n', '[e', require'lspsaga.diagnostic'.goto_prev },
+    { 'n', '<leader>l', require'lspsaga.diagnostic'.show_line_diagnostics },
+    { 'n', '<leader>c', require'lspsaga.diagnostic'.show_cursor_diagnostics },
+    -- { 'n', '<leader>ca', vim.lsp.buf.code_action },
+    { 'n', '<leader>ca', require'lspsaga.codeaction'.code_action },
+    -- { 'n', '<leader>d', vim.diagnostic.open_float },
+    { 'n', '<leader>d', require'lspsaga.definition'.preview_definition },
+    { 'n', '<leader>i', require'lspsaga.implement'.lspsaga_implementation },
     { 'n', '<leader>f', vim.lsp.buf.formatting },
-    { 'n', '<leader>ca', vim.lsp.buf.code_action },
     { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
   },
   rust_analyzer = {

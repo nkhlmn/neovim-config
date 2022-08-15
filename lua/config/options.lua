@@ -7,6 +7,7 @@ local editor_options = {
   completeopt = 'menu,menuone,noselect',
   number = true,
   relativenumber = true,
+  signcolumn = 'yes',
   conceallevel = 0,
   expandtab = true,
   shiftwidth = 2,

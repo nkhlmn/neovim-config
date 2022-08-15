@@ -22,6 +22,7 @@ local function on_startup(use)
     { 'williamboman/mason-lspconfig.nvim' },
     { 'simrat39/rust-tools.nvim' },
     { 'nanotee/sqls.nvim' },
+    { 'glepnir/lspsaga.nvim', branch = 'main', config = function() require'lspsaga'.init_lsp_saga() end },
 
     -- Completion
     { 'hrsh7th/nvim-cmp' },
@@ -43,22 +44,21 @@ local function on_startup(use)
     -- Misc
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } },
-    { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' },
-    { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' },
+    { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons', config = function() require'bufferline'.setup() end },
+    { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim', function() require('gitsigns').setup() end },
     { 'lukas-reineke/indent-blankline.nvim' },
-    { 'windwp/nvim-autopairs' },
-    { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end, },
+    { 'windwp/nvim-autopairs', config = function() require'nvim-autopairs'.setup() end },
+    { 'kylechui/nvim-surround', config = function() require'nvim-surround'.setup() end },
+    { 'numToStr/Comment.nvim', config = function() require'Comment'.setup() end },
+    { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons', config = function() require'trouble'.setup() end },
     { 'rcarriga/nvim-notify' },
-    { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' },
     { 'mattn/emmet-vim' },
     { 'chrisbra/csv.vim' },
     { 'sbdchd/neoformat' },
-    { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup() end, },
 
     -- tpope
     { 'tpope/vim-fugitive' },
     { 'tpope/vim-repeat' },
-    -- { 'tpope/vim-surround' },
     { 'tpope/vim-unimpaired' },
     { 'tpope/vim-abolish' },
     { 'kristijanhusak/vim-dadbod-ui', requires = 'tpope/vim-dadbod' },
