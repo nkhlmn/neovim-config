@@ -36,7 +36,7 @@ local function on_startup(use)
     { 'hrsh7th/vim-vsnip-integ' },
 
     -- Telescope
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.0' },
+    { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope-ui-select.nvim' },
     { 'nvim-telescope/telescope-file-browser.nvim' },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
@@ -45,7 +45,7 @@ local function on_startup(use)
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } },
     { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons', config = function() require'bufferline'.setup() end },
-    { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim', function() require('gitsigns').setup() end },
+    { 'lewis6991/gitsigns.nvim' },
     { 'lukas-reineke/indent-blankline.nvim' },
     { 'windwp/nvim-autopairs', config = function() require'nvim-autopairs'.setup() end },
     { 'kylechui/nvim-surround', config = function() require'nvim-surround'.setup() end },
