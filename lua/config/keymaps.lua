@@ -61,8 +61,6 @@ local keymaps = {
 
   { 'n', '[g', ':Gitsigns prev_hunk<CR>' },
   { 'n', ']g', ':Gitsigns next_hunk<CR>' },
--- vim.api.nvim_set_keymap('n', '[g', ':Gitsigns prev_hunk<CR>', { silent = true })
--- vim.api.nvim_set_keymap('n', ']g', ':Gitsigns next_hunk<CR>', { silent = true })
 }
 
 -- Set global keymaps
@@ -76,25 +74,28 @@ local lsp_keymaps = {
   defaults = {
     { 'n', 'gD', vim.lsp.buf.declaration },
     { 'n', 'gd', vim.lsp.buf.definition },
-    { 'n', '<leader>gf', function() require'lspsaga.finder':lsp_finder() end },
     -- { 'n', '<leader>h', vim.lsp.buf.hover },
-    { 'n', '<leader>h', require'lspsaga.hover'.render_hover_doc },
     -- { 'n', '<leader>gs', vim.lsp.buf.signature_help },
-    { 'n', '<leader>gs', require'lspsaga.signaturehelp'.signature_help },
     -- { 'n', '<leader>rn', vim.lsp.buf.rename },
-    { 'n', '<leader>rn', require'lspsaga.rename'.lsp_rename },
-    -- { 'n', ']e', vim.diagnostic.get_next },
-    { 'n', ']e', require'lspsaga.diagnostic'.goto_next },
-    -- { 'n', '[e', vim.diagnostic.get_prev },
-    { 'n', '[e', require'lspsaga.diagnostic'.goto_prev },
-    { 'n', '<leader>l', require'lspsaga.diagnostic'.show_line_diagnostics },
-    { 'n', '<leader>c', require'lspsaga.diagnostic'.show_cursor_diagnostics },
+    -- { 'n', ']d', vim.diagnostic.get_next },
+    -- { 'n', '[d', vim.diagnostic.get_prev },
     -- { 'n', '<leader>ca', vim.lsp.buf.code_action },
-    { 'n', '<leader>ca', require'lspsaga.codeaction'.code_action },
     -- { 'n', '<leader>d', vim.diagnostic.open_float },
-    { 'n', '<leader>d', require'lspsaga.definition'.preview_definition },
-    { 'n', '<leader>i', require'lspsaga.implement'.lspsaga_implementation },
     { 'n', '<leader>f', vim.lsp.buf.formatting },
+
+    -- lspsaga
+    { 'n', '<leader>gf', '<cmd>Lspsaga lsp_finder<CR>' },
+    { 'n', '<leader>h', '<cmd>Lspsaga hover_doc<CR>' },
+    { 'n', '<leader>gs', '<Cmd>Lspsaga signature_help<CR>' },
+    { 'n', '<leader>rn', '<cmd>Lspsaga rename<CR>' },
+    { 'n', ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>' },
+    { 'n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>' },
+    { 'n', '<leader>l', '<cmd>Lspsaga show_line_diagnostics<CR>' },
+    { 'n', '<leader>c', '<cmd>Lspsaga show_cursor_diagnostics<CR>' },
+    { 'n', '<leader>ca', '<cmd>Lspsaga code_action<CR>' },
+    { 'n', '<leader>d', '<cmd>Lspsaga preview_definition<CR>' },
+
+    -- misc
     { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
   },
   rust_analyzer = {
