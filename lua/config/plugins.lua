@@ -74,7 +74,7 @@ local function on_startup(use)
   local local_plugins = vim.g.local_plugins
   if local_plugins ~= nil then
     for _, val in ipairs(local_plugins) do
-      use { val}
+      use { val }
     end
   end
 
