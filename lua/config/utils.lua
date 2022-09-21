@@ -72,6 +72,45 @@ local function toggle_diff()
   vim.cmd('windo diff' .. action)
 end
 
+--[[ OPEN SCRATCHPAD ]]--
+local function split_lines(contents)
+  local lines = {}
+  for line in string.gmatch(contents, '(.-)\n') do
+    table.insert(lines, line)
+  end
+  return lines
+end
+
+local function get_file_contents(file_path)
+  if file_path == nil then
+    return ''
+  end
+
+  local file = io.open(file_path)
+  if file ~= nil then
+    return file:read('a')
+  else
+    return ''
+  end
+end
+
+local function get_file_lines(file_path)
+  local file_contents = get_file_contents(file_path)
+  return split_lines(file_contents)
+end
+
+--- Open a new scratchpad buffer
+-- Accepts an options object with the following keys
+-- @param options.filetype string argument specifying filetype
+-- @param options.template_file string that specifies the path to a template file
+local function open_new_scratchpad(options)
+  local buf = vim.api.nvim_create_buf(true, true)
+  vim.api.nvim_win_set_buf(0, buf)
+  vim.api.nvim_buf_set_option(buf, 'ft', options.filetype)
+
+  local lines = get_file_lines(options.template_file)
+  vim.api.nvim_buf_set_lines(buf, 0, 0, false, lines)
+end
 
 return {
   get_attached_lsp_servers = get_attached_lsp_servers,
@@ -79,4 +118,5 @@ return {
   parse_url_under_cursor = parse_url_under_cursor,
   toggle_whitespace = toggle_whitespace,
   toggle_diff = toggle_diff,
+  open_new_scratchpad = open_new_scratchpad,
 }
