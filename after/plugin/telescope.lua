@@ -38,6 +38,8 @@ local opts = { noremap = true, silent = true }
 map('n', '<leader>h', ':Telescope highlights<cr>', opts)
 map('n', '<leader>k', ':Telescope keymaps<cr>', opts)
 map('n', '<leader>,', ':Telescope vim_options<cr>', opts)
+map('n', '<C-t><C-t>', ':Telescope<cr>', opts)
+map('n', '<C-t>c', ':Telescope colorscheme<cr>', opts)
 map('n', '<C-g>', ':Telescope git_status<cr>', opts)
 map('n', '<C-,>', ':Telescope vim_options<cr>', opts)
 map('n', '<C-b>', ':Telescope buffers<cr>', opts)
