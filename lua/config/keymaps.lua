@@ -26,7 +26,7 @@ local keymaps = {
   { 'n', '[t', ':tabprevious<CR>' }, -- previous tab
   { 'n', ']t', ':tabnext<CR>' }, -- next tab
   { 'n', '[T', ':execute "silent! tabmove " . (tabpagenr()-2)<CR>' }, -- move tab left
-  { 'n', ']T', ':execute "silent! tabmove " . (tabpagenr()+1)<CR>' },-- move tab right
+  { 'n', ']T', ':execute "silent! tabmove " . (tabpagenr()+1)<CR>' }, -- move tab right
 
   -- yanking --
   { 'n', '<leader>y', ':%y<CR>', {} }, -- yank entire buffer
