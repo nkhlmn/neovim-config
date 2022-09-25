@@ -1,8 +1,12 @@
+-- Define global options
 local global_options = {
   mapleader = ' ',
   user_emmet_leader_key = '<C-E>', -- emmet leader key
+  do_filetype_lua = 1, -- enable lua filetype detection
+  did_load_filetypes = 0, -- disable viml filetype detection
 }
 
+-- Define editor options
 local editor_options = {
   completeopt = 'menu,menuone,noselect',
   number = true,
@@ -33,11 +37,13 @@ local editor_options = {
   splitright = true,
 }
 
+-- Set global options defined above
+for key, value in pairs(global_options) do
+  vim.g[key] = value
+end
 
+-- Set editor options defined above
 for key, value in pairs(editor_options) do
   vim.o[key] = value
 end
 
-for key, value in pairs(global_options) do
-  vim.g[key] = value
-end
