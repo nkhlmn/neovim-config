@@ -1,7 +1,7 @@
 local vim = vim
 local api = vim.api
 
---[[ PARSE URL ]]--
+--[[ PARSE URL ]]
 local function str_to_table(inputstr, sep)
   if sep == nil then
     sep = '%s'
@@ -53,7 +53,7 @@ end
 vim.cmd([[command! ParseUrlUnderCursor lua require("config.utils").parse_url_under_cursor()]])
 vim.cmd([[command! -nargs=* ParseUrl lua require("config.utils").parse_url(<f-args>)]])
 
---[[ GET ATTACHED LSP SERVER NAMES ]]--
+--[[ GET ATTACHED LSP SERVER NAMES ]]
 local function get_attached_lsp_servers()
   local attached_servers = vim.lsp.get_active_clients()
   local server_names = {}
@@ -65,18 +65,18 @@ local function get_attached_lsp_servers()
   return table.concat(server_names, ' ')
 end
 
---[[ TOGGLE WHITESPACE ]]--
+--[[ TOGGLE WHITESPACE ]]
 local function toggle_whitespace()
   vim.o.list = not vim.o.list
 end
 
---[[ TOGGLE DIFF ]]--
+--[[ TOGGLE DIFF ]]
 local function toggle_diff()
   local action = (vim.o.diff == true and 'off' or 'this')
   vim.cmd('windo diff' .. action)
 end
 
---[[ OPEN SCRATCHPAD ]]--
+--[[ OPEN SCRATCHPAD ]]
 local function split_lines(contents)
   local lines = {}
   for line in string.gmatch(contents, '(.-)\n') do
