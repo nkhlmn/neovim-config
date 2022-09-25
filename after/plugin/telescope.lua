@@ -10,6 +10,7 @@ telescope.setup {
   },
   extensions = {
     file_browser = {
+      theme = "ivy",
       mappings = {
         ['n'] = {
           ['R'] = fb_actions.rename,
