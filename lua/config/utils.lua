@@ -90,7 +90,7 @@ local function get_file_contents(file_path)
     return ''
   end
 
-  local file = io.open(file_path)
+  local file = io.open(vim.fn.stdpath('config') .. '/templates/' .. file_path)
   if file ~= nil then
     return file:read('a')
   else
@@ -103,17 +103,54 @@ local function get_file_lines(file_path)
   return split_lines(file_contents)
 end
 
+local function is_filename(arg)
+  return arg:match('%.%a+$')
+end
+
 --- Open a new scratchpad buffer
 -- Accepts an options object with the following keys
--- @param options.filetype string argument specifying filetype
--- @param options.template_file string that specifies the path to a template file
-local function open_new_scratchpad(options)
+-- @param arg: string specifying filetype or path to template
+local function open_new_scratchpad(arg)
   local buf = vim.api.nvim_create_buf(true, true)
   vim.api.nvim_win_set_buf(0, buf)
-  vim.api.nvim_buf_set_option(buf, 'ft', options.filetype)
 
-  local lines = get_file_lines(options.template_file)
-  vim.api.nvim_buf_set_lines(buf, 0, 0, false, lines)
+  if is_filename(arg) then
+    vim.filetype.match(arg, buf)
+    local lines = get_file_lines(arg)
+    vim.api.nvim_buf_set_lines(buf, 0, 0, false, lines)
+  else
+    vim.api.nvim_buf_set_option(buf, 'ft', arg)
+  end
+end
+
+--- Open a telescope picker with a set of results provided
+-- @param results: the options the picker will display. Should be an array of strings that are either a filetype or the name of a template
+-- @param opts: options for the telescope picker
+-- Example: require('config.utils').open_scratchpad_picker({ 'scratch.js', 'javascript', 'lua','markdown' })
+local open_scratchpad_picker = function(results, opts)
+  local pickers = require('telescope.pickers')
+  local finders = require('telescope.finders')
+  local conf = require('telescope.config').values
+  local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
+  local dropdown = require('telescope.themes').get_dropdown({})
+
+  opts = vim.tbl_deep_extend('force', dropdown, opts or {})
+  pickers
+    .new(opts, {
+      prompt_title = 'open scratchpad',
+      finder = finders.new_table({ results = results }),
+      sorter = conf.generic_sorter(opts),
+      attach_mappings = function(prompt_bufnr, _)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          require('config.utils').open_new_scratchpad(selection[1])
+        end)
+        return true
+      end,
+    })
+    :find()
 end
 
 return {
@@ -123,4 +160,5 @@ return {
   toggle_whitespace = toggle_whitespace,
   toggle_diff = toggle_diff,
   open_new_scratchpad = open_new_scratchpad,
+  open_scratchpad_picker = open_scratchpad_picker,
 }
