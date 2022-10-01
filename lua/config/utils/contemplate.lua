@@ -38,10 +38,11 @@ function M.create_contemplate_buf(arg)
   vim.api.nvim_win_set_buf(0, buf)
 
   if is_filename(arg) then
-    vim.filetype.match(arg, buf)
+    local filetype = vim.filetype.match({ filename = arg })
     local file_path = vim.fn.stdpath('config') .. '/templates/' .. arg
     local lines = get_file_lines(file_path)
     vim.api.nvim_buf_set_lines(buf, 0, 0, false, lines)
+    vim.api.nvim_buf_set_option(buf, 'ft', filetype)
   else
     vim.api.nvim_buf_set_option(buf, 'ft', arg)
   end
