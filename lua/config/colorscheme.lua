@@ -17,27 +17,28 @@ if colorscheme == 'gruvbox-material' then
   g.gruvbox_material_diagnostic_virtual_text = 'colored'
   g.gruvbox_material_enable_bold = true
   g.gruvbox_material_better_performance = true
-  -- g.gruvbox_material_disable_italic_comment = true
+  g.gruvbox_material_disable_italic_comment = true
 elseif colorscheme == 'everforest' then
   g.everforest_background = 'hard'
   g.everforest_sign_column_background = 'none'
   g.everforest_diagnostic_text_highlight = true
   g.everforest_diagnostic_line_highlight = true
   g.everforest_diagnostic_virtual_text = 'colored'
-  -- g.everforest_disable_italic_comment = true
+  g.everforest_better_performance = true
+  g.everforest_disable_italic_comment = true
 elseif colorscheme == 'sonokai' then
   g.sonokai_style = 'shusia'
-  -- g.sonokai_diagnostic_text_highlight = true
+  g.sonokai_diagnostic_text_highlight = true
   g.sonokai_diagnostic_line_highlight = true
   g.sonokai_diagnostic_virtual_text = 'colored'
-  -- g.sonokai_disable_italic_comment = true
+  g.sonokai_disable_italic_comment = true
 elseif colorscheme == 'spacegray' then
   g.spacegray_use_italics = true
   g.spacegray_low_contrast = true
 end
 
 -- Set the colorscheme
-vim.cmd('colorscheme ' .. colorscheme)
+vim.cmd.colorscheme(colorscheme)
 
 -- Customize highlights for certain themes
 if colorscheme == 'spacegray' then
