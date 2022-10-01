@@ -2,8 +2,6 @@
 local global_options = {
   mapleader = ' ',
   user_emmet_leader_key = '<C-E>', -- emmet leader key
-  do_filetype_lua = 1, -- enable lua filetype detection
-  did_load_filetypes = 0, -- disable viml filetype detection
 }
 
 -- Define editor options
