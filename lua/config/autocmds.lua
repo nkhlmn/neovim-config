@@ -1,11 +1,27 @@
-vim.cmd([[
-" Highlight on yank
-autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+vim.api.nvim_create_augroup('yank', { clear = true })
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  group = 'yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
-" Trigger `autoread` when files changes on disk
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if !bufexists("[Command Line]") | checktime | endif
+vim.api.nvim_create_augroup('file-change', { clear = true })
+vim.api.nvim_create_autocmd({ 'FileChangedShellPost' }, {
+  group = 'file-change',
+  pattern = '*',
+  callback = function()
+    require('notify')('File changed on disk. Buffer reloaded.')
+  end,
+})
 
-" Notification after file change
-autocmd FileChangedShellPost * lua require("notify")("File changed on disk. Buffer reloaded.")
-]])
-
+vim.api.nvim_create_autocmd({ 'FocusGained','BufEnter','CursorHold','CursorHoldI' }, {
+  group = 'file-change',
+  pattern = '*',
+  callback = function()
+    if not vim.fn.bufexists('[Command Line]') then
+      vim.cmd('checktime')
+    end
+  end,
+})
