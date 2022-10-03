@@ -93,7 +93,7 @@ local lsp_keymaps = {
     { 'n', '<leader>l', '<cmd>Lspsaga show_line_diagnostics<CR>' },
     { 'n', '<leader>c', '<cmd>Lspsaga show_cursor_diagnostics<CR>' },
     { 'n', '<leader>ca', '<cmd>Lspsaga code_action<CR>' },
-    { 'n', '<leader>d', '<cmd>Lspsaga preview_definition<CR>' },
+    { 'n', '<leader>d', '<cmd>Lspsaga peek_definition<CR>' },
 
     -- misc
     { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
