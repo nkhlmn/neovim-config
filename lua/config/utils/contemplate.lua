@@ -31,12 +31,21 @@ local function is_filename(arg)
 end
 
 --- Open a new scratchpad buffer
--- Accepts an options object with the following keys
 -- @param arg: string specifying filetype or path to template
-function M.create_contemplate_buf(arg)
-  local buf = vim.api.nvim_create_buf(true, true)
-  vim.api.nvim_win_set_buf(0, buf)
+function M.create_contemplate_win(arg, opts)
+  if opts.split == 'h' then
+    vim.cmd.new()
+  elseif opts.split == 'v' then
+    vim.cmd.vnew()
+  elseif opts.new_tab then
+    vim.cmd.tabnew()
+  else
+    local buf = vim.api.nvim_create_buf(true, true)
+    local win = vim.api.nvim_get_current_win()
+    vim.api.nvim_win_set_buf(win, buf)
+  end
 
+  local buf = vim.api.nvim_get_current_buf()
   if is_filename(arg) then
     local filetype = vim.filetype.match({ filename = arg })
     local file_path = vim.fn.stdpath('config') .. '/templates/' .. arg
@@ -46,6 +55,48 @@ function M.create_contemplate_buf(arg)
   else
     vim.api.nvim_buf_set_option(buf, 'ft', arg)
   end
+
+  vim.api.nvim_win_set_cursor(0, { 1, 0 })
+end
+
+-- TELESCOPE
+local function entry_maker(entry)
+  if type(entry) == 'string' then
+    return { value = entry, display = entry, ordinal = entry }
+  elseif type(entry) == 'table' then
+    return { value = entry[1], display = entry[2], ordinal = entry[2] }
+  end
+end
+
+local function attach_mappings(prompt_bufnr, _)
+  local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
+
+  actions.select_default:replace(function()
+    actions.close(prompt_bufnr)
+    local entry = action_state.get_selected_entry()
+    M.create_contemplate_win(entry.value, {})
+  end)
+
+  actions.select_vertical:replace(function()
+    actions.close(prompt_bufnr)
+    local entry = action_state.get_selected_entry()
+    M.create_contemplate_win(entry.value, { split = 'v' })
+  end)
+
+  actions.select_horizontal:replace(function()
+    actions.close(prompt_bufnr)
+    local entry = action_state.get_selected_entry()
+    M.create_contemplate_win(entry.value, { split = 'h' })
+  end)
+
+  actions.select_tab:replace(function()
+    actions.close(prompt_bufnr)
+    local entry = action_state.get_selected_entry()
+    M.create_contemplate_win(entry.value, { new_tab = true })
+  end)
+
+  return true
 end
 
 --- Open a telescope picker with a set of results provided
@@ -56,42 +107,25 @@ function M.open_contemplate_picker(results, opts)
   local pickers = require('telescope.pickers')
   local finders = require('telescope.finders')
   local conf = require('telescope.config').values
-  local actions = require('telescope.actions')
-  local action_state = require('telescope.actions.state')
   local dropdown = require('telescope.themes').get_dropdown({})
+  opts = vim.tbl_deep_extend('force', dropdown, opts or {})
 
-  if (results == nil) then
+  if results == nil then
     results = {}
   end
   local contemplate_entries = vim.g.contemplate_entries
 
-  if (contemplate_entries ~= nil and type(contemplate_entries) == 'table') then
+  if contemplate_entries ~= nil and type(contemplate_entries) == 'table' then
     results = vim.list_extend(results, contemplate_entries)
   end
 
-  opts = vim.tbl_deep_extend('force', dropdown, opts or {})
+  local finder = finders.new_table({ results = results, entry_maker = entry_maker })
   pickers
     .new(opts, {
       prompt_title = 'Contemplate',
-      finder = finders.new_table({
-        results = results,
-        entry_maker = function(entry)
-          if (type(entry) == 'string') then
-            return { value = entry, display = entry, ordinal = entry }
-          elseif (type(entry) == 'table') then
-            return { value = entry[1], display = entry[2], ordinal = entry[2] }
-          end
-        end,
-      }),
+      finder = finder,
       sorter = conf.generic_sorter(opts),
-      attach_mappings = function(prompt_bufnr, _)
-        actions.select_default:replace(function()
-          actions.close(prompt_bufnr)
-          local entry = action_state.get_selected_entry()
-          M.create_contemplate_buf(entry.value)
-        end)
-        return true
-      end,
+      attach_mappings = attach_mappings,
     })
     :find()
 end
