@@ -36,11 +36,11 @@ local function on_startup(use)
 
     -- Telescope
     { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = 'nvim-lua/plenary.nvim' },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
     { 'nvim-telescope/telescope-file-browser.nvim' },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
 
     -- Misc
+    { 'stevearc/dressing.nvim' },
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } },
     { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons', config = function() require'bufferline'.setup() end },
