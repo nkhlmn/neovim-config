@@ -74,26 +74,19 @@ local lsp_keymaps = {
   defaults = {
     { 'n', 'gD', vim.lsp.buf.declaration },
     { 'n', 'gd', vim.lsp.buf.definition },
-    -- { 'n', '<leader>h', vim.lsp.buf.hover },
-    -- { 'n', '<leader>gs', vim.lsp.buf.signature_help },
-    -- { 'n', '<leader>rn', vim.lsp.buf.rename },
-    -- { 'n', ']d', vim.diagnostic.get_next },
-    -- { 'n', '[d', vim.diagnostic.get_prev },
-    -- { 'n', '<leader>ca', vim.lsp.buf.code_action },
-    -- { 'n', '<leader>d', vim.diagnostic.open_float },
-    { 'n', '<leader>f', vim.lsp.buf.formatting },
+    { 'n', '<leader>h', vim.lsp.buf.hover },
+    { 'n', '<leader>gs', vim.lsp.buf.signature_help },
+    { 'n', '<leader>rn', vim.lsp.buf.rename },
+    { 'n', '<leader>ca', vim.lsp.buf.code_action },
+    { 'n', ']d', vim.diagnostic.get_next },
+    { 'n', '[d', vim.diagnostic.get_prev },
+    { 'n', '\\d', vim.diagnostic.open_float },
+    { 'n', '<leader>f', vim.lsp.buf.format },
 
-    -- lspsaga
-    { 'n', '<leader>gf', '<cmd>Lspsaga lsp_finder<CR>' },
-    { 'n', '<leader>h', '<cmd>Lspsaga hover_doc<CR>' },
-    { 'n', '<leader>gs', '<Cmd>Lspsaga signature_help<CR>' },
-    { 'n', '<leader>rn', '<cmd>Lspsaga rename<CR>' },
-    { 'n', ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>' },
-    { 'n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>' },
-    { 'n', '<leader>l', '<cmd>Lspsaga show_line_diagnostics<CR>' },
-    { 'n', '<leader>c', '<cmd>Lspsaga show_cursor_diagnostics<CR>' },
-    { 'n', '<leader>ca', '<cmd>Lspsaga code_action<CR>' },
-    { 'n', '<leader>d', '<cmd>Lspsaga peek_definition<CR>' },
+    -- telescope lsp
+    { 'n', '<leader>rf', require('telescope.builtin').lsp_references },
+    { 'n', '<leader>d', require('telescope.builtin').lsp_definitions },
+    { 'n', '<leader>i', require('telescope.builtin').lsp_implementations },
 
     -- misc
     { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },

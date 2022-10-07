@@ -22,7 +22,6 @@ local function on_startup(use)
     { 'williamboman/mason-lspconfig.nvim' },
     { 'simrat39/rust-tools.nvim' },
     { 'nanotee/sqls.nvim' },
-    { 'glepnir/lspsaga.nvim', branch = 'main', config = function() require'lspsaga'.init_lsp_saga() end },
 
     -- Completion
     { 'hrsh7th/nvim-cmp' },
