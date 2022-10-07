@@ -40,6 +40,7 @@ local function on_startup(use)
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
 
     -- Misc
+    { 'SmiteshP/nvim-navic', requires = 'neovim/nvim-lspconfig' },
     { 'stevearc/dressing.nvim' },
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } },

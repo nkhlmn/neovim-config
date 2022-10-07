@@ -22,23 +22,19 @@ local on_attach = function(client, bufnr)
     require('sqls').on_attach(client, bufnr)
   end
 
-  -- Enable documentHighlight specified certain language servers
-  local enable_highlight_servers = {
-    'sumneko_lua',
-    'rust_analyzer',
-    'tsserver',
-  }
+  -- Enable winbar breadcrumbs if supported
+  if client.server_capabilities.documentSymbolProvider then
+    require('nvim-navic').attach(client, bufnr)
+  end
 
-  for _, server_name in pairs(enable_highlight_servers) do
-    if server_name == client.name then
-      vim.cmd([[
+  -- Enable document highlight if available
+  if client.server_capabilities.documentHighlightProvider then
+    vim.cmd([[
       autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       ]])
-    end
   end
-
 end
 
 require('mason').setup()

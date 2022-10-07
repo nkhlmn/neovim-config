@@ -33,6 +33,7 @@ local editor_options = {
   listchars = 'trail:·,tab:  ',
   splitbelow = true,
   splitright = true,
+  winbar = "%{%v:lua.require'nvim-navic'.get_location()%}",
 }
 
 -- Set global options defined above
@@ -44,4 +45,3 @@ end
 for key, value in pairs(editor_options) do
   vim.o[key] = value
 end
-
