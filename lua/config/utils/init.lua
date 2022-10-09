@@ -25,6 +25,5 @@ return {
   get_attached_lsp_servers = get_attached_lsp_servers,
   toggle_whitespace = toggle_whitespace,
   toggle_diff = toggle_diff,
-  open_contemplate_picker = require('config.utils.contemplate').open_contemplate_picker,
 }
 

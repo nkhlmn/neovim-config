@@ -99,6 +99,7 @@ local function on_startup(use)
 
     -- Personal
     { 'nkhlmn/spectur.nvim' },
+    { 'nkhlmn/contemplate.nvim' },
   })
 
   local local_plugins = vim.g.local_plugins
