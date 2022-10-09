@@ -25,8 +25,6 @@ return {
   get_attached_lsp_servers = get_attached_lsp_servers,
   toggle_whitespace = toggle_whitespace,
   toggle_diff = toggle_diff,
-  parse_url = require('config.utils.parse_url').parse_url,
-  parse_url_under_cursor = require('config.utils.parse_url').parse_url_under_cursor,
   open_contemplate_picker = require('config.utils.contemplate').open_contemplate_picker,
 }
 
