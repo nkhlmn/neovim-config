@@ -15,6 +15,7 @@ local function on_startup(use)
   use({
     -- Packer
     { 'wbthomason/packer.nvim' },
+    { 'lewis6991/impatient.nvim' },
 
     -- LSP
     { 'neovim/nvim-lspconfig' },
