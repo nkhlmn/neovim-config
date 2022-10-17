@@ -23,6 +23,17 @@ local function on_startup(use)
     { 'williamboman/mason-lspconfig.nvim' },
     { 'simrat39/rust-tools.nvim' },
     { 'nanotee/sqls.nvim' },
+    {
+      'jose-elias-alvarez/null-ls.nvim',
+      config = function()
+        local null_ls = require('null-ls')
+        null_ls.setup({
+          sources = {
+            null_ls.builtins.diagnostics.selene,
+          },
+        })
+      end,
+    },
 
     -- Completion
     { 'hrsh7th/nvim-cmp' },
