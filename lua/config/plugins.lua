@@ -79,7 +79,12 @@ local function on_startup(use)
         require('trouble').setup()
       end,
     },
-    { 'rcarriga/nvim-notify', config = function() vim.notify = require('notify') end },
+    {
+      'rcarriga/nvim-notify',
+      config = function()
+        vim.notify = require('notify')
+      end,
+    },
     { 'mattn/emmet-vim' },
     { 'chrisbra/csv.vim' },
     { 'sbdchd/neoformat' },
