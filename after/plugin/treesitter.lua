@@ -1,8 +1,8 @@
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
   -- ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { 'help' }
+    disable = { 'help' },
   },
   incremental_selection = {
     enable = true,
@@ -16,7 +16,7 @@ require('nvim-treesitter.configs').setup {
   -- indent = { -- experimental; disabled for now
   --   enable = true
   -- }
-}
+})
 
 vim.cmd([[
 set foldmethod=expr

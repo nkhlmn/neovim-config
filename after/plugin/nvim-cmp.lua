@@ -1,7 +1,7 @@
 local vim = vim
 local cmp = require('cmp')
 
-cmp.setup {
+cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn['vsnip#anonymous'](args.body)
@@ -12,10 +12,10 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-y>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
-    },
+    }),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -26,5 +26,4 @@ cmp.setup {
     { name = 'calc' },
     { name = 'example' },
   }),
-}
-
+})

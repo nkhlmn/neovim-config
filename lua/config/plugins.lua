@@ -1,9 +1,9 @@
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd([[packadd packer.nvim]])
     return true
   end
   return false
@@ -91,6 +91,12 @@ local function on_startup(use)
       end,
     },
     {
+      'folke/which-key.nvim',
+      config = function()
+        require('which-key').setup()
+      end,
+    },
+    {
       'rcarriga/nvim-notify',
       config = function()
         vim.notify = require('notify')
@@ -117,7 +123,8 @@ local function on_startup(use)
     -- Personal
     { 'nkhlmn/spectur.nvim' },
     {
-      'nkhlmn/contemplate.nvim',
+      -- 'nkhlmn/contemplate.nvim',
+      '~/development/contemplate.nvim',
       config = function()
         require('contemplate').setup({
           temp_folder = '~/development/sandbox/',

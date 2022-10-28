@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ 'FileChangedShellPost' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'FocusGained','BufEnter','CursorHold','CursorHoldI' }, {
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
   group = 'file-change',
   pattern = '*',
   callback = function()

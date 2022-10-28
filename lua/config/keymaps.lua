@@ -98,5 +98,5 @@ local lsp_keymaps = {
 }
 
 return {
-  lsp_keymaps = lsp_keymaps
+  lsp_keymaps = lsp_keymaps,
 }

@@ -2,7 +2,7 @@ local telescope = require('telescope')
 local fb_actions = require('telescope').extensions.file_browser.actions
 
 -- Configuration
-telescope.setup {
+telescope.setup({
   defaults = {
     layout_config = { prompt_position = 'top' },
     sorting_strategy = 'ascending',
@@ -10,7 +10,7 @@ telescope.setup {
   },
   extensions = {
     file_browser = {
-      theme = "ivy",
+      theme = 'ivy',
       mappings = {
         ['n'] = {
           ['R'] = fb_actions.rename,
@@ -22,7 +22,7 @@ telescope.setup {
       },
     },
   },
-}
+})
 
 telescope.load_extension('file_browser')
 telescope.load_extension('fzf')
