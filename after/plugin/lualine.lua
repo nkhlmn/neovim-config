@@ -5,7 +5,11 @@ require('lualine').setup({
     globalstatus = true,
   },
   sections = {
-    lualine_c = { { 'filename', path = 1 } },
+    lualine_c = { '%=', require('config.utils').get_attached_lsp_servers },
     lualine_x = { 'searchcount', 'encoding', 'fileformat', 'filetype' },
+  },
+  winbar = {
+    lualine_b = { require('nvim-navic').get_location },
+    lualine_y = { { 'filename', path = 1 } },
   },
 })

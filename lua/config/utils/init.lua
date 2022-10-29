@@ -7,7 +7,7 @@ local function get_attached_lsp_servers()
     table.insert(server_names, value.name)
   end
 
-  return table.concat(server_names, ' ')
+  return table.concat(server_names, ' | ')
 end
 
 --[[ TOGGLE WHITESPACE ]]

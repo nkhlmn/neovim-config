@@ -33,7 +33,6 @@ local editor_options = {
   listchars = 'trail:·,tab:  ',
   splitbelow = true,
   splitright = true,
-  winbar = "%{%v:lua.require'nvim-navic'.get_location()%} %=%{%v:lua.require'config.utils'.get_attached_lsp_servers()%}",
   cmdheight = 0,
 }
 
