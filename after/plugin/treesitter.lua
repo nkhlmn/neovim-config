@@ -13,12 +13,4 @@ require('nvim-treesitter.configs').setup({
       node_decremental = 'grm',
     },
   },
-  -- indent = { -- experimental; disabled for now
-  --   enable = true
-  -- }
 })
-
-vim.cmd([[
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-]])

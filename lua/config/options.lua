@@ -34,6 +34,7 @@ local editor_options = {
   splitbelow = true,
   splitright = true,
   cmdheight = 0,
+  foldmethod = 'indent'
 }
 
 -- Set global options defined above
