@@ -12,4 +12,8 @@ require('lualine').setup({
     lualine_b = { require('nvim-navic').get_location },
     lualine_y = { { 'filename', path = 1 } },
   },
+  inactive_winbar = {
+    lualine_b = { require('nvim-navic').get_location },
+    lualine_y = { { 'filename', path = 1 } },
+  },
 })
