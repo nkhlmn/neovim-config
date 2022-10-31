@@ -123,8 +123,7 @@ local function on_startup(use)
     -- Personal
     { 'nkhlmn/spectur.nvim' },
     {
-      -- 'nkhlmn/contemplate.nvim',
-      '~/development/contemplate.nvim',
+      'nkhlmn/contemplate.nvim',
       config = function()
         require('contemplate').setup({
           temp_folder = '~/development/sandbox/',
