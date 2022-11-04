@@ -12,6 +12,27 @@ function M.get_attached_lsp_servers()
   return table.concat(server_names, ' | ')
 end
 
+--[[ GET NUMBER OF SELECTED LINES ]]
+function M.get_visual_lines_count()
+  local map = {
+    ['v']      = 'VISUAL',
+    ['vs']     = 'VISUAL',
+    ['V']      = 'V-LINE',
+    ['Vs']     = 'V-LINE',
+    ['\22']   = 'V-BLOCK',
+    ['\22s']  = 'V-BLOCK',
+    ['Rv']     = 'V-REPLACE',
+    ['Rvc']    = 'V-REPLACE',
+    ['Rvx']    = 'V-REPLACE',
+  }
+  local mode = vim.api.nvim_get_mode().mode
+  if map[mode] ~= nil then
+    return vim.fn.abs(vim.fn.line('.') - vim.fn.line('v')) + 1
+  else
+    return ''
+  end
+end
+
 --[[ TOGGLE WHITESPACE ]]
 function M.toggle_whitespace()
   vim.o.list = not vim.o.list

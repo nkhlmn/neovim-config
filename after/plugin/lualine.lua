@@ -1,3 +1,5 @@
+local utils = require('config.utils')
+
 require('lualine').setup({
   options = {
     section_separators = { left = '', right = '' },
@@ -5,7 +7,12 @@ require('lualine').setup({
     globalstatus = true,
   },
   sections = {
-    lualine_c = { '%=', require('config.utils').get_attached_lsp_servers },
+    lualine_a = { 'mode', utils.get_visual_lines_count },
+    lualine_c = {
+      'filename',
+      '%=',
+      utils.get_attached_lsp_servers,
+    },
     lualine_x = { 'searchcount', 'encoding', 'fileformat', 'filetype' },
   },
   winbar = {
@@ -17,3 +24,4 @@ require('lualine').setup({
     lualine_y = { { 'filename', path = 1 } },
   },
 })
+
