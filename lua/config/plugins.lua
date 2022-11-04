@@ -1,3 +1,5 @@
+local g = vim.g
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -123,17 +125,25 @@ local function on_startup(use)
     -- Personal
     { 'nkhlmn/spectur.nvim' },
     {
+      'nkhlmn/gore.nvim',
+      config = function()
+        require('gore').setup({
+          categories = g.local_gore_categories or {},
+        })
+      end,
+    },
+    {
       'nkhlmn/contemplate.nvim',
       config = function()
         require('contemplate').setup({
           temp_folder = '~/development/sandbox/',
-          entries = vim.g.local_contemplate_entries or {},
+          entries = g.local_contemplate_entries or {},
         })
       end,
     },
   })
 
-  local local_plugins = vim.g.local_plugins
+  local local_plugins = g.local_plugins
   if local_plugins ~= nil then
     for _, val in ipairs(local_plugins) do
       use({ val })
