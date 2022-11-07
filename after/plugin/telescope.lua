@@ -27,6 +27,7 @@ telescope.setup({
 telescope.load_extension('file_browser')
 telescope.load_extension('fzf')
 telescope.load_extension('contemplate')
+telescope.load_extension('gore')
 
 -- Mappings for launching pickers
 local map = vim.api.nvim_set_keymap
