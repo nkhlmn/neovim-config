@@ -55,7 +55,7 @@ local function on_startup(use)
     { 'SmiteshP/nvim-navic', requires = 'neovim/nvim-lspconfig' },
     { 'stevearc/dressing.nvim' },
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
-    { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } },
+    { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } },
     {
       'akinsho/bufferline.nvim',
       requires = 'kyazdani42/nvim-web-devicons',
@@ -88,12 +88,6 @@ local function on_startup(use)
       requires = 'kyazdani42/nvim-web-devicons',
       config = function()
         require('trouble').setup()
-      end,
-    },
-    {
-      'folke/which-key.nvim',
-      config = function()
-        require('which-key').setup()
       end,
     },
     {
