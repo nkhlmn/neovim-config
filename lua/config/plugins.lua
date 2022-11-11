@@ -116,14 +116,7 @@ local function on_startup(use)
 
     -- Personal
     { 'nkhlmn/spectur.nvim' },
-    {
-      'nkhlmn/gore.nvim',
-      config = function()
-        require('gore').setup({
-          categories = vim.g.local_gore_categories or {},
-        })
-      end,
-    },
+    { 'nkhlmn/gore.nvim' },
     {
       'nkhlmn/contemplate.nvim',
       config = function()
