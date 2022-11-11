@@ -117,15 +117,7 @@ local function on_startup(use)
     -- Personal
     { 'nkhlmn/spectur.nvim' },
     { 'nkhlmn/gore.nvim' },
-    {
-      'nkhlmn/contemplate.nvim',
-      config = function()
-        require('contemplate').setup({
-          temp_folder = '~/development/sandbox/',
-          entries = vim.g.local_contemplate_entries or {},
-        })
-      end,
-    },
+    { 'nkhlmn/contemplate.nvim' },
   })
 
   local local_plugins = vim.g.local_plugins
