@@ -74,8 +74,8 @@ local lsp_keymaps = {
   defaults = {
     { 'n', 'gD', vim.lsp.buf.declaration },
     { 'n', 'gd', vim.lsp.buf.definition },
-    { 'n', '<leader>h', vim.lsp.buf.hover },
-    { 'n', '<leader>gs', vim.lsp.buf.signature_help },
+    { 'n', 'gh', vim.lsp.buf.hover },
+    { 'n', 'gs', vim.lsp.buf.signature_help },
     { 'n', '<leader>rn', vim.lsp.buf.rename },
     { 'n', '<leader>ca', vim.lsp.buf.code_action },
     { 'n', ']d', vim.diagnostic.get_next },
@@ -84,7 +84,7 @@ local lsp_keymaps = {
     { 'n', '<leader>f', vim.lsp.buf.format },
 
     -- telescope lsp
-    { 'n', '<leader>rf', require('telescope.builtin').lsp_references },
+    { 'n', 'gr', require('telescope.builtin').lsp_references },
     { 'n', '<leader>d', require('telescope.builtin').lsp_definitions },
     { 'n', '<leader>i', require('telescope.builtin').lsp_implementations },
 
