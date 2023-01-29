@@ -56,11 +56,29 @@ local keymaps = {
   { 'n', '\\d', utils.toggle_diff }, -- Toggle diff
   { 'n', '\\w', utils.toggle_whitespace }, -- Toggle whitespace
 
-  -- Plugins
-  { 'n', '\\t', '<cmd>TroubleToggle<cr>' },
-
+  -- plugins
+  ---- gitsigns
   { 'n', '[g', ':Gitsigns prev_hunk<CR>' },
   { 'n', ']g', ':Gitsigns next_hunk<CR>' },
+
+  ---- telescope (global)
+  { 'n', '\\d', ':Telescope diagnostics<cr>' },
+  { 'n', '<leader>h', ':Telescope highlights<cr>' },
+  { 'n', '<leader>k', ':Telescope keymaps<cr>' },
+  { 'n', '<leader>,', ':Telescope vim_options<cr>' },
+  { 'n', '<C-t><C-t>', ':Telescope<cr>' },
+  { 'n', '<C-t>c', ':Telescope colorscheme<cr>' },
+  { 'n', '<C-g>', ':Telescope git_status<cr>' },
+  { 'n', '<C-,>', ':Telescope vim_options<cr>' },
+  { 'n', '<C-b>', ':Telescope buffers<cr>' },
+  { 'n', '<C-p>', ':Telescope find_files<cr>' },
+  { 'n', '<leader>p', ':lua require("telescope.builtin").find_files({no_ignore=true,hidden=true})<cr>' },
+  { 'n', '<C-f>', ':Telescope live_grep<cr>' },
+  { 'n', '<C-q>', ':Telescope quickfix<cr>' },
+  { 'n', '<C-l>', ':Telescope loclist<cr>' },
+  { 'n', '<C-h>', ':Telescope help_tags<cr>' },
+  { 'n', '-', ':Telescope file_browser<cr>' },
+  { 'n', '_', ':lua require("telescope").extensions.file_browser.file_browser({respect_gitignore=false})<cr>' },
 }
 
 -- Set global keymaps
@@ -69,7 +87,7 @@ for _, val in pairs(keymaps) do
   vim.keymap.set(val[1], val[2], val[3], val[4] or default_options)
 end
 
--- Define mappings that will get set by lsp on_attach function
+-- Define lsp keymaps (set in lsp on_attach function)
 local lsp_keymaps = {
   defaults = {
     { 'n', 'gD', vim.lsp.buf.declaration },
@@ -80,10 +98,9 @@ local lsp_keymaps = {
     { 'n', '<leader>ca', vim.lsp.buf.code_action },
     { 'n', ']d', vim.diagnostic.get_next },
     { 'n', '[d', vim.diagnostic.get_prev },
-    { 'n', '\\d', vim.diagnostic.open_float },
     { 'n', '<leader>f', vim.lsp.buf.format },
 
-    -- telescope lsp
+    -- telescope (lsp)
     { 'n', 'gr', require('telescope.builtin').lsp_references },
     { 'n', '<leader>d', require('telescope.builtin').lsp_definitions },
     { 'n', '<leader>i', require('telescope.builtin').lsp_implementations },
@@ -91,6 +108,7 @@ local lsp_keymaps = {
     -- misc
     { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
   },
+
   rust_analyzer = {
     { 'n', '[e', '<Cmd>RustMoveItemUp<CR>' },
     { 'n', ']e', '<Cmd>RustMoveItemDown<CR>' },
