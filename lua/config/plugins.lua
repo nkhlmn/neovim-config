@@ -93,13 +93,6 @@ local function on_startup(use)
       end,
     },
     {
-      'folke/trouble.nvim',
-      requires = 'kyazdani42/nvim-web-devicons',
-      config = function()
-        require('trouble').setup()
-      end,
-    },
-    {
       'rcarriga/nvim-notify',
       config = function()
         vim.notify = require('notify')
