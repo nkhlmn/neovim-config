@@ -1,5 +1,3 @@
-require('impatient')
-
 -- Check if a lua/config/local.lua file with overrides exists
 vim.g.has_local_config = pcall(require, 'config.local')
 

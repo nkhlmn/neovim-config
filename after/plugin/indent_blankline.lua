@@ -7,6 +7,7 @@ require('indent_blankline').setup({
     'fugitive',
     'help',
     'packer',
+    'lazy',
     'lsp-installer',
     'mason',
     'lspsagafinder',
