@@ -50,7 +50,7 @@ local default_opts = {
 
 for _, server in pairs(installed_servers) do
   -- add server-specific config
-  if server == 'sumneko_lua' then
+  if server == 'sumneko_lua' or server == 'lua_ls' then
     default_opts.settings = {
       Lua = {
         diagnostics = {
