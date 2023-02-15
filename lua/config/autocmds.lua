@@ -25,3 +25,19 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHo
     end
   end,
 })
+
+vim.api.nvim_create_augroup('macro-recording', { clear = true })
+vim.api.nvim_create_autocmd({ 'RecordingEnter' }, {
+  group = 'macro-recording',
+  pattern = '*',
+  callback = function()
+    local message = 'Recording @' .. vim.fn.reg_recording()
+    vim.notify(message, vim.log.levels.INFO, {
+      timeout = 5,
+      render = 'minimal',
+      keep = function()
+        return vim.fn.reg_recording() ~= ''
+      end
+    })
+  end,
+})
