@@ -96,6 +96,7 @@ local plugins = {
   { 'mattn/emmet-vim' },
   { 'chrisbra/csv.vim' },
   { 'sbdchd/neoformat' },
+  { 'danymat/neogen', dependencies = 'nvim-treesitter/nvim-treesitter', config = true },
 
   -- tpope
   { 'tpope/vim-fugitive' },
