@@ -113,7 +113,6 @@ local plugins = {
   { 'sainnhe/gruvbox-material' },
   { 'sainnhe/everforest' },
   { 'sainnhe/sonokai' },
-  { 'ajh17/Spacegray.vim' },
   { 'rebelot/kanagawa.nvim' },
 
   -- Personal
