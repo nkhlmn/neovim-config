@@ -96,8 +96,8 @@ local lsp_keymaps = {
     { 'n', 'gs', vim.lsp.buf.signature_help },
     { 'n', '<leader>rn', vim.lsp.buf.rename },
     { 'n', '<leader>ca', vim.lsp.buf.code_action },
-    { 'n', ']d', vim.diagnostic.get_next },
-    { 'n', '[d', vim.diagnostic.get_prev },
+    { 'n', ']d', vim.diagnostic.goto_next },
+    { 'n', '[d', vim.diagnostic.goto_prev },
     { 'n', '<leader>f', vim.lsp.buf.format },
 
     -- telescope (lsp)
