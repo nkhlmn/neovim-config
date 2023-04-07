@@ -107,6 +107,7 @@ local lsp_keymaps = {
 
     -- misc
     { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
+    { 'n', '<leader>d', require('config.utils').toggle_diagnostics },
   },
 
   rust_analyzer = {

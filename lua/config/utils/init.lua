@@ -44,5 +44,17 @@ function M.toggle_diff()
   vim.cmd('windo diff' .. action)
 end
 
-return M
+-- Toogle diagnostics
+M.diagnostics_active = true
+function M.toggle_diagnostics()
+  M.diagnostics_active = not M.diagnostics_active
+  if M.diagnostics_active then
+    vim.notify('Show diagnostics', vim.log.levels.INFO)
+    vim.diagnostic.show()
+  else
+    vim.notify('Hide diagnostics', vim.log.levels.INFO)
+    vim.diagnostic.hide()
+  end
+end
 
+return M
