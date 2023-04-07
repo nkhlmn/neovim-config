@@ -15,15 +15,15 @@ end
 --[[ GET NUMBER OF SELECTED LINES ]]
 function M.get_visual_lines_count()
   local map = {
-    ['v']      = 'VISUAL',
-    ['vs']     = 'VISUAL',
-    ['V']      = 'V-LINE',
-    ['Vs']     = 'V-LINE',
-    ['\22']   = 'V-BLOCK',
-    ['\22s']  = 'V-BLOCK',
-    ['Rv']     = 'V-REPLACE',
-    ['Rvc']    = 'V-REPLACE',
-    ['Rvx']    = 'V-REPLACE',
+    ['v'] = 'VISUAL',
+    ['vs'] = 'VISUAL',
+    ['V'] = 'V-LINE',
+    ['Vs'] = 'V-LINE',
+    ['\22'] = 'V-BLOCK',
+    ['\22s'] = 'V-BLOCK',
+    ['Rv'] = 'V-REPLACE',
+    ['Rvc'] = 'V-REPLACE',
+    ['Rvx'] = 'V-REPLACE',
   }
   local mode = vim.api.nvim_get_mode().mode
   if map[mode] ~= nil then
