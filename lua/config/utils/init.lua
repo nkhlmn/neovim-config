@@ -45,15 +45,13 @@ function M.toggle_diff()
 end
 
 -- Toogle diagnostics
-M.diagnostics_active = true
 function M.toggle_diagnostics()
-  M.diagnostics_active = not M.diagnostics_active
-  if M.diagnostics_active then
-    vim.notify('Show diagnostics', vim.log.levels.INFO)
-    vim.diagnostic.show()
+  if vim.diagnostic.is_disabled() then
+    vim.notify('Enable diagnostics', vim.log.levels.INFO)
+    vim.diagnostic.enable()
   else
-    vim.notify('Hide diagnostics', vim.log.levels.INFO)
-    vim.diagnostic.hide()
+    vim.notify('Disable diagnostics', vim.log.levels.INFO)
+    vim.diagnostic.disable()
   end
 end
 
