@@ -72,13 +72,13 @@ local keymaps = {
   { 'n', '<C-,>', ':Telescope vim_options<cr>' },
   { 'n', '<C-b>', ':Telescope buffers<cr>' },
   { 'n', '<C-p>', ':Telescope find_files<cr>' },
-  { 'n', '<leader>p', ':lua require("telescope.builtin").find_files({no_ignore=true,hidden=true})<cr>' },
+  { 'n', '<leader>p', utils.open_telescope_find_files_with_hidden },
   { 'n', '<C-f>', ':Telescope live_grep<cr>' },
   { 'n', '<C-q>', ':Telescope quickfix<cr>' },
   { 'n', '<C-l>', ':Telescope loclist<cr>' },
   { 'n', '<C-h>', ':Telescope help_tags<cr>' },
   { 'n', '-', ':Telescope file_browser<cr>' },
-  { 'n', '_', ':lua require("telescope").extensions.file_browser.file_browser({respect_gitignore=false})<cr>' },
+  { 'n', '<leader>-', utils.open_telescope_file_browser_with_hidden },
 }
 
 -- Set global keymaps

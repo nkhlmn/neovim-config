@@ -55,4 +55,12 @@ function M.toggle_diagnostics()
   end
 end
 
+function M.open_telescope_find_files_with_hidden()
+  require("telescope.builtin").find_files({ no_ignore = true, hidden = true })
+end
+
+function M.open_telescope_file_browser_with_hidden()
+  require('telescope').extensions.file_browser.file_browser({ respect_gitignore = false, hidden = true })
+end
+
 return M
