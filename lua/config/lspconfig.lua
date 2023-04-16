@@ -26,15 +26,6 @@ local on_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     require('nvim-navic').attach(client, bufnr)
   end
-
-  -- Enable document highlight if available
-  if client.server_capabilities.documentHighlightProvider then
-    vim.cmd([[
-      autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      ]])
-  end
 end
 
 require('mason').setup()

@@ -38,6 +38,11 @@ local plugins = {
     end,
   },
 
+  -- treesitter
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+  { 'nvim-treesitter/nvim-treesitter-context' },
+  { 'nvim-treesitter/nvim-treesitter-refactor' },
+
   -- Completion
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-nvim-lsp' },
@@ -62,7 +67,6 @@ local plugins = {
   -- Misc
   { 'SmiteshP/nvim-navic', dependencies = 'neovim/nvim-lspconfig' },
   { 'stevearc/dressing.nvim' },
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-lualine/lualine.nvim', dependencies = { 'kyazdani42/nvim-web-devicons' } },
   {
     'akinsho/bufferline.nvim',
