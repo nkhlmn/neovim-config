@@ -30,18 +30,16 @@ end
 
 require('mason').setup()
 require('mason-lspconfig').setup()
-local installed_servers = require('mason-lspconfig').get_installed_servers()
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local default_opts = {
   on_attach = on_attach,
-  capabilities = capabilities,
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
 
+local installed_servers = require('mason-lspconfig').get_installed_servers()
 for _, server in pairs(installed_servers) do
   -- add server-specific config
-  if server == 'sumneko_lua' or server == 'lua_ls' then
+  if server == 'lua_ls' then
     default_opts.settings = {
       Lua = {
         diagnostics = {

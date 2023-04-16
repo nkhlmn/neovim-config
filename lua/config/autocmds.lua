@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd({ 'RecordingEnter' }, {
   callback = function()
     local message = 'Recording @' .. vim.fn.reg_recording()
     vim.notify(message, vim.log.levels.INFO, {
-      timeout = 5,
+      timeout = 0,
       render = 'minimal',
       keep = function()
         return vim.fn.reg_recording() ~= ''

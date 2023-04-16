@@ -1,7 +1,7 @@
 -- Define global options
 local global_options = {
   mapleader = ' ',
-  user_emmet_leader_key = '<C-E>', -- emmet leader key
+  user_emmet_leader_key = '<C-E>',
 }
 
 -- Define editor options
@@ -34,7 +34,8 @@ local editor_options = {
   splitbelow = true,
   splitright = true,
   cmdheight = 0,
-  foldmethod = 'indent'
+  foldmethod = 'indent',
+  mousescroll = 'ver:1,hor:6',
 }
 
 -- Set global options defined above
