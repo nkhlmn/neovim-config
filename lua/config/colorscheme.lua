@@ -6,7 +6,7 @@ local g = vim.g
 o.termguicolors = true
 o.background = 'dark'
 
-local colorscheme = vim.g.local_colorscheme or 'gruvbox-material'
+local colorscheme = vim.g.local_colorscheme or 'kanagawa-dragon'
 
 -- Theme specific config options
 if colorscheme == 'gruvbox-material' then
