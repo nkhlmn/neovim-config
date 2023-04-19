@@ -17,11 +17,6 @@ local on_attach = function(client, bufnr)
     end
   end
 
-  -- setup sqls.nvim plugin
-  if client.name == 'sqls' then
-    require('sqls').on_attach(client, bufnr)
-  end
-
   -- Enable winbar breadcrumbs if supported
   if client.server_capabilities.documentSymbolProvider then
     require('nvim-navic').attach(client, bufnr)

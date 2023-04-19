@@ -17,7 +17,6 @@ local plugins = {
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'simrat39/rust-tools.nvim' },
-  { 'nanotee/sqls.nvim' },
   {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
