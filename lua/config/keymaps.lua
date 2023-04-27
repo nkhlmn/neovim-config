@@ -69,7 +69,6 @@ local keymaps = {
   { 'n', '<C-p>', require('telescope.builtin').find_files },
   { 'n', '<C-f>', require('telescope.builtin').live_grep },
   { 'n', '<C-h>', require('telescope.builtin').help_tags },
-  { 'n', '-', require('telescope.builtin').file_browser },
   { 'n', '<leader>-', utils.open_telescope_file_browser_with_hidden },
   { 'n', '<leader>ok', require('telescope.builtin').keymaps },
   { 'n', '<leader>oc', require('telescope.builtin').colorscheme },
@@ -78,6 +77,7 @@ local keymaps = {
   { 'n', '<leader>oo', require('telescope.builtin').vim_options },
   { 'n', '<leader>oh', require('telescope.builtin').highlights },
   { 'n', '<leader>od', require('telescope.builtin').diagnostics },
+  { 'n', '-', ':Telescope file_browser' },
   { 'n', '\\d', ':Telescope diagnostics<cr>' },
 }
 
