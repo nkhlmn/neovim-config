@@ -6,11 +6,11 @@ local g = vim.g
 o.termguicolors = true
 o.background = 'dark'
 
-local colorscheme = vim.g.local_colorscheme or 'kanagawa-dragon'
+local colorscheme = vim.g.local_colorscheme or 'gruvbox-material'
 
 -- Theme specific config options
 if colorscheme == 'gruvbox-material' then
-  g.gruvbox_material_background = 'hard'
+  -- g.gruvbox_material_background = 'hard'
   g.gruvbox_material_diagnostic_text_highlight = true
   g.gruvbox_material_diagnostic_line_highlight = true
   g.gruvbox_material_diagnostic_virtual_text = 'colored'
