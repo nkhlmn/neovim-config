@@ -30,7 +30,6 @@ require('lualine').setup({
       '%=',
       navic_component,
     },
-    lualine_x = { 'searchcount', 'encoding', 'fileformat', 'filetype' },
   },
   winbar = {
     lualine_c = { { 'filename', path = 3 } },

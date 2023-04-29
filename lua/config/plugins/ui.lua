@@ -1,50 +1,55 @@
 return {
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('indent_blankline').setup({
+        char = '¦',
+        buftype_exclude = {
+          'terminal',
+          'nofile',
+          'quickfix',
+        },
+        filetype_exclude = {
+          'gitcommit',
+          'git',
+          'fugitive',
+          'help',
+          'packer',
+          'lazy',
+          'lsp-installer',
+          'mason',
+          'lspsagafinder',
+          'lspinfo',
+          'checkhealth',
+          'man',
+          'prompt',
+          '',
+        },
+        show_current_context = true,
+        show_current_context_start = true,
+        context_char = '¦',
+      })
+    end,
+  },
+
   { 'SmiteshP/nvim-navic', dependencies = 'neovim/nvim-lspconfig' },
-  { 'lukas-reineke/indent-blankline.nvim' },
+
   { 'stevearc/dressing.nvim' },
+
   { 'nvim-lualine/lualine.nvim', dependencies = { 'kyazdani42/nvim-web-devicons' } },
+
   {
     'rcarriga/nvim-notify',
     config = function()
       vim.notify = require('notify')
     end,
   },
+
   {
     'akinsho/bufferline.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
     config = function()
       require('bufferline').setup()
     end,
-  },
-  {
-    'folke/noice.nvim',
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      'MunifTanjim/nui.nvim',
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      'rcarriga/nvim-notify',
-    },
-    config = function()
-      require("noice").setup({
-        lsp = {
-          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
-        },
-        -- you can enable a preset for easier configuration
-        presets = {
-          -- bottom_search = true, -- use a classic bottom cmdline for search
-          -- command_palette = true, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          -- inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
-        },
-      })
-    end
   },
 }
