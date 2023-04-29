@@ -3,8 +3,8 @@ return {
   { 'chrisbra/csv.vim' },
 
   -- Personal
-  { 'nkhlmn/spectur.nvim' },
-  { 'nkhlmn/gore.nvim' },
+  { 'nkhlmn/spectur.nvim', dev = true },
+  { 'nkhlmn/gore.nvim', dev = true },
   { 'nkhlmn/contemplate.nvim', dev = true },
 }
 
