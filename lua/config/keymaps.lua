@@ -77,7 +77,7 @@ local keymaps = {
   { 'n', '<leader>oo', require('telescope.builtin').vim_options },
   { 'n', '<leader>oh', require('telescope.builtin').highlights },
   { 'n', '<leader>od', require('telescope.builtin').diagnostics },
-  { 'n', '-', ':Telescope file_browser' },
+  { 'n', '-', ':Telescope file_browser<cr>' },
   { 'n', '\\d', ':Telescope diagnostics<cr>' },
 }
 
