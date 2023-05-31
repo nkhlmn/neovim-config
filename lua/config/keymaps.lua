@@ -36,21 +36,11 @@ local keymaps = {
   { 'n', ',p', '"0p', { silent = true } }, -- Paste (after cursor) last thing yanked
   { 'n', ',P', '"0P', { silent = true } }, -- Paste (before cursor) last thing yanked
 
-  -- Keep things centered when jumping and joining lines ('zz' centers cursor, 'zv' opens folds)
-  { 'n', 'n', 'nzzzv' },
-  { 'n', 'N', 'Nzzzv' },
-  { 'n', 'J', 'mzJ`z' },
-
   -- Create undo break points when hitting certain characters in insert mode (allows for more granular undos)
   { 'i', ',', ',<c-g>u' },
   { 'i', '.', '.<c-g>u' },
   { 'i', '!', '!<c-g>u' },
   { 'i', '?', '?<c-g>u' },
-
-  -- Terminal
-  { 't', '<ESC><ESC>', [[<C-\><C-n>]] }, -- exit insert mode
-  { 't', '<C-p>', '<UP>' }, -- previous command
-  { 't', '<C-n>', '<DOWN>' }, -- next command
 
   -- Custom functions
   { 'n', '\\d', utils.toggle_diff }, -- Toggle diff
