@@ -32,8 +32,6 @@ return {
     end,
   },
 
-  { 'SmiteshP/nvim-navic', dependencies = 'neovim/nvim-lspconfig' },
-
   { 'stevearc/dressing.nvim' },
 
   { 'nvim-lualine/lualine.nvim', dependencies = { 'kyazdani42/nvim-web-devicons' } },

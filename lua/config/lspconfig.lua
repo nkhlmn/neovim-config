@@ -16,11 +16,6 @@ local on_attach = function(client, bufnr)
       vim.keymap.set(val[1], val[2], val[3], val[4] or default_keymap_opts)
     end
   end
-
-  -- Enable winbar breadcrumbs if supported
-  if client.server_capabilities.documentSymbolProvider then
-    require('nvim-navic').attach(client, bufnr)
-  end
 end
 
 require('mason').setup()

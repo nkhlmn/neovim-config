@@ -1,14 +1,4 @@
 local utils = require('config.utils')
-local navic = require('nvim-navic')
-
-local navic_component = {
-  function()
-    return navic.get_location()
-  end,
-  cond = function()
-    return navic.is_available()
-  end,
-}
 
 require('lualine').setup({
   options = {
@@ -25,10 +15,6 @@ require('lualine').setup({
         end,
       },
       utils.get_visual_lines_count,
-    },
-    lualine_c = {
-      '%=',
-      navic_component,
     },
   },
   winbar = {
