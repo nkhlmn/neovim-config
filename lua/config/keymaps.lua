@@ -7,6 +7,8 @@ local keymaps = {
   { 'n', '<leader>xx', ':w|so%<CR>' }, -- source current file
   { 'n', '<F5>', ':!open %<CR>' }, -- Open current file with default program
   { 'n', 'Q', '<Nop>', {} }, -- prevent going into ex mode
+  { 'n', '<leader>f', vim.lsp.buf.format },
+  { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
 
   -- searching --
   { 'n', '*', '*N', {} }, -- keep cursor on first match when searching for word under cursor
@@ -91,7 +93,6 @@ local lsp_keymaps = {
     { 'n', '<leader>ca', vim.lsp.buf.code_action },
     { 'n', ']d', vim.diagnostic.goto_next },
     { 'n', '[d', vim.diagnostic.goto_prev },
-    { 'n', '<leader>f', vim.lsp.buf.format },
 
     -- telescope (lsp)
     { 'n', 'gr', require('telescope.builtin').lsp_references },
@@ -99,7 +100,6 @@ local lsp_keymaps = {
     { 'n', '<leader>i', require('telescope.builtin').lsp_implementations },
 
     -- misc
-    { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
     { 'n', '<leader>d', require('config.utils').toggle_diagnostics },
   },
 
