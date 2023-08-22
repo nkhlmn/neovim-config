@@ -1,14 +1,12 @@
 -- Define global options
 local global_options = {
   mapleader = ' ',
-  user_emmet_leader_key = '<C-E>',
 }
 
 -- Define editor options
 local editor_options = {
   completeopt = 'menu,menuone,noselect',
   number = true,
-  -- relativenumber = true,
   signcolumn = 'yes',
   conceallevel = 0,
   expandtab = true,

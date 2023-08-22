@@ -20,8 +20,6 @@ return {
     end,
   },
 
-  { 'mattn/emmet-vim' },
-
   { 'sbdchd/neoformat' },
 
   { 'tpope/vim-repeat' },
