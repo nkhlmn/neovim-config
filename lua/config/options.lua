@@ -31,7 +31,6 @@ local editor_options = {
   listchars = 'trail:·,tab:  ',
   splitbelow = true,
   splitright = true,
-  -- cmdheight = 0,
   foldmethod = 'indent',
   mousescroll = 'ver:1,hor:6',
 }
