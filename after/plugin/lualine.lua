@@ -23,4 +23,12 @@ require('lualine').setup({
   inactive_winbar = {
     lualine_c = { { 'filename', path = 3 } },
   },
+  tabline = {
+    lualine_a = { 'buffers' },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { 'tabs' }
+  }
 })
