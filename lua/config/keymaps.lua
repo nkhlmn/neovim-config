@@ -9,6 +9,8 @@ local keymaps = {
   { 'n', 'Q', '<Nop>', {} }, -- prevent going into ex mode
   { 'n', '<leader>f', vim.lsp.buf.format },
   { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
+  { 'n', '<leader>', vim.lsp.buf.format },
+  { 'n', '\\d', vim.diagnostic.open_float },
 
   -- searching --
   { 'n', '*', '*N', {} }, -- keep cursor on first match when searching for word under cursor
@@ -45,7 +47,7 @@ local keymaps = {
   { 'i', '?', '?<c-g>u' },
 
   -- Custom functions
-  { 'n', '\\d', utils.toggle_diff }, -- Toggle diff
+  { 'n', '\\D', utils.toggle_diff }, -- Toggle diff
   { 'n', '\\w', utils.toggle_whitespace }, -- Toggle whitespace
 
   -- plugins
@@ -61,7 +63,6 @@ local keymaps = {
   { 'n', '<C-p>', require('telescope.builtin').find_files },
   { 'n', '<C-f>', require('telescope.builtin').live_grep },
   { 'n', '<C-h>', require('telescope.builtin').help_tags },
-  { 'n', '<leader>-', utils.open_telescope_file_browser_with_hidden },
   { 'n', '<leader>ok', require('telescope.builtin').keymaps },
   { 'n', '<leader>oc', require('telescope.builtin').colorscheme },
   { 'n', '<leader>ol', require('telescope.builtin').loclist },
@@ -69,8 +70,7 @@ local keymaps = {
   { 'n', '<leader>oo', require('telescope.builtin').vim_options },
   { 'n', '<leader>oh', require('telescope.builtin').highlights },
   { 'n', '<leader>od', require('telescope.builtin').diagnostics },
-  { 'n', '-', ':Telescope file_browser<cr>' },
-  { 'n', '\\d', ':Telescope diagnostics<cr>' },
+  { 'n', '<leader>of', ':Telescope file_browser<cr>' },
 }
 
 -- Set global keymaps
