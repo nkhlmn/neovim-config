@@ -1,33 +1,30 @@
 return {
   {
     'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('indent_blankline').setup({
-        char = '¦',
-        buftype_exclude = {
-          'terminal',
-          'nofile',
-          'quickfix',
+    config = function ()
+      require('ibl').setup({
+        indent = {
+          char = '¦',
         },
-        filetype_exclude = {
-          'gitcommit',
-          'git',
-          'fugitive',
-          'help',
-          'packer',
-          'lazy',
-          'lsp-installer',
-          'mason',
-          'lspsagafinder',
-          'lspinfo',
-          'checkhealth',
-          'man',
-          'prompt',
-          '',
+        exclude = {
+          filetypes = {
+            'lspinfo',
+            'packer',
+            'checkhealth',
+            'help',
+            'man',
+            'gitcommit',
+            'git',
+            'TelescopePrompt',
+            'TelescopeResults',
+            'fugitive',
+            'lazy',
+            'mason',
+            'lspsagafinder',
+            'prompt',
+            '',
+          },
         },
-        show_current_context = true,
-        show_current_context_start = true,
-        context_char = '¦',
       })
     end,
   },
@@ -38,7 +35,7 @@ return {
 
   {
     'rcarriga/nvim-notify',
-    config = function()
+    config = function ()
       local notify = require('notify')
       notify.setup({
         stages = 'static'
