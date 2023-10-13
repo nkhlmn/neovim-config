@@ -5,7 +5,16 @@ return {
 
   { 'sainnhe/sonokai' },
 
-  { 'rose-pine/neovim', name = 'rose-pine' },
-
-  { 'rebelot/kanagawa.nvim' },
+  {
+    'rebelot/kanagawa.nvim',
+    config = function ()
+      require('kanagawa').setup({
+        overrides = function(colors)
+          return {
+            NormalFloat = { bg = colors.palette.dragonBlack4 }
+          }
+        end,
+      })
+    end
+  },
 }
