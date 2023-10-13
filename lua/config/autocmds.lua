@@ -42,13 +42,3 @@ vim.api.nvim_create_autocmd({ 'RecordingEnter' }, {
   end,
 })
 
--- vim.api.nvim_create_augroup('diagnostics-hover', { clear = true })
--- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
---   group = 'diagnostics-hover',
---   pattern = '*',
---   callback = function()
---     if not vim.diagnostic.is_disabled() then
---       vim.diagnostic.open_float(nil, { focus = false, scope = 'cursor' })
---     end
---   end,
--- })
