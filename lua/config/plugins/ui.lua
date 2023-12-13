@@ -31,14 +31,15 @@ return {
 
   { 'stevearc/dressing.nvim' },
 
-  { 'nvim-lualine/lualine.nvim', dependencies = { 'kyazdani42/nvim-web-devicons' } },
+  { 'nvim-lualine/lualine.nvim' },
 
   {
     'rcarriga/nvim-notify',
     config = function ()
       local notify = require('notify')
       notify.setup({
-        stages = 'static'
+        stages = 'static',
+        render = 'minimal'
       })
       vim.notify = notify
     end,
