@@ -13,6 +13,7 @@ require('lualine').setup({
   },
   tabline = {
     lualine_c = { 'buffers' },
+    lualine_x = { vim.loop.cwd },
     lualine_z = { 'tabs' }
   }
 })
