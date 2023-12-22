@@ -7,3 +7,4 @@ packer_compiled.lua
 .venv/
 .netrwhist
 lua/config/local.lua
+Session.vim
