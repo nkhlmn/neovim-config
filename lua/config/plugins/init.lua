@@ -10,6 +10,8 @@ return {
     end
   },
 
+  { 'tpope/vim-obsession' },
+
   -- Personal
   { 'nkhlmn/spectur.nvim', dev = true },
   { 'nkhlmn/gore.nvim', dev = true },
