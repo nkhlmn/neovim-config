@@ -92,15 +92,16 @@ local lsp_keymaps = {
     { 'n', 'gd', vim.lsp.buf.definition },
     { 'n', 'gh', vim.lsp.buf.hover },
     { 'n', 'gs', vim.lsp.buf.signature_help },
+    { 'n', 'gr', vim.lsp.buf.references },
     { 'n', '<leader>rn', vim.lsp.buf.rename },
     { 'n', '<leader>ca', vim.lsp.buf.code_action },
     { 'n', ']d', vim.diagnostic.goto_next },
     { 'n', '[d', vim.diagnostic.goto_prev },
 
     -- telescope (lsp)
-    { 'n', 'gr', require('telescope.builtin').lsp_references },
-    { 'n', '<leader>d', require('telescope.builtin').lsp_definitions },
-    { 'n', '<leader>i', require('telescope.builtin').lsp_implementations },
+    { 'n', 'or', require('telescope.builtin').lsp_references },
+    { 'n', 'od', require('telescope.builtin').lsp_definitions },
+    { 'n', 'oi', require('telescope.builtin').lsp_implementations },
 
     -- misc
     { 'n', '<leader>d', require('config.utils').toggle_diagnostics },
