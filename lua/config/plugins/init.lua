@@ -2,15 +2,9 @@ return {
   -- Misc
   { 'chrisbra/csv.vim' },
 
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-    config = function ()
-      require('oil').setup()
-    end
-  },
-
   { 'tpope/vim-obsession' },
+
+  { 'tpope/vim-vinegar' },
 
   -- Personal
   { 'nkhlmn/spectur.nvim', dev = true },
