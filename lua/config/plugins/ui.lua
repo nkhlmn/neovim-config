@@ -20,11 +20,11 @@ return {
             'fugitive',
             'lazy',
             'mason',
-            'lspsagafinder',
             'prompt',
             '',
           },
         },
+        scope = { show_start = false, show_end = false }
       })
     end,
   },
@@ -32,16 +32,4 @@ return {
   { 'stevearc/dressing.nvim' },
 
   { 'nvim-lualine/lualine.nvim' },
-
-  {
-    'rcarriga/nvim-notify',
-    config = function ()
-      local notify = require('notify')
-      notify.setup({
-        stages = 'static',
-        render = 'minimal'
-      })
-      vim.notify = notify
-    end,
-  },
 }
