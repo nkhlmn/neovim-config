@@ -1,24 +1,9 @@
 return {
-  {
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup()
-    end,
-  },
+  { 'windwp/nvim-autopairs', config = true },
 
-  {
-    'kylechui/nvim-surround',
-    config = function()
-      require('nvim-surround').setup()
-    end,
-  },
+  { 'kylechui/nvim-surround', config = true },
 
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
-  },
+  { 'numToStr/Comment.nvim', config = true },
 
   { 'sbdchd/neoformat' },
 
