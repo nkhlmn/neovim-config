@@ -96,17 +96,11 @@ local lsp_keymaps = {
     { 'n', '[d', vim.diagnostic.goto_prev },
 
     -- telescope (lsp)
-    { 'n', 'or', require('telescope.builtin').lsp_references },
-    { 'n', 'od', require('telescope.builtin').lsp_definitions },
-    { 'n', 'oi', require('telescope.builtin').lsp_implementations },
+    { 'n', '<leader>or', require('telescope.builtin').lsp_references },
+    { 'n', '<leader>oi', require('telescope.builtin').lsp_implementations },
 
     -- misc
     { 'n', '<leader>d', require('config.utils').toggle_diagnostics },
-  },
-
-  rust_analyzer = {
-    { 'n', '[e', '<Cmd>RustMoveItemUp<CR>' },
-    { 'n', ']e', '<Cmd>RustMoveItemDown<CR>' },
   },
 }
 
