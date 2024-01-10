@@ -51,6 +51,9 @@ local keymaps = {
   { 'n', '\\w', utils.toggle_whitespace }, -- Toggle whitespace
 
   -- plugins
+  -- oil
+  { 'n', '-', '<CMD>Oil<CR>', { desc = "Open parent directory" } },
+
   ---- gitsigns
   { 'n', '[g', ':Gitsigns prev_hunk<CR>' },
   { 'n', ']g', ':Gitsigns next_hunk<CR>' },

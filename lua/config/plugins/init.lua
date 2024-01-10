@@ -4,7 +4,7 @@ return {
 
   { 'tpope/vim-obsession' },
 
-  { 'tpope/vim-vinegar' },
+  { 'stevearc/oil.nvim', config = true },
 
   -- Personal
   { 'nkhlmn/spectur.nvim', dev = true },
