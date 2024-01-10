@@ -70,7 +70,7 @@ local keymaps = {
   { 'n', '<leader>oo', require('telescope.builtin').vim_options },
   { 'n', '<leader>oh', require('telescope.builtin').highlights },
   { 'n', '<leader>od', require('telescope.builtin').diagnostics },
-  { 'n', '<leader>of', ':Telescope file_browser<cr>' },
+  { 'n', '<leader>of', require('telescope.builtin').grep_string },
 }
 
 -- Set global keymaps
