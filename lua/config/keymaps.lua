@@ -2,43 +2,46 @@ local utils = require('config.utils')
 
 -- Define global keymaps
 local keymaps = {
-  -- misc --
+  -- misc
   { '', '<leader>`', ':tabnew $MYVIMRC<CR>' }, -- open init.lua
   { 'n', '<leader>xx', ':w|so%<CR>' }, -- source current file
   { 'n', '<F5>', ':!open %<CR>' }, -- Open current file with default program
-  { 'n', 'Q', '<Nop>', {} }, -- prevent going into ex mode
   { 'n', '<leader>f', vim.lsp.buf.format },
   { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
   { 'n', '<leader>', vim.lsp.buf.format },
   { 'n', '\\d', vim.diagnostic.open_float },
 
-  -- searching --
+  -- searching
   { 'n', '*', '*N', {} }, -- keep cursor on first match when searching for word under cursor
   { 'n', '<ESC><ESC>', ':let @/ = ""<cr>' }, -- clear search by pressing esc twice
 
-  -- splits --
+  -- splits
   { 'n', '<leader>s', ':new<CR>' }, -- horizontal split
   { 'n', '<leader>v', ':vnew<CR>' }, -- vertical split
 
-  -- buffers --
-  { 'n', '<C-S>', ':w<CR>', {} }, -- write/save buffer
+  -- buffers
+  { 'n', '<C-s>', vim.cmd.write, {} }, -- write/save buffer
   { 'n', 'ZB', '<cmd>bd!<cr>' }, -- close buffer
   { 'n', '<leader>b', ':enew<CR>' }, -- open new buffer
 
-  -- tabs --
+  -- tabs
   { 'n', '<leader>t', ':tabnew<CR>' }, -- open new tab
   { 'n', '[t', ':tabprevious<CR>' }, -- previous tab
   { 'n', ']t', ':tabnext<CR>' }, -- next tab
   { 'n', '[T', ':execute "silent! tabmove " . (tabpagenr()-2)<CR>' }, -- move tab left
   { 'n', ']T', ':execute "silent! tabmove " . (tabpagenr()+1)<CR>' }, -- move tab right
 
-  -- yanking --
+  -- yanking
   { 'n', '<leader>y', ':%y<CR>', {} }, -- yank entire buffer
   { 'n', 'Y', 'y$' }, -- Yank till end of line with Y (instead of yanking entire line)
   { 'n', 'y^', 'mzy^`z' }, -- Leave cursor where it is after yanking
   { 'n', 'ygg', 'mzygg`z' }, -- Leave cursor where it is after yanking
   { 'n', ',p', '"0p', { silent = true } }, -- Paste (after cursor) last thing yanked
   { 'n', ',P', '"0P', { silent = true } }, -- Paste (before cursor) last thing yanked
+
+  -- macros
+  { 'n', 'Q', '@@j', {} }, -- yank entire buffer
+  { 'x', 'Q', ':norm @@<CR>', {} }, -- run last run macro on all visually selected lines
 
   -- Create undo break points when hitting certain characters in insert mode (allows for more granular undos)
   { 'i', ',', ',<c-g>u' },
