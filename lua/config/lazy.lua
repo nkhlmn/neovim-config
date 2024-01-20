@@ -18,7 +18,11 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {
   dev = {
     path = '~/development',
-    fallback = true
-  }
+    fallback = true,
+  },
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
 }
 require('lazy').setup('config.plugins', opts)
