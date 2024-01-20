@@ -2,7 +2,11 @@ return {
   {
     'stevearc/oil.nvim',
     opts = {
-      columns = { 'permissions', 'size', 'mtime' },
+      columns = {
+        { 'permissions', highlight = 'Debug' },
+        { 'mtime' },
+        { 'size', highlight = 'Debug' }
+      },
       keymaps = {
         ['<C-s>'] = false,
         ['<C-h>'] = false,
@@ -13,6 +17,6 @@ return {
         ['<leader>t'] = 'actions.select_tab',
         ['<leader>p'] = 'actions.preview',
       }
-    },
+    }
   }
 }
