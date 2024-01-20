@@ -8,7 +8,6 @@ local keymaps = {
   { 'n', '<F5>', ':!open %<CR>' }, -- Open current file with default program
   { 'n', '<leader>f', vim.lsp.buf.format },
   { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
-  { 'n', '<leader>', vim.lsp.buf.format },
   { 'n', '\\d', vim.diagnostic.open_float },
 
   -- searching
@@ -20,7 +19,7 @@ local keymaps = {
   { 'n', '<leader>v', ':vnew<CR>' }, -- vertical split
 
   -- buffers
-  { 'n', '<C-s>', vim.cmd.write, {} }, -- write/save buffer
+  { 'n', '<C-s>', ':w<cr>' }, -- write/save buffer
   { 'n', 'ZB', '<cmd>bd!<cr>' }, -- close buffer
   { 'n', '<leader>b', ':enew<CR>' }, -- open new buffer
 
