@@ -15,6 +15,14 @@ return {
           layout_config = { prompt_position = 'top' },
           sorting_strategy = 'ascending',
           dynamic_preview_title = true,
+          mappings = {
+            n = {
+              ['<C-w>'] = "delete_buffer"
+            },
+            i = {
+              ['<C-w>'] = "delete_buffer"
+            },
+          }
         },
       })
 
