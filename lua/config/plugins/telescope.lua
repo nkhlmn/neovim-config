@@ -19,9 +19,6 @@ return {
             n = {
               ['<C-w>'] = "delete_buffer"
             },
-            i = {
-              ['<C-w>'] = "delete_buffer"
-            },
           }
         },
       })
