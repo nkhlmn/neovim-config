@@ -20,9 +20,5 @@ local opts = {
     path = '~/development',
     fallback = true,
   },
-  change_detection = {
-    enabled = true,
-    notify = false,
-  },
 }
 require('lazy').setup('config.plugins', opts)
