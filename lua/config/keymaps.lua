@@ -76,6 +76,8 @@ local keymaps = {
   { 'n', '<leader>oh', require('telescope.builtin').highlights },
   { 'n', '<leader>od', require('telescope.builtin').diagnostics },
   { 'n', '<leader>of', require('telescope.builtin').grep_string },
+  { 'n', '<leader>o;', require('telescope.builtin').command_history },
+  { 'n', '<leader>os', require('telescope.builtin').search_history },
 }
 
 -- Set global keymaps
