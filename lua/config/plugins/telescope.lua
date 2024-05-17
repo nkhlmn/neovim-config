@@ -1,7 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
+    tag = '0.1.6',
     dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       { 'nvim-lua/plenary.nvim' }
@@ -17,7 +17,7 @@ return {
           dynamic_preview_title = true,
           mappings = {
             n = {
-              ['<C-w>'] = "delete_buffer"
+              ['<C-w>'] = 'delete_buffer'
             },
           }
         },
