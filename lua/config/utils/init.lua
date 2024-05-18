@@ -55,8 +55,14 @@ function M.toggle_diagnostics()
   end
 end
 
+-- Toggle inlay hints
+function M.toggle_inlay_hints()
+  local is_enabled = vim.lsp.inlay_hint.is_enabled()
+  vim.lsp.inlay_hint.enable(not is_enabled)
+end
+
 function M.open_telescope_find_files_with_hidden()
-  require("telescope.builtin").find_files({ no_ignore = true, hidden = true })
+  require('telescope.builtin').find_files({ no_ignore = true, hidden = true })
 end
 
 function M.open_telescope_file_browser_with_hidden()

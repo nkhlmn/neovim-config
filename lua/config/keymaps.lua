@@ -6,7 +6,6 @@ local keymaps = {
   { '', '<leader>`', ':tabnew $MYVIMRC<CR>' }, -- open init.lua
   { 'n', '<leader>xx', ':w|so%<CR>' }, -- source current file
   { 'n', '<F5>', ':!open %<CR>' }, -- Open current file with default program
-  { 'n', '<leader>f', vim.lsp.buf.format },
   { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
   { 'n', '\\d', vim.diagnostic.open_float },
 
@@ -49,8 +48,8 @@ local keymaps = {
   { 'i', '?', '?<c-g>u' },
 
   -- Custom functions
-  { 'n', '\\D', utils.toggle_diff }, -- Toggle diff
-  { 'n', '\\w', utils.toggle_whitespace }, -- Toggle whitespace
+  { 'n', '\\D', utils.toggle_diff },
+  { 'n', '\\w', utils.toggle_whitespace },
 
   -- plugins
   -- oil
@@ -94,13 +93,11 @@ local lsp_keymaps = {
   defaults = {
     { 'n', 'gD', vim.lsp.buf.declaration },
     { 'n', 'gd', vim.lsp.buf.definition },
-    { 'n', 'gh', vim.lsp.buf.hover },
     { 'n', 'gs', vim.lsp.buf.signature_help },
     { 'n', 'gr', vim.lsp.buf.references },
+    { 'n', '<leader>f', vim.lsp.buf.format },
     { 'n', '<leader>rn', vim.lsp.buf.rename },
     { 'n', '<leader>ca', vim.lsp.buf.code_action },
-    { 'n', ']d', vim.diagnostic.goto_next },
-    { 'n', '[d', vim.diagnostic.goto_prev },
 
     -- telescope (lsp)
     { 'n', '<leader>or', require('telescope.builtin').lsp_references },
@@ -108,6 +105,7 @@ local lsp_keymaps = {
 
     -- misc
     { 'n', '<leader>d', require('config.utils').toggle_diagnostics },
+    { 'n', '\\h', utils.toggle_inlay_hints },
   },
 }
 

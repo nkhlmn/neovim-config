@@ -3,8 +3,6 @@ return {
 
   { 'kylechui/nvim-surround', config = true },
 
-  { 'numToStr/Comment.nvim', config = true },
-
   { 'sbdchd/neoformat' },
 
   { 'tpope/vim-repeat' },
