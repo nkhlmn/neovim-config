@@ -82,9 +82,9 @@ local keymaps = {
 -- Set global keymaps
 local default_options = { noremap = true, silent = true }
 for _, val in pairs(keymaps) do
-  local success, error = pcall(vim.keymap.set, val[1], val[2], val[3], val[4] or default_options)
+  local success, _ = pcall(vim.keymap.set, val[1], val[2], val[3], val[4] or default_options)
   if not success then
-    vim.notify(error, vim.log.levels.ERROR)
+    vim.notify("Error setting keymaps: " .. vim.inspect(val), vim.log.levels.ERROR)
   end
 end
 
