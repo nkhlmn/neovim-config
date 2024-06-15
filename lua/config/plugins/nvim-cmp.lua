@@ -24,7 +24,7 @@ local init = function ()
       { name = 'calc' },
     }, {
       { name = 'buffer' },
-
+      { name = 'lazydev', group_index = 0 }
     }),
   })
 
