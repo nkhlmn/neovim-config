@@ -12,27 +12,6 @@ function M.get_attached_lsp_servers()
   return table.concat(server_names, ' | ')
 end
 
---[[ GET NUMBER OF SELECTED LINES ]]
-function M.get_visual_lines_count()
-  local map = {
-    ['v'] = 'VISUAL',
-    ['vs'] = 'VISUAL',
-    ['V'] = 'V-LINE',
-    ['Vs'] = 'V-LINE',
-    ['\22'] = 'V-BLOCK',
-    ['\22s'] = 'V-BLOCK',
-    ['Rv'] = 'V-REPLACE',
-    ['Rvc'] = 'V-REPLACE',
-    ['Rvx'] = 'V-REPLACE',
-  }
-  local mode = vim.api.nvim_get_mode().mode
-  if map[mode] ~= nil then
-    return vim.fn.abs(vim.fn.line('.') - vim.fn.line('v')) + 1
-  else
-    return ''
-  end
-end
-
 --[[ TOGGLE WHITESPACE ]]
 function M.toggle_whitespace()
   vim.o.list = not vim.o.list
@@ -44,7 +23,7 @@ function M.toggle_diff()
   vim.cmd('windo diff' .. action)
 end
 
--- Toogle diagnostics
+--[[ TOGGLE DIAGNOSTICS ]]
 function M.toggle_diagnostics()
   if vim.diagnostic.is_enabled() then
     vim.notify('Disable diagnostics', vim.log.levels.INFO)
@@ -55,7 +34,7 @@ function M.toggle_diagnostics()
   end
 end
 
--- Toggle inlay hints
+--[[ TOGGLE INLAY HINTS ]]
 function M.toggle_inlay_hints()
   local is_enabled = vim.lsp.inlay_hint.is_enabled({})
   vim.lsp.inlay_hint.enable(not is_enabled)
