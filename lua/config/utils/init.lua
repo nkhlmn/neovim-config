@@ -2,7 +2,7 @@ local M = {}
 
 --[[ GET ATTACHED LSP SERVER NAMES ]]
 function M.get_attached_lsp_servers()
-  local attached_servers = vim.lsp.get_active_clients()
+  local attached_servers = vim.lsp.get_clients()
   local server_names = {}
 
   for _, value in pairs(attached_servers) do
@@ -46,18 +46,18 @@ end
 
 -- Toogle diagnostics
 function M.toggle_diagnostics()
-  if vim.diagnostic.is_disabled() then
+  if vim.diagnostic.is_enabled() then
+    vim.notify('Disable diagnostics', vim.log.levels.INFO)
+    vim.diagnostic.enable(false)
+  else
     vim.notify('Enable diagnostics', vim.log.levels.INFO)
     vim.diagnostic.enable()
-  else
-    vim.notify('Disable diagnostics', vim.log.levels.INFO)
-    vim.diagnostic.disable()
   end
 end
 
 -- Toggle inlay hints
 function M.toggle_inlay_hints()
-  local is_enabled = vim.lsp.inlay_hint.is_enabled()
+  local is_enabled = vim.lsp.inlay_hint.is_enabled({})
   vim.lsp.inlay_hint.enable(not is_enabled)
 end
 
