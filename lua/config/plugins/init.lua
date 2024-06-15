@@ -1,7 +1,6 @@
 return {
   -- Misc
   { 'chrisbra/csv.vim' },
-
   { 'tpope/vim-obsession' },
 
   -- Personal

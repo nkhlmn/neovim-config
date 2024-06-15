@@ -1,4 +1,4 @@
-local on_attach = function (client, bufnr)
+local on_attach = function (client, _)
   -- setup keymappings
   local keymaps = require('config.keymaps').lsp_keymaps
   local default_keymap_opts = { noremap = true, silent = true, buffer = true }
