@@ -1,6 +1,6 @@
 return {
   { 'windwp/nvim-autopairs', config = true },
-  -- { 'kylechui/nvim-surround', config = true },
+  { 'kylechui/nvim-surround', config = true },
   { 'sbdchd/neoformat' },
   { 'tpope/vim-repeat' },
   { 'tpope/vim-unimpaired' },
