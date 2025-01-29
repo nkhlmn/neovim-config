@@ -1,7 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
+    branch = '0.1.x',
     dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       { 'nvim-lua/plenary.nvim' }
@@ -14,17 +14,15 @@ return {
         defaults = {
           layout_config = { prompt_position = 'top' },
           sorting_strategy = 'ascending',
-          dynamic_preview_title = true,
           mappings = {
             n = {
-              ['<C-w>'] = 'delete_buffer'
+              ['X'] = 'delete_buffer'
             },
           }
         },
       })
 
       telescope.load_extension('fzf')
-      telescope.load_extension('contemplate')
       telescope.load_extension('gore')
     end
   },
