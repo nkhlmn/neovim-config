@@ -27,17 +27,6 @@ local init = function ()
 
   local installed_servers = require('mason-lspconfig').get_installed_servers()
   for _, server in pairs(installed_servers) do
-    -- server-specific config
-    if server == 'lua_ls' then
-      default_opts.settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' },
-          },
-        },
-      }
-    end
-
     -- default setup for all servers
     require('lspconfig')[server].setup(default_opts)
   end
@@ -55,16 +44,14 @@ return {
     },
     config = init
   },
-{
-    "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
+
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
     opts = {
       library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } }, -- Load luvit types when the `vim.uv` word is found
       },
     },
   },
-  { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
 }
