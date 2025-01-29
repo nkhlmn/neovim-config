@@ -25,3 +25,13 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHo
     end
   end,
 })
+
+vim.api.nvim_create_augroup('ocaml', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  group = 'ocaml',
+  pattern = '*.ml',
+  -- desc = 'Trigger `dune build` after saving .ml files',
+  callback = function ()
+    require('config.utils').dune_rebuild()
+  end,
+})
