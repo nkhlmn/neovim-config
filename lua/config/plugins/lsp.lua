@@ -8,7 +8,6 @@ local on_attach = function (client, _)
   end
 
   local lsp_keymaps = keymaps[client.name]
-
   if lsp_keymaps ~= nil then
     for _, val in pairs(lsp_keymaps) do
       vim.keymap.set(val[1], val[2], val[3], val[4] or default_keymap_opts)
@@ -22,7 +21,7 @@ local init = function ()
 
   local default_opts = {
     on_attach = on_attach,
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
   }
 
   local installed_servers = require('mason-lspconfig').get_installed_servers()
@@ -41,6 +40,7 @@ return {
     dependencies = {
       { 'williamboman/mason.nvim', build = ':MasonUpdate' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { 'saghen/blink.cmp' },
     },
     config = init
   },

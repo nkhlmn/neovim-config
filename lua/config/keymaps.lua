@@ -6,7 +6,7 @@ local keymaps = {
   { '', '<leader>`', ':tabnew $MYVIMRC<CR>' }, -- open init.lua
   { 'n', '<leader>xx', ':w|so%<CR>' }, -- source current file
   { 'n', '<F5>', ':!open %<CR>' }, -- Open current file with default program
-  { 'n', '<leader>fn', '<Cmd>Neoformat<CR>' },
+  { 'n', '<leader>f', require('conform').format },
   { 'n', '\\d', vim.diagnostic.open_float },
 
   -- searching
@@ -95,7 +95,6 @@ local lsp_keymaps = {
     { 'n', 'gd', vim.lsp.buf.definition },
     { 'n', 'gs', vim.lsp.buf.signature_help },
     { 'n', 'gr', vim.lsp.buf.references },
-    { 'n', '<leader>f', vim.lsp.buf.format },
     { 'n', '<leader>rn', vim.lsp.buf.rename },
     { 'n', '<leader>ca', vim.lsp.buf.code_action },
 
