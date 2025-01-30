@@ -4,7 +4,7 @@ return {
   { 'tpope/vim-obsession' },
 
   -- Personal
-  { 'nkhlmn/spectur.nvim', dev = true },
-  { 'nkhlmn/gore.nvim', dev = true },
-  { 'nkhlmn/contemplate.nvim', dev = true, opts = vim.g.contemplate_config or {} },
+  { 'nkhlmn/spectur.nvim', dev = false },
+  { 'nkhlmn/gore.nvim', dev = false },
+  { 'nkhlmn/contemplate.nvim', dev = false, opts = vim.g.contemplate_config or {} },
 }
