@@ -1,4 +1,4 @@
-local on_attach = function (client, _)
+local on_attach = function (client, buf)
   -- setup keymappings
   local keymaps = require('config.keymaps').lsp_keymaps
   local default_keymap_opts = { noremap = true, silent = true, buffer = true }
@@ -12,6 +12,11 @@ local on_attach = function (client, _)
     for _, val in pairs(lsp_keymaps) do
       vim.keymap.set(val[1], val[2], val[3], val[4] or default_keymap_opts)
     end
+  end
+
+  -- client specific handling
+  if client.name == 'sqls' then
+    require('sqls').on_attach(client, buf)
   end
 end
 
