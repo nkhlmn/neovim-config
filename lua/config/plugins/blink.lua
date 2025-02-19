@@ -7,14 +7,6 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-			keymap = {
-				preset = 'default',
-				cmdline = {
-					preset = 'default',
-					['<Tab>'] = { 'select_next' },
-					['<S-Tab>'] = { 'select_prev' },
-				},
-			},
 			completion = {
 				documentation = {
 					auto_show = true,
