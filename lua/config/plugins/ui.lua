@@ -21,10 +21,4 @@ return {
 	},
 
 	{ 'akinsho/bufferline.nvim', version = '*', config = true },
-
-	{
-		'b0o/incline.nvim',
-		config = true,
-		event = 'VeryLazy',
-	},
 }
