@@ -20,7 +20,5 @@ return {
 
 	{ 'tpope/vim-repeat' },
 
-	{ 'tpope/vim-unimpaired' },
-
 	{ 'danymat/neogen', dependencies = 'nvim-treesitter/nvim-treesitter', config = true },
 }
