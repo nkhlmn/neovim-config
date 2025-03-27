@@ -14,7 +14,7 @@ return {
 				lualine_b = { 'branch', 'diff', 'diagnostics' },
 				lualine_c = { { 'filename', path = 3 } },
 				lualine_x = { vim.uv.cwd, 'encoding', 'fileformat', 'filetype' },
-				lualine_y = { 'progress' },
+				lualine_y = { 'lsp_status', 'progress' },
 				lualine_z = { 'location' },
 			},
 		},
