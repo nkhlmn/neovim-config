@@ -44,3 +44,9 @@ end
 for key, value in pairs(editor_options) do
   vim.o[key] = value
 end
+
+vim.diagnostic.config({
+  virtual_lines = {
+    current_line = true
+  }
+})
